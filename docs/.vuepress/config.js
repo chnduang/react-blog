@@ -114,7 +114,7 @@ const nav = [
       { text: "语雀", link: "https://www.yuque.com/xdxmvy" },
       {
         text: "Github",
-        link: "https://github.com/ZQD1224/react",
+        link: "https://github.com/ZQD1224/react-blog",
         target: "_blank",
       },
     ],

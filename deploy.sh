@@ -13,10 +13,10 @@ echo 'react.qdzhou.cn' > CNAME
 # deploy to github
 if [ -z "$GITHUB_TOKEN" ]; then
   msg='deploy'
-  githubUrl=git@github.com:ZQD1224/react.git
+  githubUrl=git@github.com:ZQD1224/react-blog.git
 else
   msg='来自github action的自动部署'
-  githubUrl=https://ZQD1224:${GITHUB_TOKEN}@github.com/ZQD1224/react.git
+  githubUrl=https://ZQD1224:${GITHUB_TOKEN}@github.com/ZQD1224/react-blog.git
   git config --global user.name "zhouqd"
   git config --global user.email "zhouqd1997@163.com"
 fi
