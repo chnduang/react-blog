@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # 确保脚本抛出遇到的错误
 set -e
-# npm cache verify
+npm cache verify
 yarn
 yarn build # 生成静态文件
 
