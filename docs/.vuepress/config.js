@@ -99,6 +99,7 @@ const base = "/";
 const nav = [
   { text: "进阶", link: "/advanced/" },
   { text: "Hooks", link: "/hooks/" },
+  { text: "React-QA", link: "/qa/" },
   { text: "源码解读", link: "/source-code/" },
   { text: "性能优化", link: "/performance/" },
   { text: "基础", link: "/base/" },
