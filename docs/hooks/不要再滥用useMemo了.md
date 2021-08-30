@@ -30,7 +30,7 @@
 
 参考下面的示例组件：
 
-```
+```js
 /**
   @param {number} page
   @param {string} type
@@ -56,7 +56,7 @@ const myComponent({page, type}) {
 
 修正过的代码如下：
 
-```
+```js
 /**
   @param {number} page
   @param {string} type
@@ -77,7 +77,7 @@ const MyComponent({page, type}) {
 
 参考以下代码块：
 
-```
+```js
 /**
   @param {number} page
   @param {string} type
@@ -101,7 +101,7 @@ const myComponent({page, type}) {
 
 传递给 useState 的参数改名为 INITIAL_STATE 更合理。它只在组件刚加载时计算（或触发）一次。
 
-```
+```js
 useState(INITIAL_STATE)
 ```
 
@@ -109,7 +109,7 @@ useState(INITIAL_STATE)
 
 懒惰初始化 useState 时也是一样的道理，如下所示：
 
-```
+```js
 /**
    @param {number} page
    @param {string} type
@@ -133,7 +133,7 @@ const myComponent({page, type}) {
 
 上面的代码改成这样：
 
-```
+```js
 /**
    @param {number} page
    @param {string} type
@@ -174,7 +174,7 @@ const myComponent({page, type}) {
 
 话虽如此，有些情况下我们还是想要遏制这些 lint 警告。以下是我遇到的一个例子。这里的代码是简化过的，方便理解：
 
-```
+```js
 function Example ({ impressionTracker, propA, propB, propC }) {
   useEffect(() => {
     // 追踪初始展示
@@ -197,7 +197,7 @@ function Example ({ impressionTracker, propA, propB, propC }) {
 
 这条消息语气很让人不爽，但 linter 也只是在做自己的工作而已。简单的解决方案是使用 eslint-disable 注释，但这种方法不见得是最合适的，因为将来你可能在同一个 useEffect 调用中引入错误。
 
-```
+```js
 useEffect(() => {
   impressionTracker(propA, propB, propC)
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -206,7 +206,7 @@ useEffect(() => {
 
 我的建议是使用 useRef Hook 来保持对不需要更新的初始 prop 值的引用。
 
-```
+```js
 function Example({impressionTracker, propA, propB, propC}) {
   // 保持对初始值的引用
   const initialTrackingValues = useRef({
@@ -232,7 +232,7 @@ function Example({impressionTracker, propA, propB, propC}) {
 
 例如：
 
-```
+```js
 function Example({impressionTracker, propA, propB, propC}) {
 
   // useMemo 记住这个值，使它保持不变
@@ -269,7 +269,7 @@ useMemo 只用于引用相等
 
 参考下面的示例：
 
-```
+```js
 function Bla() {
   const baz = useMemo(() => [1, 2, 3], [])
   return <Foo baz={baz} />
@@ -302,7 +302,7 @@ useMemo(() => [1, 2, 3], [])
 
 例如，如果你真的讨厌使用当前属性（就像我的很多同事一样），那么只需解构并重命名即可，如下所示：
 
-```
+```js
 function Bla() {
   const { current: baz } = useRef([1, 2, 3])
   return <Foo baz={baz} />

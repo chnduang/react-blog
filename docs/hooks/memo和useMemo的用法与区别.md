@@ -10,7 +10,7 @@ Memoization 是优化性能的方法之一。在本文中，我们将探讨它�
 
 在解释这个概念之前，让我们先来看一个简单的斐波那契程序：
 
-```
+```js
 function fibonacci(n){
   return (n < 2) ? n : fibonacci(n-1) + fibonacci(n-2);
 }
@@ -34,7 +34,7 @@ function fibonacci(n){
 
 下面是我们的父组件：`<ParentComponent />`。
 
-```
+```js
 // components/parent-component.js
 import Counts from "./counts";
 import Button from "./button";
@@ -92,7 +92,7 @@ export default function ParentComponent() {
 
 第二个组件是 `<Counts />` 组件，它跟踪整个 `<Parent Component />` 组件重新渲染的次数。
 
-```
+```js
 // components/counts.js
 import { useRef } from "react";
 export default function Counts() {
@@ -130,7 +130,7 @@ export default function Counts() {
 
 我们将采用上面相同的示例，但在我们的 `<Counts />` 组件中使用 `React.memo()`。我们需要做的就是用 `React.memo()` 包裹我们的 `<Counts />`组件，如下所示：
 
-```
+```js
 import { useRef } from "react";
 function Counts() {
   const renderCount = useRef(0);
@@ -167,7 +167,7 @@ export default React.memo(Counts);
 
 对于我们的下一个示例，我们将对 `<ParentComponent />` 进行一些更改。下面的代码仅显示对我们之前创建的 `<ParentComponent />` 的新更改。
 
-```
+```js
 // components/parent-component.js
 .
 .
@@ -220,7 +220,7 @@ const memoizedValue = useMemo(() => incrementUseMemoRef(), [times]);
 
 这是它的样子：
 
-```
+```js
 // components/use-memo-counts.js
 
 function UseMemoCounts({memoizedValue}) {
@@ -242,7 +242,7 @@ export default UseMemoCounts;
 
 如果注释掉我们当前的 memoizedValue行，并取消注释掉它上面的行：
 
-```
+```js
 const memoizedValue = useMemoRef.current++;
 ```
 

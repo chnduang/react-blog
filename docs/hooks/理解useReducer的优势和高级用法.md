@@ -8,7 +8,7 @@
 
 举一个例子：
 
-```
+```js
 function Counter() {
   const [count, setCount] = useState(0);
   const [step, setStep] = useState(1);
@@ -35,7 +35,7 @@ function Counter() {
 
 使用useReducer替代useState以后：
 
-```
+```js
 function Counter() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { count, step } = state;
@@ -64,7 +64,7 @@ function Counter() {
 
 以下是state的定义，其中reducer封装了“如何更新状态”的逻辑：
 
-```
+```js
 const initialState = {
   count: 0,
   step: 1,
@@ -96,7 +96,7 @@ function reducer(state, action) {
 
 你可以将reducer声明在组件内部，从而能够通过闭包访问props、以及前面的hooks结果：
 
-```
+```js
 function Counter({ step }) {
   const [count, dispatch] = useReducer(reducer, 0);
   function reducer(state, action) {
@@ -138,7 +138,7 @@ function Counter({ step }) {
 
 事实上，如果你简单地使用console.log来打印执行顺序，会发现**reducer是在新渲染执行useReducer的时候被同步执行的**：
 
-```
+```js
   console.log("before useReducer");
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log("after useReducer", state);

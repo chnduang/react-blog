@@ -1,8 +1,8 @@
 ---
 home: true
 heroImage: /header.jpg
-heroText: duangdong的blog
-tagline: 总结和完善前端知识体系
+heroText: duangdong的react
+tagline: 记录和总结react相关的文章
 actionText: 快速上手 →
 actionLink: /advanced/
 features:

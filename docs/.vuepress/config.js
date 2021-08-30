@@ -122,8 +122,8 @@ const nav = [
 ];
 
 module.exports = {
-  title: "duangdong的blog",
-  description: "前端相关知识归纳总结",
+  title: "duangdong的react",
+  description: "react相关知识归纳总结",
   base,
   port: 9201,
   head: [
@@ -133,8 +133,7 @@ module.exports = {
       "meta",
       {
         name: "keywords",
-        content:
-          "qd-blog,js,vuepress,leetcode,react,react进阶,css,js进阶,react性能优化,js设计模式",
+        content: "react,react进阶,react性能优化,react-hooks,react源码",
       },
     ],
     ["script", {}, baiduTongji],
