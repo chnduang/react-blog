@@ -8,6 +8,7 @@
   - [从中断机制看ReactFiber技术](./fiber/从中断机制看ReactFiber技术.md)
   - [六个问题让你更懂ReactFiber](./fiber/六个问题让你更懂ReactFiber.md)
   - [理解其原理fiber](./fiber/理解其原理fiber.md)
+  - [React是如何创建-vdom和fiber-tree](./React是如何创建-vdom和fiber-tree.md)
 - 执行机制
   - [react16常见api以及原理剖析](./react16常见api以及原理剖析.md)
   - [react事件系统原理](./react事件系统原理.md)
@@ -24,3 +25,7 @@
 - [Render如何强制它](./Render如何强制它.md)
 - [react-svelte入门](./react-svelte入门.md)
 - [五分钟带你掌握优先队列](./五分钟带你掌握优先队列.md)
+
+## 链接
+
++ [https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5MjMxMzY5Mw==&action=getalbum&album_id=1719725878131163146&scene=173&from_msgid=2247485066&from_itemidx=1&count=3&nolastread=1#wechat_redirect](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5MjMxMzY5Mw==&action=getalbum&album_id=1719725878131163146&scene=173&from_msgid=2247485066&from_itemidx=1&count=3&nolastread=1#wechat_redirect)

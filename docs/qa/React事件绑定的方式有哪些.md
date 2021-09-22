@@ -33,7 +33,7 @@ class ShowAlert extends React.Component {
 - constructor中bind
 - 定义阶段使用箭头函数绑定
 
-### render方法中使用bind
+### ① render方法中使用bind
 
 如果使用一个类组件，在其中给某个组件/元素一个`onClick`属性，它现在并会自定绑定其`this`到当前组件，解决这个问题的方法是在事件函数后使用`.bind(this)`将`this`绑定到当前组件中
 
@@ -52,7 +52,7 @@ class App extends React.Component {
 
 这种方式在组件每次`render`渲染的时候，都会重新进行`bind`的操作，影响性能
 
-### render方法中使用箭头函数
+### ② render方法中使用箭头函数
 
 通过`ES6`的上下文来将`this`的指向绑定给当前组件，同样在每一次`render`的时候都会生成新的方法，影响性能
 
@@ -69,7 +69,7 @@ class App extends React.Component {
 }
 ```
 
-## constructor中bind
+## ③ constructor中bind
 
 在`constructor`中预先`bind`当前组件，可以避免在`render`操作中重复绑定
 
@@ -90,7 +90,7 @@ class App extends React.Component {
 }
 ```
 
-### 定义阶段使用箭头函数绑定
+### ④ 定义阶段使用箭头函数绑定
 
 跟上述方式三一样，能够避免在`render`操作中重复绑定，实现也非常的简单，如下：
 
@@ -122,4 +122,3 @@ class App extends React.Component {
 ## 参考文献
 
 - https://segmentfault.com/a/1190000011317515
-- https://vue3js.cn/interview/

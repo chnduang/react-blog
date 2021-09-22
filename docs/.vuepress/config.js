@@ -103,6 +103,7 @@ const nav = [
   { text: "源码解读", link: "/source-code/" },
   { text: "性能优化", link: "/performance/" },
   { text: "基础", link: "/base/" },
+  { text: "单元测试", link: "/jest/" },
   { text: "QA", link: "https://qa.qdzhou.cn" },
   {
     text: "个人链接",

@@ -37,4 +37,7 @@
 - [React构建组件的方式有哪些](./React构建组件的方式有哪些.md)
 - [在React中组件间过渡动画如何实现](./在React中组件间过渡动画如何实现.md)
 
-- [https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU1OTgxNDQ1Nw==&action=getalbum&album_id=1923987669068349443&scene=173&from_msgid=2247488842&from_itemidx=1&count=3&nolastread=1#wechat_redirect](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU1OTgxNDQ1Nw==&action=getalbum&album_id=1923987669068349443&scene=173&from_msgid=2247488842&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
+## 链接（原文）
+
++ [https://vue3js.cn/interview/](https://vue3js.cn/interview/)
+

@@ -9,8 +9,8 @@
 至于为什么引入`hook`，官方给出的动机是解决长时间使用和维护`react`过程中常遇到的问题，例如：
 
 - 难以重用和共享组件中的与状态相关的逻辑
-- 逻辑复杂的组件难以开发与维护，当我们的组件需要处理多个互不相关的 local state 时，每个生命周期函数中可能会包含着各种互不相关的逻辑在里面
-- 类组件中的this增加学习成本，类组件在基于现有工具的优化上存在些许问题
+- 逻辑复杂的组件难以开发与维护，当我们的组件需要处理多个互不相关的 `local state` 时，每个生命周期函数中可能会包含着各种互不相关的逻辑在里面
+- 类组件中的`this`增加学习成本，类组件在基于现有工具的优化上存在些许问题
 - 由于业务变动，函数组件不得不改为类组件等等
 
 在以前，函数组件也被称为无状态的组件，只负责渲染的一些工作
@@ -31,7 +31,7 @@
 
 首先给出一个例子，如下：
 
-```
+```jsx
 import React, { useState } from 'react';
 
 function Example() {
@@ -53,7 +53,7 @@ function Example() {
 
 该函数组件等价于的类组件如下：
 
-```
+```jsx
 class Example extends React.Component {
   constructor(props) {
     super(props);
@@ -89,7 +89,7 @@ class Example extends React.Component {
 
 同样给出一个计时器示例：
 
-```
+```jsx
 class Example extends React.Component {
   constructor(props) {
     super(props);
@@ -124,7 +124,7 @@ class Example extends React.Component {
 
 对应的`useEffect`示例如下：
 
-```
+```jsx
 import React, { useState, useEffect } from 'react';
 function Example() {
   const [count, setCount] = useState(0);
@@ -145,7 +145,7 @@ function Example() {
 
 如果某些特定值在两次重渲染之间没有发生变化，你可以跳过对 effect 的调用，这时候只需要传入第二个参数，如下：
 
-```
+```jsx
 useEffect(() => {
   document.title = `You clicked ${count} times`;
 }, [count]); // 仅在 count 更改时更新
@@ -155,7 +155,7 @@ useEffect(() => {
 
 回调函数中可以返回一个清除函数，这是`effect`可选的清除机制，相当于类组件中`componentwillUnmount`生命周期函数，可做一些清除副作用的操作，如下：
 
-```
+```jsx
 useEffect(() => {
     function handleStatusChange(status) {
         setIsOnline(status.isOnline);
@@ -190,8 +190,8 @@ useEffect(() => {
 
 编写`hooks`为函数式编程，每个功能都包裹在函数中，整体风格更清爽，更优雅
 
-```
-hooks`的出现，使函数组件的功能得到了扩充，拥有了类组件相似的功能，在我们日常使用中，使用`hooks`能够解决大多数问题，并且还拥有代码复用机制，因此优先考虑`hooks
+```jsx
+hooks的出现，使函数组件的功能得到了扩充，拥有了类组件相似的功能，在我们日常使用中，使用hooks能够解决大多数问题，并且还拥有代码复用机制，因此优先考虑`hooks
 ```
 
 ## 参考文献

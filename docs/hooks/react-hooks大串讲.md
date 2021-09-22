@@ -128,7 +128,6 @@ react/src/ReactCurrentDispatcher.js
 ```
 
 ```js
-
 const ReactCurrentDispatcher = {
   current: null,
 };

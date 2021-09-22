@@ -1,8 +1,12 @@
 # 【React的作弊模式】理解useReducer的优势和高级用法
 
-或许你已经知道，“当多个state需要一起更新时，就应该考虑使用useReducer”；或许你也已经听说过，“使用useReducer能够提高应用的性能”。但是篇文章希望帮助你理解：为什么useReducer能提高代码的可读性和性能，以及如何在reducer中读取props的值。
+或许你已经知道，当多个state需要一起更新时，就应该考虑使用`useReducer`；
 
-由于useReducer造就的解耦模式以及高级用法，React团队的Dan Abramov将useReducer描述为["React的作弊模式"](https://twitter.com/dan_abramov/status/1102010979611746304)。
+或许你也已经听说过，使用`useReducer`能够提高应用的性能。
+
+但是篇文章希望帮助你理解：为什么`useReducer`能提高代码的可读性和性能，以及如何在`reducer`中读取`props`的值。
+
+由于`useReducer`造就的解耦模式以及高级用法，React团队的Dan Abramov将useReducer描述为["React的作弊模式"](https://twitter.com/dan_abramov/status/1102010979611746304)。
 
 ## useReducer的优势
 
@@ -120,23 +124,23 @@ function Counter({ step }) {
 }
 ```
 
-这个能力可能会出乎很多人的意料。因为大部分人对reducer的触发时机的理解是错误的（包括以前的我）。我以前理解的触发时机是这样：
+这个能力可能会出乎很多人的意料。因为大部分人对`reducer`的触发时机的理解是错误的（包括以前的我）。我以前理解的触发时机是这样：
 
-1. 某个button被用户点击，它的onClick被调用，其中执行了`dispatch({type:'add'})`，React框架安排一次更新
+1. 某个button被用户点击，它的`onClick`被调用，其中执行了`dispatch({type:'add'})`，React框架安排一次更新
 2. React框架处理刚才安排的更新，调用`reducer(prevState, {type:'add'})`，来得到新的状态
-3. React框架用新的状态来渲染组件树，渲染到Counter组件的useReducer时，返回上一步得到的新状态即可
+3. React框架用新的状态来渲染组件树，渲染到`Counter`组件的`useReducer`时，返回上一步得到的新状态即可
 
-但是实际上，React会**在下次渲染的时候**再调用reducer来处理action：
+但是实际上，React会**在下次渲染的时候**再调用`reducer`来处理`action：`
 
 1. 某个button被用户点击，它的onClick被调用，其中执行了`dispatch({type:'add'})`，React框架安排一次更新
 2. React框架处理刚才安排的更新，开始重渲染组件树
-3. 渲染到Counter组件的useReducer时，调用`reducer(prevState, {type:'add'})` ，处理之前的action
+3. 渲染到`Counter`组件的`useReducer`时，调用`reducer(prevState, {type:'add'})` ，处理之前的action
 
 重要的区别在于，reducer是在**下次渲染**的时候被调用的，它的闭包捕获到了**下次渲染**的props。
 
 > 如果按照上面的错误理解，reducer是在下次渲染之前被调用的，它的闭包捕获到上次渲染的props(因为更新渲染还没开始呢)
 
-事实上，如果你简单地使用console.log来打印执行顺序，会发现**reducer是在新渲染执行useReducer的时候被同步执行的**：
+事实上，如果你简单地使用`console.log`来打印执行顺序，会发现**reducer是在新渲染执行useReducer的时候被同步执行的**：
 
 ```js
   console.log("before useReducer");
@@ -151,7 +155,7 @@ function Counter({ step }) {
   }
 ```
 
-调用dispatch以后会输出：
+调用`dispatch`以后会输出：
 
 ```
 before useReducer
@@ -159,6 +163,6 @@ reducer undefined undefined undefined
 after useReducer {count: 1, step: 1}
 ```
 
-证明reducer确实被useReducer同步地调用来获取新的state。
+证明`reducer`确实被`useReducer`同步地调用来获取新的state。
 [codesandbox demo](https://codesandbox.io/s/reducer-trigger-timming-wukxw?file=/src/index.js)
 

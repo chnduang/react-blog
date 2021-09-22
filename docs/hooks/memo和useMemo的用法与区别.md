@@ -1,4 +1,4 @@
-## React.memo() 和 useMemo() 的用法与区别
+# React.memo() 和 useMemo() 的用法与区别
 
 > [https://mp.weixin.qq.com/s/zxT2GfujdbQfvrCtRxkbiQ](https://mp.weixin.qq.com/s/zxT2GfujdbQfvrCtRxkbiQ)
 
@@ -6,7 +6,7 @@
 
 Memoization 是优化性能的方法之一。在本文中，我们将探讨它在 React 中的工作原理。
 
-# **什么是 memoization？**
+## **什么是 memoization？**
 
 在解释这个概念之前，让我们先来看一个简单的斐波那契程序：
 
@@ -16,13 +16,13 @@ function fibonacci(n){
 }
 ```
 
-显然这个算法缓慢的令人绝望，因为做了非常多的冗余计算，这个时候memoization就可以派上用场了。
+显然这个算法缓慢的令人绝望，因为做了非常多的冗余计算，这个时候`memoization`就可以派上用场了。
 
-简单来说，memoization 是一个过程，它允许我们缓存递归/昂贵的函数调用的值，以便下次使用相同的参数调用函数时，返回缓存的值而不必重新计算函数。
+简单来说，`memoization` 是一个过程，它允许我们缓存递归/昂贵的函数调用的值，以便下次使用相同的参数调用函数时，返回缓存的值而不必重新计算函数。
 
 这确保了我们的应用程序运行得更快，因为我们通过返回一个已经存储在内存中的值来避免重新执行函数需要的时间。
 
-# **为什么在 React 中使用 memoization？**
+## **为什么在 React 中使用 memoization？**
 
 在 React 函数组件中，当组件中的 props 发生变化时，默认情况下整个组件都会重新渲染。换句话说，如果组件中的任何值更新，整个组件将重新渲染，包括尚未更改其 values/props 的函数/组件。
 
@@ -122,7 +122,7 @@ export default function Counts() {
 
 现在，让我们探索 `React.memo` 以及 `useMemo()`。之后我们将比较它们之间的差异，并了解何时应该使用一种而不是另一种。
 
-# **什么是 React.memo()？**
+## **什么是 React.memo()？**
 
 `React.memo()` 随 React v16.6 一起发布。虽然类组件已经允许您使用 PureComponent 或 shouldComponentUpdate 来控制重新渲染，但 React 16.6 引入了对函数组件执行相同操作的能力。
 
@@ -156,13 +156,13 @@ export default React.memo(Counts);
 
 
 
-**什么是 useMemo()？**
+## **什么是 useMemo()？**
 
 `React.memo()` 是一个 HOC，而 `**useMemo()**` 是一个 React Hook。使用 `useMemo()`，我们可以返回记忆值来避免函数的依赖项没有改变的情况下重新渲染。
 
 为了在我们的代码中使用 `useMemo()`，React 开发者有一些建议给我们：
 
-- **您可以依赖** `**useMemo()**` **作为性能优化，而不是语义保证**
+- **您可以依赖** `useMemo()` **作为性能优化，而不是语义保证**
 - **函数内部引用的每个值也应该出现在依赖项数组中**
 
 对于我们的下一个示例，我们将对 `<ParentComponent />` 进行一些更改。下面的代码仅显示对我们之前创建的 `<ParentComponent />` 的新更改。
@@ -248,7 +248,7 @@ const memoizedValue = useMemoRef.current++;
 
 将看到 `<UseMemoCounts />` 组件在每次 `<ParentComponent />` 渲染时重新渲染。
 
-# **总结：React.memo() 和 useMemo() 的主要区别**
+## **总结：React.memo() 和 useMemo() 的主要区别**
 
 从上面的例子中，我们可以看到 `React.memo()` 和 `useMemo()` 之间的主要区别：
 

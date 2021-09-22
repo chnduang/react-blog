@@ -224,8 +224,10 @@
 
 ### JSX转化DOM过程？
 
-```
-jsx`首先会转化成`React.createElement`这种形式，`React.createElement`作用是生成一个虚拟`Dom`对象，然后会通过`ReactDOM.render`进行渲染成真实`DOM
+```jsx
+jsx`首先会转化成`React.createElement`这种形式，
+`React.createElement`作用是生成一个虚拟`Dom`对象
+然后会通过`ReactDOM.render`进行渲染成真实`DOM
 ```
 
 ### 性能优化手段有哪些
