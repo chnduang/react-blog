@@ -55,7 +55,7 @@
 
 组合模式适合一些容器组件场景，通过外层组件包裹内层组件，这种方式在 Vue 中称为 slot 插槽，外层组件可以轻松的获取内层组件的 `props` 状态，还可以控制内层组件的渲染，组合模式能够直观反映出 父 -> 子组件的包含关系，首先我来举个最简单的组合模式例子🌰。
 
-```
+```jsx
 <Tabs onChange={ (type)=> console.log(type)  } >
     <TabItem name="react"  label="react" >React</TabItem>
     <TabItem name="vue" label="vue" >Vue</TabItem>
@@ -76,7 +76,7 @@
 
 实际组合模式的实现并没有想象中那么复杂，主要分为外层和内层两部分，当然可能也存在多层组合嵌套的情况，但是万变不离其宗，原理都是一样的。首先我们看一个简单的组合结构：
 
-```
+```jsx
 <Groups>
     <Item  name="《React进阶实践指南》" />
 </Groups>
@@ -88,7 +88,7 @@
 
 首先如果如上组合模式的写法，会被 `jsx` 编译成 `React element` 形态，`Item` 可以通过 `Groups` 的  **props.children** 访问到。
 
-```
+```jsx
 function Groups (props){
     console.log( props.children  ) // Groups element
     console.log( props.children.props ) // { name : 'React进阶实践指南》' }
@@ -98,7 +98,7 @@ function Groups (props){
 
 但是这是针对单一节点的情况，事实情况下，外层容器可能有多个子组件的情况。
 
-```
+```jsx
 <Groups>
     <Item  name="《React进阶实践指南》" />
     <Item name="《Nodejs深度学习手册》" />
@@ -107,7 +107,7 @@ function Groups (props){
 
 这种情况下，props.children 就是一个数组结构，如果想要访问每一个的 props ，那么需要通过 `React.Children.forEach` 遍历 props.children。
 
-```
+```jsx
 function Groups (props){
     console.log( props.children  ) // Groups element
     React.Children.forEach(props.children,item=>{
@@ -121,7 +121,7 @@ function Groups (props){
 
 这个是组合模式的精髓所在，就是可以通过 React.cloneElement 向 children 中混入其他的 props，那么子组件就可以使用容器父组件提供的**特有的** props 。我们来看一下具体实现：
 
-```
+```jsx
 function Item (props){
     console.log(props) // {name: "《React进阶实践指南》", author: "alien"}
     return <div> 名称： {props.name} </div>
@@ -137,7 +137,7 @@ function Groups (props){
 
 这里还是 Groups 只有单一节点的情况，有些同学会问直接在原来的 children 基础上加入新属性不就可以了吗？像如下这样：
 
-```
+```jsx
 props.children.props.author = 'alien'
 ```
 
@@ -147,7 +147,7 @@ props.children.props.author = 'alien'
 
 组合模式可以通过 children 方式获取内层组件，也可以根据内层组件的状态来控制其渲染。比如如下的情况：
 
-```
+```jsx
 export default ()=>{
     return <Groups>
     <Item  isShow name="《React进阶实践指南》" />
@@ -162,7 +162,7 @@ export default ()=>{
 
 实际处理这个很简单，也是通过遍历 children ，然后通过对比 props ，选择需要渲染的 children 。接下来一起看一下如何控制：
 
-```
+```jsx
 function Item (props){
     return <div> 名称： {props.name} </div>
 }
@@ -186,7 +186,7 @@ function Groups (props){
 
 组合模式可以轻松的实现内外层通信的场景，原理就是通过外层组件，向内层组件传递回调函数 `callback` ，内层通过调用 `callback` 来实现两层组合模式的通信关系。
 
-```
+```jsx
 function Item (props){
     return <div>
         名称：{props.name}
@@ -209,7 +209,7 @@ function Groups (props){
 
 组合模式还有一种场景，在外层容器中，进行再次组合，这样组件就会一层一层的包裹，一次又一次的强化。这里举一个例子：
 
-```
+```jsx
 function Item (props){
     return <div>
         名称：{props.name}     <br/>
@@ -249,7 +249,7 @@ export default ()=>{
 
 比如如下，本质上形态是属于 render props 形式。
 
-```
+```jsx
 <Groups>
    {()=>  <Item  isShow name="《React进阶实践指南》" />}
 </<Groups>
@@ -257,7 +257,7 @@ export default ()=>{
 
 上面的情况，如果 Groups 直接用 children 挂载的话。
 
-```
+```jsx
 function Groups (props){
     return props.children
 }
@@ -265,7 +265,7 @@ function Groups (props){
 
 这样的情况，就会报 `Functions are not valid as a React child` 的错误。那么需要在 Groups 做判断，我们来一起看一下：
 
-```
+```jsx
 function Groups (props){
     return  React.isValidElement(props.children)
      ? props.children
@@ -280,7 +280,7 @@ function Groups (props){
 
 现在还有一个暴露的问题是，外层组件和内层组件通过什么识别身份呢？比如如下的场景：
 
-```
+```jsx
 <Groups>
    <Item  isShow name="《React进阶实践指南》" />
    <Text />
@@ -291,7 +291,7 @@ function Groups (props){
 
 那么只需要这么做就可以了：
 
-```
+```jsx
 function Item(){ ... }
 Item.displayName = 'Item'
 ```
@@ -300,7 +300,7 @@ Item.displayName = 'Item'
 
 具体参考方式：
 
-```
+```jsx
 function Groups (props){
     const newChildren = []
     React.Children.forEach(props.children,(item)=>{

@@ -14,6 +14,9 @@
   - [react事件系统原理](./react事件系统原理.md)
 - 虚拟dom
   - [为什么虚拟dom提升性能](./dom/为什么虚拟dom提升性能.md)
+- key
+  - [react中key值得使用](./keys/react中key值得使用.md)
+  - [React中的key有什么作用](./keys/React中的key有什么作用.md)
 - QA
   - [react-setState执行机制](./qa/react-setState执行机制.md)
   - [React面试点](./qa/React面试点.md)
