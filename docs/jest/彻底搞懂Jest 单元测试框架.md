@@ -103,7 +103,7 @@ const sum = (a, b) => a + b;
 
 这是完整的测试：
 
-```
+```jsx
 test("sum test", () => {
   expect(sum(1, 2)).toBe(3);
 });

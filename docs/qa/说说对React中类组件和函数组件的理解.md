@@ -12,7 +12,7 @@
 
 在组件中必须实现`render`方法，在`return`中返回`React`对象，如下：
 
-```
+```jsx
 class Welcome extends React.Component {
   constructor(props) {
     super(props)
@@ -27,7 +27,7 @@ class Welcome extends React.Component {
 
 函数组件，顾名思义，就是通过函数编写的形式去实现一个`React`组件，是`React`中定义组件最简单的方式
 
-```
+```jsx
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
@@ -51,7 +51,7 @@ function Welcome(props) {
 
 函数组件：
 
-```
+```jsx
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
@@ -59,7 +59,7 @@ function Welcome(props) {
 
 类组件：
 
-```
+```jsx
 class Welcome extends React.Component {
   constructor(props) {
     super(props)
@@ -76,7 +76,7 @@ class Welcome extends React.Component {
 
 如果想要管理`state`状态，可以使用`useState`，如下：
 
-```
+```jsx
 const FunctionalComponent = () => {
     const [count, setCount] = React.useState(0);
 
@@ -99,7 +99,7 @@ const FunctionalComponent = () => {
 
 但是函数组件使用`useEffect`也能够完成替代生命周期的作用，这里给出一个简单的例子：
 
-```
+```jsx
 const FunctionalComponent = () => {
     useEffect(() => {
         console.log("Hello");
@@ -112,7 +112,7 @@ const FunctionalComponent = () => {
 
 如果在`useEffect`回调函数中`return`一个函数，则`return`函数会在组件卸载的时候执行，正如`componentWillUnmount`
 
-```
+```jsx
 const FunctionalComponent = () => {
  React.useEffect(() => {
    return () => {
@@ -127,18 +127,18 @@ const FunctionalComponent = () => {
 
 如果是一个函数组件，调用则是执行函数即可：
 
-```
+```jsx
 // 你的代码 
 function SayHi() { 
     return <p>Hello, React</p> 
-} 
+}
 // React内部 
 const result = SayHi(props) // » <p>Hello, React</p>
 ```
 
 如果是一个类组件，则需要将组件进行实例化，然后调用实例对象的`render`方法：
 
-```
+```jsx
 // 你的代码 
 class SayHi extends React.Component { 
     render() { 
@@ -156,7 +156,7 @@ const result = instance.render() // » <p>Hello, React</p>
 
 函数组件对应如下：
 
-```
+```jsx
 function ProfilePage(props) {
   const showMessage = () => {
     alert('Followed ' + props.user);
@@ -174,7 +174,7 @@ function ProfilePage(props) {
 
 类组件对应如下：
 
-```
+```jsx
 class ProfilePage extends React.Component {
   showMessage() {
     alert('Followed ' + this.props.user);

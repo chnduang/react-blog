@@ -36,7 +36,7 @@
 
 如下例子：
 
-```
+```js
 export default class App2 extends React.PureComponent {
 
   state = {show: true};
@@ -66,7 +66,7 @@ export default class App2 extends React.PureComponent {
 
 对应`css`样式如下：
 
-```
+```css
 .fade-enter {
   opacity: 0;
   transform: translateX(100%);
@@ -98,8 +98,8 @@ export default class App2 extends React.PureComponent {
 
 `SwitchTransition`中主要有一个属性`mode`，对应两个值：
 
-- in-out：表示新组件先进入，旧组件再移除；
-- out-in：表示就组件先移除，新组建再进入
+- `in-out`：表示新组件先进入，旧组件再移除；
+- `out-in`：表示就组件先移除，新组建再进入
 
 `SwitchTransition`组件里面要有`CSSTransition`，不能直接包裹你想要切换的组件
 
@@ -107,7 +107,7 @@ export default class App2 extends React.PureComponent {
 
 下面给出一个按钮入场和出场的示例，如下：
 
-```
+```js
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 
 export default class SwitchAnimation extends PureComponent {
@@ -145,7 +145,7 @@ export default class SwitchAnimation extends PureComponent {
 
 `css`文件对应如下：
 
-```
+```css
 .btn-enter {
   transform: translate(100%, 0);
   opacity: 0;
@@ -184,7 +184,7 @@ export default class SwitchAnimation extends PureComponent {
 
 如下：
 
-```
+```js
 import React, { PureComponent } from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -226,7 +226,7 @@ export default class GroupAnimation extends PureComponent {
 
 对应`css`如下：
 
-```
+```css
 .friend-enter {
     transform: translate(100%, 0);
     opacity: 0;

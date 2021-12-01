@@ -1,16 +1,20 @@
-## React 事件系统原理
+# React 事件系统原理
 
 > [https://mp.weixin.qq.com/s/mkus1HCB1B6sQ4utb5i39w](https://mp.weixin.qq.com/s/mkus1HCB1B6sQ4utb5i39w)
 
 > React 合成事件是 React **模拟原生 DOM 事件所有能力的一个对象**，它根据 W3C规范来定义合成事件，**兼容所有浏览器**，**拥有与浏览器原生事件相同的接口
 
-**react官方描述**![图片](https://mmbiz.qpic.cn/mmbiz_png/ndgH50E7pIpys4zoaW3Wg9AL8QnSXicAVpYPr6VBuGdxatQOuxAkiccdlnIB1D7F1YnA2eFtRYNmgicPKxjicFbzicQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)**分别打印出合成事件对象e和原生对象e.nativeEvent**![图片](https://mmbiz.qpic.cn/mmbiz_png/ndgH50E7pIpys4zoaW3Wg9AL8QnSXicAVGFIxqh2H3ibKpTpfW2Bj6Z16SicFJiaHFGhdb93n8VLSyczvt1QLccZicg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+[react官方描述](https://zh-hans.reactjs.org/docs/events.html)
 
-## *【 React 事件系统架构 】*
+`SyntheticEvent` 实例将被传递给你的事件处理函数，它是浏览器的原生事件的跨浏览器包装器。除兼容所有浏览器外，它还拥有和浏览器原生事件相同的接口，包括 `stopPropagation()` 和 `preventDefault()`。
+
+分别打印出合成事件对象e和原生对象`e.nativeEvent`![图片](https://mmbiz.qpic.cn/mmbiz_png/ndgH50E7pIpys4zoaW3Wg9AL8QnSXicAVGFIxqh2H3ibKpTpfW2Bj6Z16SicFJiaHFGhdb93n8VLSyczvt1QLccZicg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+## React 事件系统架构
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/ndgH50E7pIpys4zoaW3Wg9AL8QnSXicAV3o0MetcVpE6lmBSh5D5CyicXFLia3tic4znwY3vcyf8VkpibiayO47qqb6Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-## 【 核心代码 】// _我们可以将react系统分成注册和执行两部分去理解：
+## 我们可以将react系统分成注册和执行两部分去理解：
 
 ### 一、注册：
 
@@ -18,12 +22,12 @@
 // 
 function enqueuePutListener(inst, registrationName, listener, transaction) {
     ...
-  var isDocumentFragment = containerInfo._node && containerInfo._node.nodeType === DOC_FRAGMENT_TYPE;
   1. 找到document
-  var doc = isDocumentFragment ? containerInfo._node : containerInfo._ownerDocument;
+  var isDocumentFragment = containerInfo._node && containerInfo._node.nodeType === DOC_FRAGMENT_TYPE;
   2. 注册事件，将事件注册到document上
-  3. listenTo(registrationName, doc);
-  存储事件,放入事务队列中
+  var doc = isDocumentFragment ? containerInfo._node : containerInfo._ownerDocument;
+  3. 存储事件,放入事务队列中
+  listenTo(registrationName, doc);
 }
 ```
 
@@ -83,7 +87,7 @@ function handleTopLevelImpl(bookKeeping) {
    EventPluginHub.processEventQueue(false);
 ```
 
-## *【 合成事件、原生事件混用demo】*
+## 合成事件-原生事件混用demo
 
 刚接触react的同学，往往在react事件使用时会与原生事件混合（这里并非指责这种混用行为，只是在混用阶段需要区分出react时间系统和js本身事件的执行差异），时常会有事件执行出现不符合预期的情况，这里我们用一个小demo来感受下二者执行的差异;
 
@@ -99,7 +103,7 @@ function handleTopLevelImpl(bookKeeping) {
 
 
 
-## *【 合成事件存在意义 】*
+## 合成事件存在意义
 
 ### 1.统一管理（document）
 
@@ -113,7 +117,7 @@ react事件队列的存储和取出使用缓解了dom元素注册销毁所消耗
 
 ### 4.利用合成事件的冒泡从document中触发的特性
 
-## *【 合成事件中存在的问题 】*
+## 合成事件中存在的问题
 
 #### 1.原生事件和合成事件混用时原生事件对入react合成事件的影响
 

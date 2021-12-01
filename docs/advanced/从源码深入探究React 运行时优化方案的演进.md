@@ -29,7 +29,7 @@
 
 ## 几大 JS 框架的设计思路
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/aDoYvepE5x33PlAza4hrFZNmuHQM3AgazMAbh8Ur3QB1biaE6lyvP58DCAaEm7sJ5LPn04ibbfvQiby1ll9qm22pQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://gitee.com/qdzhou/img-upload/raw/master/images/202111101623110.webp)
 
 首先，是 `React`，`React` 是一个重运行时的框架，在数据发生变化后，并没有直接去操作 `dom`，而是生成一个新的所谓的虚拟 `dom`，它可以帮助我们解决跨平台和兼容性问题，并且通过 `diff` 算法得出最小的操作行为，这些全部都是在运行时来做的。
 

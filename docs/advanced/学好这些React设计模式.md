@@ -237,9 +237,7 @@ export default ()=>{
 
 - 在 `Groups` 组件里通过 `Wrap` 再进行组合。经过两次组合，把 `author` 和 `mes` 混入到 props 中。
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)1.jpg
-
-这种组合模式能够一层层强化原始组件，外层组件不用过多关心内层到底做了些什么? 只需要处理 children 就可以，同样内层 children 在接受业务层的 props 外，还能使用来自外层容器组件的**状态**，**方法**等。
+这种组合模式能够一层层强化原始组件，外层组件不用过多关心内层到底做了些什么? 只需要处理 `children` 就可以，同样内层 `children `在接受业务层的` props `外，还能使用来自外层容器组件的**状态**，**方法**等。
 
 ### 3 注意细节
 
@@ -313,15 +311,15 @@ function Groups (props){
 }
 ```
 
-通过 displayName 属性找到 Item。
+通过 `displayName `属性找到 `Item`。
 
 ### 4 实践demo
 
-接下来，我们来简单实现刚开始的 tab，tabItem 切换功能。
+接下来，我们来简单实现刚开始的 `tab`，`tabItem` 切换功能。
 
 **tab实现**
 
-```
+```jsx
 const Tab = ({ children ,onChange }) => {
     const activeIndex = useRef(null)
     const [,forceUpdate] = useState({})
@@ -344,7 +342,7 @@ const Tab = ({ children ,onChange }) => {
             tabList.push(tabItem)
         }
     })
-    /* 第一次加载，或者 prop chuldren 改变的情况 */
+    /* 第一次加载，或者 prop children 改变的情况 */
     if(!renderChildren && tabList.length > 0){
         const fisrtChildren = tabList[0]
         renderChildren = fisrtChildren.component
@@ -402,7 +400,7 @@ TabItem 做的事情是：
 
 **效果**
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)2.gif
+![图片](https://mmbiz.qpic.cn/mmbiz_gif/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQSlK3cxpkDSgtTMGlS2icIrRZUibhGLPJKvGQI6taaNn2lqiclT9HCfJQQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
 ### 5 总结
 
@@ -413,17 +411,19 @@ TabItem 做的事情是：
 
 总结流程图如下：
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)13.jpg
+![图片](https://mmbiz.qpic.cn/mmbiz_jpg/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQa2Fe53890uoLm5icCjtEnvBEDFHFCgIXec2GEAy6eOheIs37nmTaa7w/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ## 三 render props模式
+
+> [*任何*被用于告知组件需要渲染什么内容的函数 prop 在技术上都可以被称为 “render prop”](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce).
 
 ### 1 介绍
 
 `render props` 模式和组合模式类似。区别不同的是，用函数的形式代替 `children`。函数的参数，由容器组件提供，这样的好处，将容器组件的状态，提升到当前外层组件中，这个是一个巧妙之处，也是和组合模式相比最大的区别。
 
-我们先来看一下一个基本的 render props 长什么样子：
+我们先来看一下一个基本的 `render props` 长什么样子：
 
-```
+```jsx
 export default function App (){
     const aProps = {
         name:'《React进阶实践指南》'
@@ -434,18 +434,18 @@ export default function App (){
 }
 ```
 
-如上是 render props 的基本样子。可以清楚的看到：
+如上是 `render props` 的基本样子。可以清楚的看到：
 
 - `cProps` 为 `Container` 组件提供的状态。
-- `aProps` 为 `App` 提供的状态。这种模式优点是，能够给 App 的子组件 Container 的状态提升到 App 的 render 函数中。然后可以组合成新的 props，传递给 Children，这种方式让容器化的感念更显而易见。
+- `aProps` 为 `App` 提供的状态。这种模式优点是，能够给` App` 的子组件 `Container` 的状态提升到 `App` 的 `render` 函数中。然后可以组合成新的` props`，传递给 `Children`，这种方式让容器化的感念更显而易见。
 
-接下来我们研究一下 render props 原理和细节。
+接下来我们研究一下` render props` 原理和细节。
 
 ### 2 原理和细节
 
-首先一个问题是 render props 这种方式到底适合什么场景，实际这种模式更适合一种，容器包装，状态的获取。可能这么说有的同学不明白。那么一起看一下 `context` 中的 `Consumer`。就采用 render props 模式。
+首先一个问题是` render props` 这种方式到底适合什么场景，实际这种模式更适合一种，容器包装，状态的获取。可能这么说有的同学不明白。那么一起看一下 `context` 中的 `Consumer`。就采用 `render props` 模式。
 
-```
+```jsx
 const Context = React.createContext(null)
 function Index(){
     return <Context.Consumer>
@@ -467,11 +467,11 @@ export default function App(){
 }
 ```
 
-- 我们看到 Consumer 就是一个容器组件，包装即将渲染的内容，然后通过 children render 函数执行把状态 `contextValue` 从下游向上游提取。
+- 我们看到`Consumer` 就是一个容器组件，包装即将渲染的内容，然后通过 `children render` 函数执行把状态 `contextValue` 从下游向上游提取。
 
-那么接下来模拟一下 Consumer 的内部实现。
+那么接下来模拟一下 `Consumer` 的内部实现。
 
-```
+```jsx
 function myConsumer(props){
     const contextValue = useContext(Context)
     return props.children(contextValue)
@@ -484,7 +484,7 @@ function myConsumer(props){
 
 相比传统的组合模式，render props 还有一个就是灵活性，可以通过容器组件的状态和当前组件的状态结合，派生出新的状态。比如如下
 
-```
+```jsx
  <Container>
         {(cProps) => {
             const  const nProps =  getNewProps( aProps , cProps )
@@ -493,13 +493,13 @@ function myConsumer(props){
  </Container>
 ```
 
-- nProps 是通过当前组件的状态 aProps 和 Container 容器组件 cProps ，合并计算得到的状态。
+- `nProps` 是通过当前组件的状态 `aProps` 和 `Container` 容器组件 `cProps` ，合并计算得到的状态。
 
 **反向状态回传**
 
-这种情况比较极端，笔者也用过这种方法，就是可以通过 render props 中的状态，提升到当前组件中，也就是把容器组件内的状态，传递给父组件。比如如下情况。
+这种情况比较极端，笔者也用过这种方法，就是可以通过 `render props` 中的状态，提升到当前组件中，也就是把容器组件内的状态，传递给父组件。比如如下情况。
 
-```
+```jsx
 function GetContanier(props){
     const dom = useRef()
     const getDom = () =>  dom.current
@@ -524,18 +524,18 @@ export default function App(){
 }
 ```
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)3.jpg
+![图片](https://mmbiz.qpic.cn/mmbiz_jpg/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQoc1nrHXPsf7L53w9lHW6eKGB2ialunRd4ianQpRvntTBDSPqBicuw54Ng/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-- 这是一个复杂的状态回传的场景，在 `GetContanier` 将获取元素的方法 `getDom` 通过 render props 回传给父组件。
-- 父组件 App 通过 `getChildren` 保存 render props 回传的内容，在 `useEffect` 调用 getDom 方法，打印内容如下：
+- 这是一个复杂的状态回传的场景，在 `GetContanier` 将获取元素的方法 `getDom` 通过 `render props` 回传给父组件。
+- 父组件 App 通过 `getChildren` 保存 `render props` 回传的内容，在 `useEffect` 调用 `getDom` 方法，打印内容如下：
 
-但是现实情况不可能是获取一个 dom 这么简单，真实情景下，回传的内容可能更加复杂。
+但是现实情况不可能是获取一个 `dom` 这么简单，真实情景下，回传的内容可能更加复杂。
 
 ### 3 注意问题
 
-`render props` 的注意问题还是对 children 的校验，和组合模式不同的是，这种模式需要校验 children 是一个函数，只有是函数的情况下，才能执行函数，传递 props 。打一个比方：
+`render props` 的注意问题还是对 `children` 的校验，和组合模式不同的是，这种模式需要校验 `children` 是一个函数，只有是函数的情况下，才能执行函数，传递 `props` 。打一个比方：
 
-```
+```jsx
 function Container (props){
     const renderChildren =  props.children
     return typeof renderChildren === 'function' ? renderChildren({ name:'《React进阶时间指南》' }) : null
@@ -555,7 +555,7 @@ export default function App(){
 
 **容器组件 Container**
 
-```
+```jsx
 function Container({ children }){
    const [ showLoading, setShowLoading ] = useState(false)
    const renderChildren = useMemo(()=> typeof children === 'function' ? children({ setShowLoading }) : null  ,[children] )
@@ -573,7 +573,7 @@ function Container({ children }){
 
 **外层使用**
 
-```
+```jsx
 export default function Index(){
     const setLoading = useRef(null)
     return <div>
@@ -598,7 +598,7 @@ export default function Index(){
 
 **效果**
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)4.gif
+![图片](https://mmbiz.qpic.cn/mmbiz_gif/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQKJrewJLMTktBSSpaKUayiaNjSjnzA4T2AGAWarScczKSBrOZeTXK91A/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
 ### 5 总结
 
@@ -610,7 +610,7 @@ export default function Index(){
 
 这种模式下的原理图如下所示：
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)14.jpg
+![图片](https://mmbiz.qpic.cn/mmbiz_jpg/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQmwGpqxVYSd17Dkh3SRYfAx4BWVDfzoRsFCgmiaZCjm861OG0N8QeUKg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ## 四 hoc 模式
 
@@ -620,7 +620,7 @@ hoc 高阶组件模式也是 React 比较常用的一种包装强化模式之一
 
 我们来看一下 hoc 的通用模式。hoc 本质上就是一个函数。
 
-```
+```jsx
 function Hoc (Component){
     return class Wrap extends React.Component{
         //---------
@@ -645,7 +645,7 @@ function Hoc (Component){
 
 **属性代理**所谓正向属性代理，就是用组件包裹一层代理组件，在代理组件上，我们可以做一些，对源组件的代理操作。我们可以理解为父子组件关系，父组件对子组件进行一系列强化操作。而 hoc 本身就是返回强化子组件的父组件。
 
-```
+```jsx
 function HOC(WrapComponent){
     return class Advance extends React.Component{
        state={
@@ -670,7 +670,7 @@ function HOC(WrapComponent){
 
 反向继承和属性代理有一定的区别，在于包装后的组件继承了业务组件本身，所以我们我无须再去实例化我们的业务组件。当前高阶组件就是继承后，加强型的业务组件。这种方式类似于组件的强化，所以你必须要知道当前继承的组件的状态，内部做了些什么？
 
-```
+```jsx
 class Index extends React.Component{
   render(){
     return <div> hello,world  </div>
@@ -719,7 +719,7 @@ export default HOC(Index)
 
 之前有同学在面试中，遇到了这样一个问题，就是如果控制组件挂载的先后顺序，比如如下的场景
 
-```
+```jsx
 export default function Index(){
     return <div>
         <ComponentA />
@@ -729,12 +729,12 @@ export default function Index(){
 }
 ```
 
-如上，有三个子组件，`ComponentA` ，`ComponentB`，`ComponentC`，现在期望执行顺序是 ComponentA 渲染完成，挂载 ComponentB ，ComponentB 渲染完成，挂载 ComponentC，也就是三个组件是按照先后顺序渲染挂载的，那么如何实现呢？
+如上，有三个子组件，`ComponentA` ，`ComponentB`，`ComponentC`，现在期望执行顺序是 `ComponentA` 渲染完成，挂载 `ComponentB` ，`ComponentB` 渲染完成，挂载 `ComponentC`，也就是三个组件是按照先后顺序渲染挂载的，那么如何实现呢？
 
 实际上，这种情况完全可以用一个 hoc 来实现，那么接下来，请大家跟上我的思路实现这个场景。
-首先这个 hoc 是针对当前 index 下面，ComponentA ｜ ComponentB ｜ ComponentC 一组 component 进行功能强化。所以这个 hoc 最好可以动态创建，而且服务于当前一组组件。那么可以声明一个生产 hoc 的函数工厂。
+首先这个 hoc 是针对当前 index 下面，`ComponentA ｜ ComponentB ｜ ComponentC` 一组 `component` 进行功能强化。所以这个 hoc 最好可以动态创建，而且服务于当前一组组件。那么可以声明一个生产 hoc 的函数工厂。
 
-```
+```jsx
 function createHoc(){
    const renderQueue = []            /* 待渲染队列 */
     return function Hoc(Component){  /* Component - 原始组件   */
@@ -749,13 +749,13 @@ function createHoc(){
 
 **使用：**
 
-```
+```jsx
 const loadingHoc = createHoc()
 ```
 
 知道了 hoc 的动态产生，接下来具体实现一下这个 hoc 。
 
-```
+```jsx
 function createHoc(){
     const renderQueue = [] /* 待渲染队列 */
     return function Hoc(Component){
@@ -814,7 +814,7 @@ function createHoc(){
 
 **使用：**
 
-```
+```jsx
 /* 创建 hoc  */
 const loadingHoc = createHoc()
 
@@ -872,9 +872,9 @@ export default function Index(){
 
 **效果：**
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)5.gif
+![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)<img src="https://mmbiz.qpic.cn/mmbiz_gif/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQl9tXGeh4ls3ekAA5QWcocIwqBD5h4RO0ibOcUaXdiaMibAJoImsCfgIuQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="图片" style="zoom:50%;" />
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)11.jpg
+![图片](https://mmbiz.qpic.cn/mmbiz_jpg/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQU2wPWV8ZJ0etGnaqtyXxia5j8FLaUN9VUlpFSy0IqjG5Lvnjewas5Sw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 完美达成需求。
 
@@ -882,11 +882,13 @@ export default function Index(){
 
 HOC 在实际项目中，应用还是很广泛的，尤其是一些优秀的开源项目中，这里总结了一下 HOC 的原理图：
 
-**属性代理**![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
+**属性代理**
+
+![图片](https://mmbiz.qpic.cn/mmbiz_jpg/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQIlGS12SM42wyU8icTMKXZPVUMhY59qNmgMDdJBXKwNbicmTCtChRtOTw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 **反向继承**
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)16.jpg
+![图片](https://mmbiz.qpic.cn/mmbiz_jpg/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQJeyYUyQ5CqT5X89fEtYmdTMDBXJrTFYZzoohVia95YAguUoS3yia8QwQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ## 五 提供者模式
 
@@ -898,11 +900,11 @@ HOC 在实际项目中，应用还是很广泛的，尤其是一些优秀的开�
 
 如果用 `props` 解决这个问题，那么需要通过 `props` 层层绑定，而且还要考虑 `pureComponent`， `memo` 策略的影响。
 
-所以这个时候用提供者模式最好不过了。React 提供了 context ‘提供者’模式，具体模式是这样的，React组件树 Root 节点，用 Provider 提供者注入 theme，然后在需要 theme的 地方，用 Consumer 消费者形式取出theme，供给组件渲染使用即可，这样减少很多无用功。用官网上的一句话形容就是Context 提供了一个无需为每层组件手动添加 props，就能在组件树间进行数据传递的方法。
+所以这个时候用提供者模式最好不过了。React 提供了 context `提供者`模式，具体模式是这样的，React组件树 Root 节点，用 Provider 提供者注入 theme，然后在需要 theme的 地方，用 Consumer 消费者形式取出theme，供给组件渲染使用即可，这样减少很多无用功。用官网上的一句话形容就是Context 提供了一个无需为每层组件手动添加 props，就能在组件树间进行数据传递的方法。
 
 但是必须注意一点是，提供者永远要在消费者上层，正所谓水往低处流，提供者一定要是消费者的某一层父级。提供者模式的结构图如下：
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)8.jpg
+![图片](https://mmbiz.qpic.cn/mmbiz_jpg/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQ4DYkOPibfEILmtjhrLwt3RIIS5mzoibGA3rmgFiafniamWicM8Sdiae1YIOw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ### 2 用法介绍
 
@@ -910,11 +912,11 @@ HOC 在实际项目中，应用还是很广泛的，尤其是一些优秀的开�
 
 #### 老版本提供者模式
 
-在 React v16.3.0 之前，要实现提供者，就要实现一个 React 组件，不过这个组件要做特殊处理。下面就是一个实现“提供者”的例子，组件名为 ThemeProvider：
+在 React v16.3.0 之前，要实现提供者，就要实现一个 React 组件，不过这个组件要做特殊处理。下面就是一个实现“提供者”的例子，组件名为 `ThemeProvider`：
 
 **提供者**
 
-```
+```jsx
 class ThemeProvider extends React.Component {
   getChildContext() {
     return {
@@ -940,15 +942,15 @@ ThemeProvider.childContextTypes = {
 
 **使用**
 
-```
-<ThemeProvider value={ { color:'pink' } } >
+```jsx
+<ThemeProvider value={{ color:'pink' }}>
     <Index />
 </ThemeProvider>
 ```
 
 **消费者**
 
-```
+```jsx
 const ThemeConsumer = (props, context) => {
   const {color} = context.theme
   return (
@@ -974,7 +976,7 @@ ThemeConsumer.contextTypes = {
 
 那么接下来介绍一下具体如何使用，首先开发者需要用 createContext api 创建一个 context。
 
-```
+```jsx
 const ThemeContext = React.createContext();
 ```
 
@@ -982,7 +984,7 @@ const ThemeContext = React.createContext();
 
 **新版提供者**
 
-```
+```jsx
 function ThemeProvider(){
     const theme = { color:'pink' }
     return <ThemeContext.Provider value={ theme } >
@@ -992,11 +994,11 @@ function ThemeProvider(){
 ```
 
 - 通过 `ThemeContext` 上的 `Provider` 传递主题信息 `theme` 。
-- Index 是根部组件。
+- `Index` 是根部组件。
 
 **新版消费者**
 
-```
+```jsx
 function ThemeConsumer(props){
     return <ThemeContext.Consumer>
       { (theme)=>{ /* render children函数 */
@@ -1009,15 +1011,15 @@ function ThemeConsumer(props){
 }
 ```
 
-- Consumer 采用的就是上述讲到的 render props 模式。
-- 通过 Consumer 订阅 context 变化，context 变化， render children 函数重新执行。render children 函数中第一个参数就是保存的 context 信息。
-- 在新版消费者中，对于函数组件还有 `useContext` 自定义 hooks ，对于类组件有 `contextType` 静态属性。
+- `Consumer` 采用的就是上述讲到的 `render props` 模式。
+- 通过 `Consumer` 订阅 `context` 变化，`context` 变化， `render children` 函数重新执行。`render children` 函数中第一个参数就是保存的 `context` 信息。
+- 在新版消费者中，对于函数组件还有 `useContext` 自定义 `hooks` ，对于类组件有 `contextType` 静态属性。
 
 ### 3 实践demo
 
-接下来我们实现一个提供者模式的实践 demo ，通过动态 context 来让消费 context 的 Consumer 动态渲染。
+接下来我们实现一个提供者模式的实践 demo ，通过动态 context 来让消费 context 的 `Consumer` 动态渲染。
 
-```
+```jsx
 const ThemeContext = React.createContext(null) // 创建一个 context 上下文 ,主题颜色Context
 
 function ConsumerDemo(){
@@ -1056,13 +1058,13 @@ export default function ProviderDemo(){
 
 **效果：**
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)9.gif
+![图片](https://mmbiz.qpic.cn/mmbiz_gif/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQpj65gDmDQUrsHey1E929lvOY2vjYFa1MkUicPkNuZ59icOZyepIXCaibA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
 ### 4 总结
 
 提供者模式在日常开发中，用的频率还是很高的，比如全局传递状态，保存状态。这里用一幅图总结提供者模式的原理。
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)17.jpg
+![图片](https://mmbiz.qpic.cn/mmbiz_jpg/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQFqiawgezQ3NpnW395DBAgdBVFDW1MEGoicacmkC6oZD7LQGsv5WPaEYg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ## 六 类组件继承
 
@@ -1071,11 +1073,11 @@ export default function ProviderDemo(){
 > React 有十分强大的组合模式。我们推荐使用组合而非继承来实现组件间的代码重用
 > 虽然 React 官方推荐**用组合方式**，而**非继承方式**。但是也不是说明继承这种方式没有用武之地，继承方式还是有很多应用场景的。
 
-在 class 组件盛行之后，我们可以通过继承的方式进一步的强化我们的组件。这种模式的好处在于，可以封装基础功能组件，然后根据需要去 extends 我们的基础组件，按需强化组件，但是值得注意的是，必须要对基础组件有足够的掌握，否则会造成一些列意想不到的情况发生。
+在 `class` 组件盛行之后，我们可以通过继承的方式进一步的强化我们的组件。这种模式的好处在于，可以封装基础功能组件，然后根据需要去` extends` 我们的基础组件，按需强化组件，但是值得注意的是，必须要对基础组件有足够的掌握，否则会造成一些列意想不到的情况发生。
 
 我们先来看一个
 
-```
+```jsx
 class Base extends React.Component{
   constructor(){
     super()
@@ -1123,7 +1125,7 @@ export default Index
 
 **代码编写**
 
-```
+```jsx
 import { Route } from 'react-router'
 
 const RouterPermission = React.createContext()
@@ -1160,7 +1162,7 @@ export default (props)=>{
 
 **使用**
 
-```
+```jsx
 function Test1 (){
     return <div>权限路由测试一</div>
 }
@@ -1200,7 +1202,7 @@ function Index({ history }){
 
 **效果**
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)7.gif
+![图片](https://mmbiz.qpic.cn/mmbiz_gif/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQAicvT8TWXUlaxXdq6H1o4iaGyvPZfmwxeDbqG2Jvib03uib7yPLxibwT8Jg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
 - 可以看到，只有权限列表中的 `[ '/extends/a' , '/extends/b' ]` 权限能展示，无权限提示暂无权限，完美达到效果。
 
@@ -1208,7 +1210,7 @@ function Index({ history }){
 
 继承模式的应用前提是，你需要知道被继承的组件是什么，内部都有什么状态和方法，对继承的组件内部的运转是透明的。接下来用一幅图表示继承模式原理。
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)18.jpg
+![图片](https://mmbiz.qpic.cn/mmbiz_jpg/2KticQlBJtdyI2Qx7gJshibU4oE4E7VJsQhoj2kGSzlozMTIQB5JRvMtjRax1uBONTHbImm9wjqh2MIzz0R1vZxw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ## 七 总结
 

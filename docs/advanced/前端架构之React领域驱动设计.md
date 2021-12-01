@@ -12,7 +12,7 @@
 
 ## 视图的归试图，逻辑的归逻辑
 
-```
+```jsx
 function SomeComponent() {
   const someService = useService();
   return <div>{someService.state}</div>;
@@ -21,7 +21,7 @@ function SomeComponent() {
 
 ## 跨组件数据传递？
 
-```
+```jsx
 function useGlobalService() {
   return { state: "" };
 }
@@ -70,7 +70,7 @@ function useClass() {
 
 ## 效率
 
-```
+```jsx
 function useSomeService() {
   const [form] = useForm();
   const request = useRequest();

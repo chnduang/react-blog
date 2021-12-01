@@ -36,7 +36,7 @@ class TestComponent extends React.Component {
 
 当需要时，可以使用`ref` 查询 `DOM`并查找其当前值，如下：
 
-```
+```jsx
 import React, { Component } from 'react';
 
 export class UnControll extends Component {
