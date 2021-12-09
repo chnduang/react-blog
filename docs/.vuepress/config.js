@@ -151,7 +151,7 @@ module.exports = {
     ],
   ],
   themeConfig: {
-    sidebarDepth: 2,
+    sidebarDepth: 0,
     searchMaxSuggestions: 10,
     lastUpdated: "上次更新",
     editLinks: true,
