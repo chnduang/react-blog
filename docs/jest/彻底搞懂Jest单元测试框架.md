@@ -1,10 +1,10 @@
-# 万字详文：彻底搞懂 Jest 单元测试框架
+# 彻底搞懂 Jest 单元测试框架
 
 > [https://mp.weixin.qq.com/s/eeXxbMk6zz4yUY6_Hbpg2Q](https://mp.weixin.qq.com/s/eeXxbMk6zz4yUY6_Hbpg2Q)
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_jpg/pfCCZhlbMQTzDcqDTGfhbaIbdnJsPNdoasHWq8EJZVkYxjK8dXNPloHXJM8DkUiaJMsQM0pVjj9PrNibhc4dhgsg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-- 什么是Jest
+- 什么是 Jest
 
 - 测试意味着什么
 
@@ -354,7 +354,7 @@ const pass = reports.reduce((pre, next) => pre.pass + next.pass);
 log("\x1b[32m%s\x1b[0m", `All Tests: ${pass}/${reports.length} passed`);
 ```
 
-至此，我们就实现了一个简单的 Jest 测试框架的核心部分，以上部分基本实现了测试块、断言、匹配器、CLI配置、函数模拟、使用虚拟机及作用域和生命周期钩子函数等，我们可以在此基础上，丰富断言方法，匹配器和支持参数配置，当然实际 Jest 的实现会更复杂，我只提炼了比较关键的部分，所以附上本人读 Jest 源码的个人笔记供大家参考。
+至此，我们就实现了一个简单的 Jest 测试框架的核心部分，以上部分基本实现了测试块、断言、匹配器、CLI 配置、函数模拟、使用虚拟机及作用域和生命周期钩子函数等，我们可以在此基础上，丰富断言方法，匹配器和支持参数配置，当然实际 Jest 的实现会更复杂，我只提炼了比较关键的部分，所以附上本人读 Jest 源码的个人笔记供大家参考。
 
 # jest-cli
 
@@ -766,4 +766,3 @@ const _runTest = async (test, parentSkipped) => {
 ##### 来源：wscats
 
 https://segmentfault.com/a/1190000040539268
-
