@@ -99,34 +99,18 @@ const base = "/";
 const nav = [
   { text: "进阶", link: "/advanced/" },
   { text: "Hooks", link: "/hooks/" },
-  { text: "React-QA", link: "/qa/" },
   { text: "源码解读", link: "/source-code/" },
   { text: "性能优化", link: "/performance/" },
   { text: "基础", link: "/base/" },
   { text: "单元测试", link: "/jest/" },
-  { text: "QA", link: "https://qa.qdzhou.cn" },
-  {
-    text: "个人链接",
-    ariaLabel: "个人链接",
-    items: [
-      { text: "优质链接", link: "/link/" },
-      { text: "个人随笔", link: "https://essay.qdzhou.cn", target: "_blank" },
-      { text: "个人记录", link: "https://note.qdzhou.cn", target: "_blank" },
-      { text: "博客", link: "http://qdzhou.cn/", target: "_blank" },
-      { text: "语雀", link: "https://www.yuque.com/xdxmvy" },
-      {
-        text: "Github",
-        link: "https://github.com/ZQD1224/react-blog",
-        target: "_blank",
-      },
-    ],
-  },
+  { text: "Home", link: "https://link.qdzhou.cn" },
 ];
 
 module.exports = {
   title: "duangdong的react",
   description: "react相关知识归纳总结",
   base,
+  host: "localhost",
   port: 9201,
   head: [
     ["link", { rel: "icon", href: "/logo.png" }],
@@ -150,6 +134,19 @@ module.exports = {
       {
         serviceWorker: true,
         updatePopup: true,
+      },
+    ],
+    [
+      "vuepress-plugin-right-anchor",
+      {
+        showDepth: 3,
+        ignore: ["/", "/api/"],
+        expand: {
+          trigger: "click",
+          clickModeDefaultOpen: true,
+        },
+        customClass: "your-customClass",
+        disableGlobalUI: false,
       },
     ],
   ],
