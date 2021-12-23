@@ -1,10 +1,8 @@
-# React事件机制
+# React 事件机制
 
-> [http://www.conardli.top/blog/article/React深入系列/React事件机制.html#react事件和原生事件的执行顺序](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#react事件和原生事件的执行顺序)
+> [http://www.conardli.top/blog/article/React 深入系列/React 事件机制.html#react 事件和原生事件的执行顺序](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#react事件和原生事件的执行顺序)
 
-![image](http://www.conardli.top/img/reactevent.jpg)
-
-## [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#关于react事件的疑问)关于React事件的疑问
+## 关于 React 事件的疑问
 
 - 1.为什么要手动绑定`this`
 - 2.`React`事件和原生事件有什么区别
@@ -14,7 +12,7 @@
 
 下面是我阅读过源码后，将所有的执行流程总结出来的流程图，不会贴代码，如果你想阅读代码看看具体是如何实现的，可以根据流程图去源码里寻找。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#事件注册)事件注册
+## 事件注册
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C.png)
 
@@ -23,15 +21,15 @@
 - 调用`EventPluginHub`的`enqueuePutListener`进行事件存储
 - 获取`document`对象。
 - 根据事件名称（如`onClick`、`onCaptureClick`）判断是进行冒泡还是捕获。
-- 判断是否存在`addEventListener`方法，否则使用`attachEvent`（兼容IE）。
+- 判断是否存在`addEventListener`方法，否则使用`attachEvent`（兼容 IE）。
 - 给`document`注册原生事件回调为`dispatchEvent`（统一的事件分发机制）。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#事件存储)事件存储
+## 事件存储
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/%E4%BA%8B%E4%BB%B6%E5%AD%98%E5%82%A8.png)
 
-- `EventPluginHub`负责管理React合成事件的`callback`，它将`callback`存储在`listenerBank`中，另外还存储了负责合成事件的`Plugin`。
-- `EventPluginHub`的`putListener`方法是向存储容器中增加一个listener。
+- `EventPluginHub`负责管理 React 合成事件的`callback`，它将`callback`存储在`listenerBank`中，另外还存储了负责合成事件的`Plugin`。
+- `EventPluginHub`的`putListener`方法是向存储容器中增加一个 listener。
 - 获取绑定事件的元素的唯一标识`key`。
 - 将`callback`根据事件类型，元素的唯一标识`key`存储在`listenerBank`中。
 - `listenerBank`的结构是：`listenerBank[registrationName][key]`。
@@ -51,11 +49,11 @@
 }
 ```
 
-## [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#事件触发-执行)事件触发 / 执行
+## 事件触发 / 执行
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91.png)
 
-这里的事件执行利用了`React`的批处理机制，在前一篇的【React深入】setState执行机制中已经分析过，这里不再多加分析。
+这里的事件执行利用了`React`的批处理机制，在前一篇的【React 深入】setState 执行机制中已经分析过，这里不再多加分析。
 
 - 触发`document`注册原生事件的回调`dispatchEvent`
 - 获取到触发这个事件最深一级的元素
@@ -63,11 +61,11 @@
 例如下面的代码：首先会获取到`this.child`
 
 ```js
-      <div onClick={this.parentClick} ref={ref => this.parent = ref}>
-        <div onClick={this.childClick} ref={ref => this.child = ref}>
-          test
-        </div>
-      </div>
+<div onClick={this.parentClick} ref={(ref) => (this.parent = ref)}>
+  <div onClick={this.childClick} ref={(ref) => (this.child = ref)}>
+    test
+  </div>
+</div>
 ```
 
 - 遍历这个元素的所有父元素，依次对每一级元素进行处理。
@@ -80,7 +78,7 @@
 
 `react`在自己的合成事件中重写了`stopPropagation`方法，将`isPropagationStopped`设置为`true`，然后在遍历每一级事件的过程中根据此遍历判断是否继续执行。这就是`react`自己实现的冒泡机制。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#合成事件)合成事件
+## 合成事件
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6.png)
 
@@ -91,13 +89,13 @@
 - 根据元素`nodeid`(唯一标识`key`)和事件类型从`listenerBink`中取出回调函数
 - 返回带有合成事件参数的回调函数
 
-### [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#总流程)总流程
+### 总流程
 
 将上面的四个流程串联起来。
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/react%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6.png)
 
-## [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#为什么要手动绑定this)为什么要手动绑定this
+## 为什么要手动绑定 this
 
 通过事件触发过程的分析，`dispatchEvent`调用了`invokeGuardedCallback`方法。
 
@@ -117,7 +115,7 @@ function invokeGuardedCallback(name, func, a) {
 
 这里可以使用实验性的[属性初始化语法](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties) ，也就是直接在组件声明箭头函数。箭头函数不会创建自己的`this`，它只会从自己的作用域链的上一层继承`this`。因此这样我们在`React`事件中获取到的就是组件本身了。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#和原生事件有什么区别)和原生事件有什么区别
+## 和原生事件有什么区别
 
 - `React` 事件使用驼峰命名，而不是全部小写。
 - 通过 `JSX` , 你传递一个函数作为事件处理程序，而不是一个字符串。
@@ -125,24 +123,20 @@ function invokeGuardedCallback(name, func, a) {
 例如，`HTML`：
 
 ```js
-<button onclick="activateLasers()">
-  Activate Lasers
-</button>
+<button onclick="activateLasers()">Activate Lasers</button>
 ```
 
 在 `React` 中略有不同：
 
 ```js
-<button onClick={activateLasers}>
-  Activate Lasers
-</button>
+<button onClick={activateLasers}>Activate Lasers</button>
 ```
 
 另一个区别是，在 React 中你不能通过返回`false` 来阻止默认行为。必须明确调用 `preventDefault`。
 
 由上面执行机制我们可以得出：`React`自己实现了一套事件机制，自己模拟了事件冒泡和捕获的过程，采用了事件代理，批量更新等方法，并且抹平了各个浏览器的兼容性问题。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#react事件和原生事件的执行顺序)`React`事件和原生事件的执行顺序
+## `React`事件和原生事件的执行顺序
 
 ```js
   componentDidMount() {
@@ -182,20 +176,20 @@ function invokeGuardedCallback(name, func, a) {
 由上面的流程我们可以理解：
 
 - `react`的所有事件都挂载在`document`中
-- 当真实dom触发后冒泡到`document`后才会对`react`事件进行处理
+- 当真实 dom 触发后冒泡到`document`后才会对`react`事件进行处理
 - 所以原生的事件会先执行
 - 然后执行`react`合成事件
 - 最后执行真正在`document`上挂载的事件
 
-# [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#react事件和原生事件可以混用吗？)react事件和原生事件可以混用吗？
+# react 事件和原生事件可以混用吗？
 
 `react`事件和原生事件最好不要混用。
 
 原生事件中如果执行了`stopPropagation`方法，则会导致其他`react`事件失效。因为所有元素的事件将无法冒泡到`document`上。
 
-由上面的执行机制不难得出，所有的react事件都将无法被注册。
+由上面的执行机制不难得出，所有的 react 事件都将无法被注册。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/React事件机制.html#合成事件、浏览器兼容)合成事件、浏览器兼容
+## 合成事件、浏览器兼容
 
 ```text
   function handleClick(e) {

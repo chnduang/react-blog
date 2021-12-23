@@ -1,12 +1,12 @@
-# 从mixin到hoc再到hook-3
+# 从 mixin 到 hoc 再到 hook-3
 
-## [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#hoc的实际应用)HOC的实际应用
+## HOC 的实际应用
 
 下面是一些我在公司项目中实际对`HOC`的实际应用场景，由于文章篇幅原因，代码经过很多简化，如有问题欢迎在评论区指出：
 
-### [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#日志打点)日志打点
+### 日志打点
 
-实际上这属于一类最常见的应用，多个组件拥有类似的逻辑，我们要对重复的逻辑进行复用， 官方文档中`CommentList`的示例也是解决了代码复用问题，写的很详细，有兴趣可以👇[使用高阶组件（HOC）解决横切关注点](https://react.docschina.org/docs/higher-order-components.html#使用高阶组件（hoc）解决横切关注点)。
+实际上这属于一类最常见的应用，多个组件拥有类似的逻辑，我们要对重复的逻辑进行复用， 官方文档中`CommentList`的示例也是解决了代码复用问题，写的很详细，有兴趣可以 👇[使用高阶组件（HOC）解决横切关注点](https://react.docschina.org/docs/higher-order-components.html#使用高阶组件（hoc）解决横切关注点)。
 
 某些页面需要记录用户行为，性能指标等等，通过高阶组件做这些事情可以省去很多重复代码。
 
@@ -18,20 +18,22 @@ function logHoc(WrappedComponent) {
     }
     componentDidMount() {
       this.end = Date.now();
-      console.log(`${WrappedComponent.dispalyName} 渲染时间：${this.end - this.start} ms`);
+      console.log(
+        `${WrappedComponent.dispalyName} 渲染时间：${this.end - this.start} ms`
+      );
       console.log(`${user}进入${WrappedComponent.dispalyName}`);
     }
     componentWillUnmount() {
       console.log(`${user}退出${WrappedComponent.dispalyName}`);
     }
     render() {
-      return <WrappedComponent {...this.props} />
+      return <WrappedComponent {...this.props} />;
     }
-  }
+  };
 }
 ```
 
-### [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#可用、权限控制)可用、权限控制
+### 可用、权限控制
 
 ```js
 function auth(WrappedComponent) {
@@ -39,11 +41,11 @@ function auth(WrappedComponent) {
     render() {
       const { visible, auth, display = null, ...props } = this.props;
       if (visible === false || (auth && authList.indexOf(auth) === -1)) {
-        return display
+        return display;
       }
       return <WrappedComponent {...props} />;
     }
-  }
+  };
 }
 ```
 
@@ -59,7 +61,7 @@ function auth(WrappedComponent) {
   <Input auth="user/search" visible={false} >添加用户</Input>
 ```
 
-### [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#双向绑定)双向绑定
+### 双向绑定
 
 在`vue`中，绑定一个变量后可实现双向数据绑定，即表单中的值改变后绑定的变量也会自动改变。而`React`中没有做这样的处理，在默认情况下，表单元素都是`非受控组件`。给表单元素绑定一个状态后，往往需要手动书写`onChange`方法来将其改写为`受控组件`，在表单元素非常多的情况下这些重复操作是非常痛苦的。
 
@@ -76,40 +78,42 @@ function auth(WrappedComponent) {
 class Form extends Component {
   static childContextTypes = {
     model: PropTypes.object,
-    changeModel: PropTypes.func
-  }
+    changeModel: PropTypes.func,
+  };
   constructor(props, context) {
     super(props, context);
     this.state = {
-      model: props.model || {}
+      model: props.model || {},
     };
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.model) {
       this.setState({
-        model: nextProps.model
-      })
+        model: nextProps.model,
+      });
     }
   }
   changeModel = (name, value) => {
     this.setState({
-      model: { ...this.state.model, [name]: value }
-    })
-  }
+      model: { ...this.state.model, [name]: value },
+    });
+  };
   getChildContext() {
     return {
       changeModel: this.changeModel,
-      model: this.props.model || this.state.model
+      model: this.props.model || this.state.model,
     };
   }
   onSubmit = () => {
     console.log(this.state.model);
-  }
+  };
   render() {
-    return <div>
-      {this.props.children}
-      <button onClick={this.onSubmit}>提交</button>
-    </div>
+    return (
+      <div>
+        {this.props.children}
+        <button onClick={this.onSubmit}>提交</button>
+      </div>
+    );
   }
 }
 ```
@@ -124,32 +128,36 @@ function proxyHoc(WrappedComponent) {
   return class extends Component {
     static contextTypes = {
       model: PropTypes.object,
-      changeModel: PropTypes.func
-    }
+      changeModel: PropTypes.func,
+    };
 
     onChange = (event) => {
       const { changeModel } = this.context;
       const { onChange } = this.props;
       const { v_model } = this.props;
       changeModel(v_model, event.target.value);
-      if(typeof onChange === 'function'){onChange(event);}
-    }
+      if (typeof onChange === "function") {
+        onChange(event);
+      }
+    };
 
     render() {
       const { model } = this.context;
       const { v_model } = this.props;
-      return <WrappedComponent
-        {...this.props}
-        value={model[v_model]}
-        onChange={this.onChange}
-      />;
+      return (
+        <WrappedComponent
+          {...this.props}
+          value={model[v_model]}
+          onChange={this.onChange}
+        />
+      );
     }
-  }
+  };
 }
 @proxyHoc
 class Input extends Component {
   render() {
-    return <input {...this.props}></input>
+    return <input {...this.props}></input>;
   }
 }
 ```
@@ -160,16 +168,16 @@ class Input extends Component {
 export default class extends Component {
   render() {
     return (
-      <Form >
+      <Form>
         <Input v_model="name"></Input>
         <Input v_model="pwd"></Input>
       </Form>
-    )
+    );
   }
 }
 ```
 
-### [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#表单校验)表单校验
+### 表单校验
 
 基于上面的双向绑定的例子，我们再来一个表单验证器，表单验证器可以包含验证函数以及提示信息，当验证不通过时，展示错误信息：
 
@@ -212,58 +220,64 @@ const validatorPwd = {
 
 当然，还可以在`Form`提交的时候判断所有验证器是否通过，验证器也可以设置为数组等等，由于文章篇幅原因，代码被简化了很多，有兴趣的同学可以自己实现。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#redux的connect)Redux的connect
+## Redux 的 connect
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/hoc11.png)
 
-redux中的`connect`，其实就是一个`HOC`，下面就是一个简化版的`connect`实现：
+redux 中的`connect`，其实就是一个`HOC`，下面就是一个简化版的`connect`实现：
 
 ```js
-export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
+export const connect = (mapStateToProps, mapDispatchToProps) => (
+  WrappedComponent
+) => {
   class Connect extends Component {
     static contextTypes = {
-      store: PropTypes.object
-    }
+      store: PropTypes.object,
+    };
 
-    constructor () {
-      super()
+    constructor() {
+      super();
       this.state = {
-        allProps: {}
-      }
+        allProps: {},
+      };
     }
 
-    componentWillMount () {
-      const { store } = this.context
-      this._updateProps()
-      store.subscribe(() => this._updateProps())
+    componentWillMount() {
+      const { store } = this.context;
+      this._updateProps();
+      store.subscribe(() => this._updateProps());
     }
 
-    _updateProps () {
-      const { store } = this.context
-      let stateProps = mapStateToProps ? mapStateToProps(store.getState(), this.props): {} 
-      let dispatchProps = mapDispatchToProps? mapDispatchToProps(store.dispatch, this.props) : {} 
+    _updateProps() {
+      const { store } = this.context;
+      let stateProps = mapStateToProps
+        ? mapStateToProps(store.getState(), this.props)
+        : {};
+      let dispatchProps = mapDispatchToProps
+        ? mapDispatchToProps(store.dispatch, this.props)
+        : {};
       this.setState({
         allProps: {
           ...stateProps,
           ...dispatchProps,
-          ...this.props
-        }
-      })
+          ...this.props,
+        },
+      });
     }
 
-    render () {
-      return <WrappedComponent {...this.state.allProps} />
+    render() {
+      return <WrappedComponent {...this.state.allProps} />;
     }
   }
-  return Connect
-}
+  return Connect;
+};
 ```
 
 代码非常清晰，`connect`函数其实就做了一件事，将`mapStateToProps`和`mapDispatchToProps`分别解构后传给原组件，这样我们在原组件内就可以直接用`props`获取`state`以及`dispatch`函数了。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#使用hoc的注意事项)使用HOC的注意事项
+## 使用 HOC 的注意事项
 
-### [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#告诫—静态属性拷贝)告诫—静态属性拷贝
+### 告诫—静态属性拷贝
 
 当我们应用`HOC`去增强另一个组件时，我们实际使用的组件已经不是原组件了，所以我们拿不到原组件的任何静态属性，我们可以在`HOC`的结尾手动拷贝他们：
 
@@ -275,7 +289,7 @@ function proxyHOC(WrappedComponent) {
     }
   }
   HOCComponent.staticMethod = WrappedComponent.staticMethod;
-  // ... 
+  // ...
   return HOCComponent;
 }
 ```
@@ -283,19 +297,19 @@ function proxyHOC(WrappedComponent) {
 如果原组件有非常多的静态属性，这个过程是非常痛苦的，而且你需要去了解需要增强的所有组件的静态属性是什么，我们可以使用[`hoist-non-react-statics`](https://github.com/mridgway/hoist-non-react-statics)来帮助我们解决这个问题，它可以自动帮我们拷贝所有非`React`的静态方法，使用方式如下：
 
 ```js
-import hoistNonReactStatic from 'hoist-non-react-statics';
+import hoistNonReactStatic from "hoist-non-react-statics";
 function proxyHOC(WrappedComponent) {
   class HOCComponent extends Component {
     render() {
       return <WrappedComponent {...this.props} />;
     }
   }
-  hoistNonReactStatic(HOCComponent,WrappedComponent);
+  hoistNonReactStatic(HOCComponent, WrappedComponent);
   return HOCComponent;
 }
 ```
 
-### [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#告诫—传递refs)告诫—传递refs
+### 告诫—传递 refs
 
 使用高阶组件后，获取到的`ref`实际上是最外层的容器组件，而非原组件，但是很多情况下我们需要用到原组件的`ref`。
 
@@ -306,18 +320,31 @@ function hoc(WrappedComponent) {
   return class extends Component {
     getWrappedRef = () => this.wrappedRef;
     render() {
-      return <WrappedComponent ref={ref => { this.wrappedRef = ref }} {...this.props} />;
+      return (
+        <WrappedComponent
+          ref={(ref) => {
+            this.wrappedRef = ref;
+          }}
+          {...this.props}
+        />
+      );
     }
-  }
+  };
 }
 @hoc
 class Input extends Component {
-  render() { return <input></input> }
+  render() {
+    return <input></input>;
+  }
 }
 class App extends Component {
   render() {
     return (
-      <Input ref={ref => { this.inpitRef = ref.getWrappedRef() }} ></Input>
+      <Input
+        ref={(ref) => {
+          this.inpitRef = ref.getWrappedRef();
+        }}
+      ></Input>
     );
   }
 }
@@ -339,7 +366,7 @@ function hoc(WrappedComponent) {
 }
 ```
 
-### [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#告诫—不要在render方法内使用高阶组件)告诫—不要在render方法内使用高阶组件
+### 告诫—不要在 render 方法内使用高阶组件
 
 `React` `Diff`算法的原则是：
 
@@ -349,7 +376,7 @@ function hoc(WrappedComponent) {
 
 每次调用高阶组件生成的都是是一个全新的组件，组件的唯一标识响应的也会改变，如果在`render`方法调用了高阶组件，这会导致组件每次都会被卸载后重新挂载。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#约定-不要改变原始组件)约定-不要改变原始组件
+### 约定-不要改变原始组件
 
 官方文档对高阶组件的说明：
 
@@ -367,7 +394,7 @@ InputComponent.prototype.componentWillReceiveProps = function(nextProps) { ... }
 
 这样就破坏了我们对高阶组件的约定，同时也改变了使用高阶组件的初衷：我们使用高阶组件是为了`增强`而非`改变`原组件。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#约定-透传不相关的props)约定-透传不相关的props
+### 约定-透传不相关的 props
 
 使用高阶组件，我们可以代理所有的`props`，但往往特定的`HOC`只会用到其中的一个或几个`props`。我们需要把其他不相关的`props`透传给原组件，如下面的代码：
 
@@ -379,13 +406,13 @@ function visible(WrappedComponent) {
       if (visible === false) return null;
       return <WrappedComponent {...props} />;
     }
-  }
+  };
 }
 ```
 
 我们只使用`visible`属性来控制组件的显示可隐藏，把其他`props`透传下去。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#约定-displayname)约定-displayName
+### 约定-displayName
 
 在使用`React Developer Tools`进行调试时，如果我们使用了`HOC`，调试界面可能变得非常难以阅读，如下面的代码：
 
@@ -393,13 +420,13 @@ function visible(WrappedComponent) {
 @visible
 class Show extends Component {
   render() {
-    return <h1>我是一个标签</h1>
+    return <h1>我是一个标签</h1>;
   }
 }
 @visible
 class Title extends Component {
   render() {
-    return <h1>我是一个标题</h1>
+    return <h1>我是一个标题</h1>;
   }
 }
 ```
@@ -416,7 +443,7 @@ static displayName = `Visible(${WrappedComponent.displayName})`
 
 这个约定帮助确保高阶组件最大程度的灵活性和可重用性。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#使用hoc的动机)使用HOC的动机
+## 使用 HOC 的动机
 
 回顾下上文提到的 `Mixin` 带来的风险：
 
@@ -432,7 +459,7 @@ static displayName = `Visible(${WrappedComponent.displayName})`
 - 高阶组件也有可能造成冲突，但我们可以在遵守约定的情况下避免这些行为
 - 高阶组件并不关心数据使用的方式和原因，而被包裹的组件也不关心数据来自何处。高阶组件的增加不会为原组件增加负担
 
-## [#](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（三）.html#hoc的缺陷)HOC的缺陷
+## HOC 的缺陷
 
 - `HOC`需要在原组件上进行包裹或者嵌套，如果大量使用`HOC`，将会产生非常多的嵌套，这让调试变得非常困难。
 - `HOC`可以劫持`props`，在不遵守约定的情况下也可能造成冲突。
@@ -441,4 +468,4 @@ static displayName = `Visible(${WrappedComponent.displayName})`
 
 Last Updated: 8/4/2019, 10:35:29 AM
 
-← [从Mixin到HOC再到Hook（二）](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（二）.html)[从Mixin到HOC再到Hook（四） ](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（四）.html)→
+← [从 Mixin 到 HOC 再到 Hook（二）](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（二）.html)[从 Mixin 到 HOC 再到 Hook（四） ](http://www.conardli.top/blog/article/React深入系列/从Mixin到HOC再到Hook（四）.html)→

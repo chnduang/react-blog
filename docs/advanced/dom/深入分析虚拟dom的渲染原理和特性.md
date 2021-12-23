@@ -1,8 +1,8 @@
-# 深入分析虚拟dom的渲染原理和特性
+# 深入分析虚拟 dom 的渲染原理和特性
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/react11.png)
 
-## [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#导读)导读
+## 导读
 
 `React`的虚拟`DOM`和`Diff`算法是`React`的非常重要的核心特性，这部分源码也非常复杂，理解这部分知识的原理对更深入的掌握`React`是非常必要的。
 
@@ -10,9 +10,9 @@
 
 本篇文章从源码出发，分析虚拟`DOM`的核心渲染原理（首次渲染），以及`React`对它做的性能优化点。
 
-说实话`React`源码真的很难读😅，如果本篇文章帮助到了你，那么请给个赞👍支持一下吧。
+说实话`React`源码真的很难读 😅，如果本篇文章帮助到了你，那么请给个赞 👍 支持一下吧。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#开发中的常见问题)开发中的常见问题
+## 开发中的常见问题
 
 - 为何必须引用`React`
 - 自定义的`React`组件为何必须大写
@@ -25,7 +25,7 @@
 
 首先我们来看看到底什么是虚拟`DOM`:
 
-## [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#虚拟dom)虚拟DOM
+## 虚拟 DOM
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/%E8%99%9A%E6%8B%9Fdom.png)
 
@@ -37,11 +37,11 @@
 
 ```html
 <div class="title">
-      <span>Hello ConardLi</span>
-      <ul>
-        <li>苹果</li>
-        <li>橘子</li>
-      </ul>
+  <span>Hello ConardLi</span>
+  <ul>
+    <li>苹果</li>
+    <li>橘子</li>
+  </ul>
 </div>
 ```
 
@@ -49,33 +49,33 @@
 
 ```js
 const VitrualDom = {
-  type: 'div',
-  props: { class: 'title' },
+  type: "div",
+  props: { class: "title" },
   children: [
     {
-      type: 'span',
-      children: 'Hello ConardLi'
+      type: "span",
+      children: "Hello ConardLi",
     },
     {
-      type: 'ul',
+      type: "ul",
       children: [
-        { type: 'ul', children: '苹果' },
-        { type: 'ul', children: '橘子' }
-      ]
-    }
-  ]
-}
+        { type: "ul", children: "苹果" },
+        { type: "ul", children: "橘子" },
+      ],
+    },
+  ],
+};
 ```
 
 当我们需要创建或更新元素时，`React`首先会让这个`VitrualDom`对象进行创建和更改，然后再将`VitrualDom`对象渲染成真实`DOM`；
 
 当我们需要对`DOM`进行事件监听时，首先对`VitrualDom`进行事件监听，`VitrualDom`会代理原生的`DOM`事件从而做出响应。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#为何使用虚拟dom)为何使用虚拟DOM
+## 为何使用虚拟 DOM
 
 `React`为何采用`VitrualDom`这种方案呢？
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#提高开发效率)提高开发效率
+### 提高开发效率
 
 使用`JavaScript`，我们在编写应用程序时的关注点在于如何更新`DOM`。
 
@@ -83,7 +83,7 @@ const VitrualDom = {
 
 这让我们更关注我们的业务逻辑而非`DOM`操作，这一点即可大大提升我们的开发效率。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#关于提升性能)关于提升性能
+### 关于提升性能
 
 很多文章说`VitrualDom`可以提升性能，这一说法实际上是很片面的。
 
@@ -97,27 +97,27 @@ const VitrualDom = {
 
 如果您对本部分的分析有什么不同见解，欢迎在评论区拍砖。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#跨浏览器兼容)跨浏览器兼容
+### 跨浏览器兼容
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/diff3.jpg)
 
 `React`基于`VitrualDom`自己实现了一套自己的事件机制，自己模拟了事件冒泡和捕获的过程，采用了事件代理，批量更新等方法，抹平了各个浏览器的事件兼容性问题。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#跨平台兼容)跨平台兼容
+### 跨平台兼容
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/rn.png)
 
 `VitrualDom`为`React`带来了跨平台渲染的能力。以`React Native`为例子。`React`根据`VitrualDom`画出相应平台的`ui`层，只不过不同平台画的姿势不同而已。
 
-## [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#虚拟dom实现原理)虚拟DOM实现原理
+## 虚拟 DOM 实现原理
 
-如果你不想看繁杂的源码，或者现在没有足够时间，可以跳过这一章，直接👇[虚拟DOM原理总结](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#虚拟DOM原理、特性总结)
+如果你不想看繁杂的源码，或者现在没有足够时间，可以跳过这一章，直接 👇[虚拟 DOM 原理总结](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#虚拟DOM原理、特性总结)
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/%E8%99%9A%E6%8B%9Fdom2.png)
 
 在上面的图上我们继续进行扩展，按照图中的流程，我们依次来分析虚拟`DOM`的实现原理。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#jsx和createelement)JSX和createElement
+### JSX 和 createElement
 
 我们在实现一个`React`组件时可以选择两种编码方式，第一种是使用`JSX`编写：
 
@@ -134,7 +134,7 @@ class Hello extends Component {
 ```js
 class Hello extends Component {
   render() {
-    return React.createElement('div', null, `Hello ConardLi`);
+    return React.createElement("div", null, `Hello ConardLi`);
   }
 }
 ```
@@ -147,16 +147,21 @@ class Hello extends Component {
 <div>
   <img src="avatar.png" className="profile" />
   <Hello />
-</div>;
+</div>
 ```
 
 将会被`Babel`转换为
 
 ```js
-React.createElement("div", null, React.createElement("img", {
-  src: "avatar.png",
-  className: "profile"
-}), React.createElement(Hello, null));
+React.createElement(
+  "div",
+  null,
+  React.createElement("img", {
+    src: "avatar.png",
+    className: "profile",
+  }),
+  React.createElement(Hello, null)
+);
 ```
 
 注意，`babel`在编译时会判断`JSX`中组件的首字母，当首字母为小写时，其被认定为原生`DOM`标签，`createElement`的第一个变量被编译为字符串；当首字母为大写时，其被认定为自定义组件，`createElement`的第一个变量被编译为对象；
@@ -192,17 +197,17 @@ function Story(props) {
 }
 ```
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#创建虚拟dom)创建虚拟DOM
+### 创建虚拟 DOM
 
 下面我们来看看虚拟`DOM`的真实模样，将下面的`JSX`代码在控制台打印出来：
 
 ```html
 <div className="title">
-      <span>Hello ConardLi</span>
-      <ul>
-        <li>苹果</li>
-        <li>橘子</li>
-      </ul>
+  <span>Hello ConardLi</span>
+  <ul>
+    <li>苹果</li>
+    <li>橘子</li>
+  </ul>
 </div>
 ```
 
@@ -214,7 +219,7 @@ function Story(props) {
 
 `createElement`函数内部做的操作很简单，将`props`和子元素进行处理后返回一个`ReactElement`对象，下面我们来逐一分析：
 
-**(1).处理props：**
+**(1).处理 props：**
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/vdom2.png)
 
@@ -232,7 +237,7 @@ function Story(props) {
 - 2.若只有一个子元素，赋值给`props.children`
 - 3.若有多个子元素，将子元素填充为一个数组赋值给`props.children`
 
-**(3).处理默认props**
+**(3).处理默认 props**
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/vdom4.png)
 
@@ -242,7 +247,7 @@ function Story(props) {
 
 `ReactElement`将传入的几个属性进行组合，并返回。
 
-- `type`：元素的类型，可以是原生html类型（字符串），或者自定义组件（函数或`class`）
+- `type`：元素的类型，可以是原生 html 类型（字符串），或者自定义组件（函数或`class`）
 - `key`：组件的唯一标识，用于`Diff`算法，下面会详细介绍
 - `ref`：用于访问原生`dom`节点
 - `props`：传入组件的`props`
@@ -252,7 +257,7 @@ function Story(props) {
 
 ```js
 var REACT_ELEMENT_TYPE =
-  (typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element')) ||
+  (typeof Symbol === "function" && Symbol.for && Symbol.for("react.element")) ||
   0xeac7;
 ```
 
@@ -263,17 +268,15 @@ var REACT_ELEMENT_TYPE =
 ```js
 // JSON
 let expectedTextButGotJSON = {
-  type: 'div',
+  type: "div",
   props: {
     dangerouslySetInnerHTML: {
-      __html: '/* put your exploit here */'
+      __html: "/* put your exploit here */",
     },
   },
 };
 let message = { text: expectedTextButGotJSON };
-<p>
-  {message.text}
-</p>
+<p>{message.text}</p>;
 ```
 
 `JSON`中不能存储`Symbol`类型的变量。
@@ -281,8 +284,12 @@ let message = { text: expectedTextButGotJSON };
 `ReactElement.isValidElement`函数用来判断一个`React`组件是否是有效的，下面是它的具体实现。
 
 ```js
-ReactElement.isValidElement = function (object) {
-  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+ReactElement.isValidElement = function(object) {
+  return (
+    typeof object === "object" &&
+    object !== null &&
+    object.$$typeof === REACT_ELEMENT_TYPE
+  );
 };
 ```
 
@@ -297,7 +304,7 @@ ReactElement.isValidElement = function (object) {
 - `self`指定当前位于哪个组件实例。
 - `_source`指定调试代码来自的文件(`fileName`)和代码行数(`lineNumber`)。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#虚拟dom转换为真实dom)虚拟DOM转换为真实DOM
+### 虚拟 DOM 转换为真实 DOM
 
 上面我们分析了代码转换成了虚拟`DOM`的过程，下面来看一下`React`如何将虚拟`DOM`转换成真实`DOM`。
 
@@ -305,7 +312,7 @@ ReactElement.isValidElement = function (object) {
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/diff4.png)
 
-**过程1：初始参数处理**
+**过程 1：初始参数处理**
 
 在编写好我们的`React`组件后，我们需要调用`ReactDOM.render(element, container[, callback])`将组件进行渲染。
 
@@ -324,7 +331,7 @@ ReactElement.isValidElement = function (object) {
 `TopLevelWrapper`只一个空壳，它为你需要挂载的组件提供了一个`rootID`属性，并在`render`函数中返回该组件。
 
 ```js
-TopLevelWrapper.prototype.render = function () {
+TopLevelWrapper.prototype.render = function() {
   return this.props.child;
 };
 ```
@@ -352,29 +359,43 @@ TopLevelWrapper.prototype.render = function () {
 - `mountComponent`:用来生成`ReactElement`对应的真实`DOM`或`DOMLazyTree`。
 - `unmountComponent`:卸载`DOM`节点，解绑事件。
 
-具体是如何渲染我们在过程3中进行分析。
+具体是如何渲染我们在过程 3 中进行分析。
 
-**过程2：批处理、事务调用**
+**过程 2：批处理、事务调用**
 
 在`_renderNewRootComponent`中使用`ReactUpdates.batchedUpdates`调用`batchedMountComponentIntoNode`进行批处理。
 
 ```js
-ReactUpdates.batchedUpdates(batchedMountComponentIntoNode, componentInstance, container, shouldReuseMarkup, context);
+ReactUpdates.batchedUpdates(
+  batchedMountComponentIntoNode,
+  componentInstance,
+  container,
+  shouldReuseMarkup,
+  context
+);
 ```
 
 在`batchedMountComponentIntoNode`中，使用`transaction.perform`调用`mountComponentIntoNode`让其基于事务机制进行调用。
 
 ```js
- transaction.perform(mountComponentIntoNode, null, componentInstance, container, transaction, shouldReuseMarkup, context);
+transaction.perform(
+  mountComponentIntoNode,
+  null,
+  componentInstance,
+  container,
+  transaction,
+  shouldReuseMarkup,
+  context
+);
 ```
 
-关于批处理事务，在我前面的分析[setState执行机制](https://juejin.im/post/5c71050ef265da2db27938b5)中有更多介绍。
+关于批处理事务，在我前面的分析[setState 执行机制](https://juejin.im/post/5c71050ef265da2db27938b5)中有更多介绍。
 
-**过程3：生成html**
+**过程 3：生成 html**
 
 在`mountComponentIntoNode`函数中调用`ReactReconciler.mountComponent`生成原生`DOM`节点。
 
-`mountComponent`内部实际上是调用了过程1生成的四种对象的`mountComponent`方法。首先来看一下`ReactDOMComponent`：
+`mountComponent`内部实际上是调用了过程 1 生成的四种对象的`mountComponent`方法。首先来看一下`ReactDOMComponent`：
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/diff5.png)
 
@@ -391,23 +412,24 @@ ReactUpdates.batchedUpdates(batchedMountComponentIntoNode, componentInstance, co
 
 ![image](https://lsqimg-1257917459.cos-website.ap-beijing.myqcloud.com/blog/vdom10.png)
 
-可以发现：`DOMLazyTree`实际上是一个包裹对象，`node`属性中存储了真实的`DOM`节点，`children`、`html`、`text`分别存储孩子、html节点和文本节点。
+可以发现：`DOMLazyTree`实际上是一个包裹对象，`node`属性中存储了真实的`DOM`节点，`children`、`html`、`text`分别存储孩子、html 节点和文本节点。
 
 它提供了几个方法用于插入孩子、`html`以及文本节点，这些插入都是有条件限制的，当`enableLazy`属性为`true`时，这些孩子、`html`以及文本节点会被插入到`DOMLazyTree`对象中，当其为`false`时会插入到真实`DOM`节点中。
 
 ```js
-var enableLazy = typeof document !== 'undefined' &&
-  typeof document.documentMode === 'number' ||
-  typeof navigator !== 'undefined' &&
-  typeof navigator.userAgent === 'string' &&
-  /\bEdge\/\d/.test(navigator.userAgent);
+var enableLazy =
+  (typeof document !== "undefined" &&
+    typeof document.documentMode === "number") ||
+  (typeof navigator !== "undefined" &&
+    typeof navigator.userAgent === "string" &&
+    /\bEdge\/\d/.test(navigator.userAgent));
 ```
 
 可见：`enableLazy`是一个变量，当前浏览器是`IE`或`Edge`时为`true`。
 
 在`IE（8-11）`和`Edge`浏览器中，一个一个插入无子孙的节点，效率要远高于插入一整个序列化完整的节点树。
 
-所以`lazyTree`主要解决的是在`IE（8-11）`和`Edge`浏览器中插入节点的效率问题，在后面的过程4我们会分析到：若当前是`IE`或`Edge`，则需要递归插入`DOMLazyTree`中缓存的子节点，其他浏览器只需要插入一次当前节点，因为他们的孩子已经被渲染好了，而不用担心效率问题。
+所以`lazyTree`主要解决的是在`IE（8-11）`和`Edge`浏览器中插入节点的效率问题，在后面的过程 4 我们会分析到：若当前是`IE`或`Edge`，则需要递归插入`DOMLazyTree`中缓存的子节点，其他浏览器只需要插入一次当前节点，因为他们的孩子已经被渲染好了，而不用担心效率问题。
 
 下面来看一下`ReactCompositeComponent`，由于代码非常多这里就不再贴这个模块的代码，其内部主要做了以下几步：
 
@@ -416,9 +438,9 @@ var enableLazy = typeof document !== 'undefined' &&
 - 调用`performInitialMount`生命周期，处理子节点，获取`markup`。
 - 调用`componentDidMount`生命周期
 
-在`performInitialMount`函数中，首先调用了`componentWillMount`生命周期，由于自定义的`React`组件并不是一个真实的DOM，所以在函数中又调用了孩子节点的`mountComponent`。这也是一个递归的过程，当所有孩子节点渲染完成后，返回`markup`并调用`componentDidMount`。
+在`performInitialMount`函数中，首先调用了`componentWillMount`生命周期，由于自定义的`React`组件并不是一个真实的 DOM，所以在函数中又调用了孩子节点的`mountComponent`。这也是一个递归的过程，当所有孩子节点渲染完成后，返回`markup`并调用`componentDidMount`。
 
-**过程4：渲染html**
+**过程 4：渲染 html**
 
 在`mountComponentIntoNode`函数中调用将上一步生成的`markup`插入`container`容器。
 
@@ -436,26 +458,26 @@ var enableLazy = typeof document !== 'undefined' &&
 
 - 判断不是`IE`或`bEdge`时`return`
 - 若`children`不为空，递归`insertTreeBefore`进行插入
-- 渲染html节点
+- 渲染 html 节点
 - 渲染文本节点
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#原生dom事件代理)原生DOM事件代理
+### 原生 DOM 事件代理
 
-有关虚拟`DOM`的事件机制，我曾专门写过一篇文章，有兴趣可以👇[【React深入】React事件机制](https://juejin.im/post/5c7df2e7f265da2d8a55d49d)
+有关虚拟`DOM`的事件机制，我曾专门写过一篇文章，有兴趣可以 👇[【React 深入】React 事件机制](https://juejin.im/post/5c7df2e7f265da2d8a55d49d)
 
-## [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#虚拟dom原理、特性总结)虚拟DOM原理、特性总结
+## 虚拟 DOM 原理、特性总结
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#react组件的渲染流程)React组件的渲染流程
+### React 组件的渲染流程
 
 - 使用`React.createElement`或`JSX`编写`React`组件，实际上所有的`JSX`代码最后都会转换成`React.createElement(...)`，`Babel`帮助我们完成了这个转换的过程。
 - `createElement`函数对`key`和`ref`等特殊的`props`进行处理，并获取`defaultProps`对默认`props`进行赋值，并且对传入的孩子节点进行处理，最终构造成一个`ReactElement`对象（所谓的虚拟`DOM`）。
 - `ReactDOM.render`将生成好的虚拟`DOM`渲染到指定容器上，其中采用了批处理、事务等机制并且对特定浏览器进行了性能优化，最终转换为真实`DOM`。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#虚拟dom的组成)虚拟DOM的组成
+### 虚拟 DOM 的组成
 
-即`ReactElement`element对象，我们的组件最终会被渲染成下面的结构：
+即`ReactElement`element 对象，我们的组件最终会被渲染成下面的结构：
 
-- `type`：元素的类型，可以是原生html类型（字符串），或者自定义组件（函数或`class`）
+- `type`：元素的类型，可以是原生 html 类型（字符串），或者自定义组件（函数或`class`）
 - `key`：组件的唯一标识，用于`Diff`算法，下面会详细介绍
 - `ref`：用于访问原生`dom`节点
 - `props`：传入组件的`props`，`chidren`是`props`中的一个属性，它存储了当前组件的孩子节点，可以是数组（多个孩子节点）或对象（只有一个孩子节点）
@@ -463,19 +485,19 @@ var enableLazy = typeof document !== 'undefined' &&
 - `self`：（非生产环境）指定当前位于哪个组件实例
 - `_source`：（非生产环境）指定调试代码来自的文件(`fileName`)和代码行数(`lineNumber`)
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#防止xss)防止XSS
+### 防止 XSS
 
 `ReactElement`对象还有一个`$$typeof`属性，它是一个`Symbol`类型的变量`Symbol.for('react.element')`，当环境不支持`Symbol`时，`$$typeof`被赋值为`0xeac7`。
 
 这个变量可以防止`XSS`。如果你的服务器有一个漏洞，允许用户存储任意`JSON`对象， 而客户端代码需要一个字符串，这可能为你的应用程序带来风险。`JSON`中不能存储`Symbol`类型的变量，而`React`渲染时会把没有`$$typeof`标识的组件过滤掉。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#批处理和事务)批处理和事务
+### 批处理和事务
 
 `React`在渲染虚拟`DOM`时应用了批处理以及事务机制，以提高渲染性能。
 
-关于批处理以及事务机制，在我之前的文章[【React深入】setState的执行机制](https://juejin.im/post/5c71050ef265da2db27938b5)中有详细介绍。
+关于批处理以及事务机制，在我之前的文章[【React 深入】setState 的执行机制](https://juejin.im/post/5c71050ef265da2db27938b5)中有详细介绍。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#针对性的性能优化)针对性的性能优化
+### 针对性的性能优化
 
 在`IE（8-11）`和`Edge`浏览器中，一个一个插入无子孙的节点，效率要远高于插入一整个序列化完整的节点树。
 
@@ -483,7 +505,7 @@ var enableLazy = typeof document !== 'undefined' &&
 
 并且，在单独渲染节点时，`React`还考虑了`fragment`等特殊节点，这些节点则不会一个一个插入渲染。
 
-### [#](http://www.conardli.top/blog/article/React深入系列/深入分析虚拟DOM的渲染原理和特性.html#虚拟dom事件机制)虚拟DOM事件机制
+### 虚拟 DOM 事件机制
 
 `React`自己实现了一套事件机制，其将所有绑定在虚拟`DOM`上的事件映射到真正的`DOM`事件，并将所有的事件都代理到`document`上，自己模拟了事件冒泡和捕获的过程，并且进行统一的事件分发。
 
