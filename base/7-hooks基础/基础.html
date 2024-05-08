@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hooks | duangdong的react</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?0088ce24040b03f2947322ab31d23414";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+    <script>
+  var _hmt = _hmt || [];
+  _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
+    shouldTrackUrlChange: function (newPath, oldPath) {
+      newPath = newPath.split('#')[0];
+      oldPath = oldPath.split('#')[0];
+      return newPath != oldPath;
+    }}
+  ]);
+  </script>
+    <meta name="description" content="react相关知识归纳总结">
+    <meta name="keywords" content="react,react进阶,react性能优化,react-hooks,react源码">
+    
+    <link rel="preload" href="/assets/css/0.styles.b4a844ec.css" as="style"><link rel="preload" href="/assets/js/app.27287fd6.js" as="script"><link rel="preload" href="/assets/js/2.57da4f88.js" as="script"><link rel="preload" href="/assets/js/1.a76cc220.js" as="script"><link rel="preload" href="/assets/js/49.611d9085.js" as="script"><link rel="prefetch" href="/assets/js/10.50f73657.js"><link rel="prefetch" href="/assets/js/100.27126660.js"><link rel="prefetch" href="/assets/js/101.09cf74ec.js"><link rel="prefetch" href="/assets/js/102.8cd6b4eb.js"><link rel="prefetch" href="/assets/js/103.c4f25168.js"><link rel="prefetch" href="/assets/js/104.4f1b4569.js"><link rel="prefetch" href="/assets/js/105.bc4fc023.js"><link rel="prefetch" href="/assets/js/106.b9d5be0c.js"><link rel="prefetch" href="/assets/js/107.f9a44dd7.js"><link rel="prefetch" href="/assets/js/108.0424a7b7.js"><link rel="prefetch" href="/assets/js/109.086a89ae.js"><link rel="prefetch" href="/assets/js/11.0390ceee.js"><link rel="prefetch" href="/assets/js/110.1e4c2c77.js"><link rel="prefetch" href="/assets/js/111.16e80560.js"><link rel="prefetch" href="/assets/js/112.441e61a6.js"><link rel="prefetch" href="/assets/js/113.41a44465.js"><link rel="prefetch" href="/assets/js/114.9efb5469.js"><link rel="prefetch" href="/assets/js/115.d095bf75.js"><link rel="prefetch" href="/assets/js/116.b368a7c1.js"><link rel="prefetch" href="/assets/js/117.3a319a71.js"><link rel="prefetch" href="/assets/js/118.7ea17677.js"><link rel="prefetch" href="/assets/js/119.df1f998f.js"><link rel="prefetch" href="/assets/js/12.f88bec36.js"><link rel="prefetch" href="/assets/js/120.935f9aea.js"><link rel="prefetch" href="/assets/js/121.c09de772.js"><link rel="prefetch" href="/assets/js/122.32443376.js"><link rel="prefetch" href="/assets/js/123.d0f8ea63.js"><link rel="prefetch" href="/assets/js/124.fdbcd92d.js"><link rel="prefetch" href="/assets/js/125.0de5eb94.js"><link rel="prefetch" href="/assets/js/126.fb5e629b.js"><link rel="prefetch" href="/assets/js/127.866d8d58.js"><link rel="prefetch" href="/assets/js/128.1aad073e.js"><link rel="prefetch" href="/assets/js/129.328f52fd.js"><link rel="prefetch" href="/assets/js/13.963ad03b.js"><link rel="prefetch" href="/assets/js/130.ac9676d9.js"><link rel="prefetch" href="/assets/js/131.9852c015.js"><link rel="prefetch" href="/assets/js/132.806bcfe3.js"><link rel="prefetch" href="/assets/js/133.073ecd1e.js"><link rel="prefetch" href="/assets/js/134.e2683d73.js"><link rel="prefetch" href="/assets/js/135.d16cdb0b.js"><link rel="prefetch" href="/assets/js/136.c3b47da6.js"><link rel="prefetch" href="/assets/js/137.f7fec328.js"><link rel="prefetch" href="/assets/js/138.ec6ab500.js"><link rel="prefetch" href="/assets/js/139.18b97522.js"><link rel="prefetch" href="/assets/js/14.512f15b9.js"><link rel="prefetch" href="/assets/js/140.c7df1047.js"><link rel="prefetch" href="/assets/js/141.484c6ca5.js"><link rel="prefetch" href="/assets/js/142.8eff7a66.js"><link rel="prefetch" href="/assets/js/143.60569694.js"><link rel="prefetch" href="/assets/js/144.01883b7c.js"><link rel="prefetch" href="/assets/js/145.a9241012.js"><link rel="prefetch" href="/assets/js/146.4b6f364c.js"><link rel="prefetch" href="/assets/js/147.9ed57153.js"><link rel="prefetch" href="/assets/js/148.e18d806a.js"><link rel="prefetch" href="/assets/js/149.e24c9de5.js"><link rel="prefetch" href="/assets/js/15.a674496c.js"><link rel="prefetch" href="/assets/js/16.ed7e507f.js"><link rel="prefetch" href="/assets/js/17.de667ca5.js"><link rel="prefetch" href="/assets/js/18.b44e84af.js"><link rel="prefetch" href="/assets/js/19.5b5ad6a1.js"><link rel="prefetch" href="/assets/js/20.6800493a.js"><link rel="prefetch" href="/assets/js/21.6589052c.js"><link rel="prefetch" href="/assets/js/22.f648d829.js"><link rel="prefetch" href="/assets/js/23.f1afbc9c.js"><link rel="prefetch" href="/assets/js/24.7f3fc444.js"><link rel="prefetch" href="/assets/js/25.5a945cd4.js"><link rel="prefetch" href="/assets/js/26.7ef56339.js"><link rel="prefetch" href="/assets/js/27.74941107.js"><link rel="prefetch" href="/assets/js/28.20a36928.js"><link rel="prefetch" href="/assets/js/29.7cda6a44.js"><link rel="prefetch" href="/assets/js/3.13e892f5.js"><link rel="prefetch" href="/assets/js/30.97f5cf7e.js"><link rel="prefetch" href="/assets/js/31.eeee5c14.js"><link rel="prefetch" href="/assets/js/32.a2125816.js"><link rel="prefetch" href="/assets/js/33.b3fdf3bc.js"><link rel="prefetch" href="/assets/js/34.908ac5fb.js"><link rel="prefetch" href="/assets/js/35.9459a7c7.js"><link rel="prefetch" href="/assets/js/36.dc8e2582.js"><link rel="prefetch" href="/assets/js/37.27c69606.js"><link rel="prefetch" href="/assets/js/38.10b82911.js"><link rel="prefetch" href="/assets/js/39.fdc5aecb.js"><link rel="prefetch" href="/assets/js/4.5bdb9365.js"><link rel="prefetch" href="/assets/js/40.901c96dc.js"><link rel="prefetch" href="/assets/js/41.4cbb9c4b.js"><link rel="prefetch" href="/assets/js/42.da47ce58.js"><link rel="prefetch" href="/assets/js/43.a7669073.js"><link rel="prefetch" href="/assets/js/44.08cc8605.js"><link rel="prefetch" href="/assets/js/45.5461c987.js"><link rel="prefetch" href="/assets/js/46.4c5ed7f9.js"><link rel="prefetch" href="/assets/js/47.450abe13.js"><link rel="prefetch" href="/assets/js/48.d0a778f3.js"><link rel="prefetch" href="/assets/js/5.7c68fdb5.js"><link rel="prefetch" href="/assets/js/50.2563fd92.js"><link rel="prefetch" href="/assets/js/51.ff64258c.js"><link rel="prefetch" href="/assets/js/52.d47acb9b.js"><link rel="prefetch" href="/assets/js/53.09fd35d1.js"><link rel="prefetch" href="/assets/js/54.5e523072.js"><link rel="prefetch" href="/assets/js/55.8278650d.js"><link rel="prefetch" href="/assets/js/56.425f7e44.js"><link rel="prefetch" href="/assets/js/57.44699db6.js"><link rel="prefetch" href="/assets/js/58.25067fcf.js"><link rel="prefetch" href="/assets/js/59.3814ee9e.js"><link rel="prefetch" href="/assets/js/6.c8da7ca7.js"><link rel="prefetch" href="/assets/js/60.82621500.js"><link rel="prefetch" href="/assets/js/61.9880375b.js"><link rel="prefetch" href="/assets/js/62.3924c2b9.js"><link rel="prefetch" href="/assets/js/63.ff3650b8.js"><link rel="prefetch" href="/assets/js/64.0d46b236.js"><link rel="prefetch" href="/assets/js/65.f255f222.js"><link rel="prefetch" href="/assets/js/66.d797120d.js"><link rel="prefetch" href="/assets/js/67.aa46c62c.js"><link rel="prefetch" href="/assets/js/68.0dbf39cf.js"><link rel="prefetch" href="/assets/js/69.116b53df.js"><link rel="prefetch" href="/assets/js/7.e4c88d0e.js"><link rel="prefetch" href="/assets/js/70.a05986f2.js"><link rel="prefetch" href="/assets/js/71.562a4365.js"><link rel="prefetch" href="/assets/js/72.c10c6194.js"><link rel="prefetch" href="/assets/js/73.d85c71e5.js"><link rel="prefetch" href="/assets/js/74.73f72e00.js"><link rel="prefetch" href="/assets/js/75.62c76a28.js"><link rel="prefetch" href="/assets/js/76.8d0d9036.js"><link rel="prefetch" href="/assets/js/77.4ede6642.js"><link rel="prefetch" href="/assets/js/78.7d4d4152.js"><link rel="prefetch" href="/assets/js/79.720e767d.js"><link rel="prefetch" href="/assets/js/80.e9d86233.js"><link rel="prefetch" href="/assets/js/81.40ea5e9f.js"><link rel="prefetch" href="/assets/js/82.78074ee1.js"><link rel="prefetch" href="/assets/js/83.72133cbf.js"><link rel="prefetch" href="/assets/js/84.52c5ea65.js"><link rel="prefetch" href="/assets/js/85.afce36a7.js"><link rel="prefetch" href="/assets/js/86.bdc638dd.js"><link rel="prefetch" href="/assets/js/87.11e34480.js"><link rel="prefetch" href="/assets/js/88.5fd9f0ef.js"><link rel="prefetch" href="/assets/js/89.718ec134.js"><link rel="prefetch" href="/assets/js/90.11f956de.js"><link rel="prefetch" href="/assets/js/91.985d80f2.js"><link rel="prefetch" href="/assets/js/92.9c876df3.js"><link rel="prefetch" href="/assets/js/93.da92c068.js"><link rel="prefetch" href="/assets/js/94.cf4ee959.js"><link rel="prefetch" href="/assets/js/95.665f55e6.js"><link rel="prefetch" href="/assets/js/96.2e80356d.js"><link rel="prefetch" href="/assets/js/97.d7d8ba2d.js"><link rel="prefetch" href="/assets/js/98.70eab878.js"><link rel="prefetch" href="/assets/js/99.60ddb42d.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.5143d2e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b4a844ec.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">duangdong的react</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/base/" aria-current="page" class="sidebar-link">性能优化</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>6-SSR</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>7-hooks基础</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/base/7-hooks基础/eslint-plugin.html" class="sidebar-link">eslint-plugin-react-hooks配置</a></li><li><a href="/base/7-hooks基础/mobx.html" class="sidebar-link">基础用法</a></li><li><a href="/base/7-hooks基础/todo-list.html" class="sidebar-link">使用Hooks实现的TodoList</a></li><li><a href="/base/7-hooks基础/基础.html" class="active sidebar-link">Hooks</a></li><li><a href="/base/7-hooks基础/如何使用usemeo.html" class="sidebar-link">如何使用 React.useMemo() 进行快速记忆？</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Native</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/base/React 代码共享最佳实践方式.html" class="sidebar-link">React 代码共享最佳实践方式</a></li><li><a href="/base/React组件性能优化—function-component.html" class="sidebar-link">React 组件性能优化—function component</a></li><li><a href="/base/clean-react.html" class="sidebar-link">如何编写Cleaner React代码</a></li><li><a href="/base/life.html" class="sidebar-link">componentWillReceiveProps</a></li><li><a href="/base/propType.html" class="sidebar-link">propType</a></li><li><a href="/base/修改端口.html" class="sidebar-link">关于脚手架生成的运行端口配置</a></li><li><a href="/base/初学.html" class="sidebar-link">今日小结</a></li><li><a href="/base/如何使用React创建视频和动画.html" class="sidebar-link">如何使用React创建视频和动画</a></li><li><a href="/base/提高 React 代码质量.html" class="sidebar-link">6 个提高 React 代码质量的方法 - 让你的 React 代码更简洁</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="hooks"><a href="#hooks" class="header-anchor">#</a> Hooks</h3> <h4 id="usestate"><a href="#usestate" class="header-anchor">#</a> useState</h4> <blockquote><p><code>useState</code>是react自带的一个hook函数，它的作用是用来声明状态变量。</p> <p>利用运行的顺序</p></blockquote> <h4 id="useeffect"><a href="#useeffect" class="header-anchor">#</a> useEffect</h4> <blockquote><p>在用<code>Class</code>制作组件时，经常会用生命周期函数，来处理一些额外的事情（副作用：和函数业务主逻辑关联不大，特定时间或事件中执行的动作，比如Ajax请求后端数据，添加登录监听和取消登录，手动修改<code>DOM</code>等等）。在<code>React Hooks</code>中也需要这样类似的生命周期函数，比如在每次状态（State）更新时执行，它为我们准备了<code>useEffect</code></p></blockquote> <h4 id="usecontext"><a href="#usecontext" class="header-anchor">#</a> useContext</h4> <blockquote><p>在用类声明组件时，父子组件的传值是通过组件属性和<code>props</code>进行的，那现在使用方法(Function)来声明组件，已经没有了<code>constructor</code>构造函数也就没有了props的接收，那父子组件的传值就成了一个问题。<code>React Hooks</code> 为我们准备了<code>useContext</code>。这节课就学习一下<code>useContext</code>，它可以帮助我们跨越组件层级直接传递变量，实现共享。需要注意的是<code>useContext</code>和<code>redux</code>的作用是不同的，一个解决的是组件之间值传递的问题，一个是应用中统一管理状态的问题，但通过和<code>useReducer</code>的配合使用，可以实现类似<code>Redux</code>的作用。</p></blockquote> <ul><li><code>Context</code>的作用就是对它所包含的组件树提供全局共享数据的一种技术。</li></ul> <h4 id="usereducer"><a href="#usereducer" class="header-anchor">#</a> useReducer</h4> <h4 id="usecallback"><a href="#usecallback" class="header-anchor">#</a> useCallback</h4> <blockquote><p>该回调函数仅在某个依赖项改变时才会更新</p> <p><code>useCallback(fn, deps)</code> 相当于 <code>useMemo(() =&gt; fn, deps)</code>。</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">changeCount</span><span class="token punctuation">(</span><span class="token parameter">count</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'count'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> count<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> actionCount <span class="token operator">=</span> <span class="token function">useMemo</span><span class="token punctuation">(</span><span class="token function">changeCount</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">[</span>count<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="usememo"><a href="#usememo" class="header-anchor">#</a> useMemo</h4> <blockquote><p>传入 <code>useMemo</code> 的函数会在渲染期间执行</p> <p>函数里不要执行与渲染无关的操作</p> <p>如果没有提供依赖项数组，<code>useMemo</code> 在每次渲染时都会计算新的值</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">changeCount</span><span class="token punctuation">(</span><span class="token parameter">count</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'count'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> count<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> actionCount <span class="token operator">=</span> <span class="token function">useMemo</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token function">changeCount</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">[</span>count<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="useref"><a href="#useref" class="header-anchor">#</a> useRef</h4> <h4 id="自定义函数"><a href="#自定义函数" class="header-anchor">#</a> 自定义函数</h4> <blockquote><p>官网的示例也很清楚</p></blockquote> <ul><li>函数中先用useState设置<code>size</code>状态，然后编写一个每次修改状态的方法<code>onResize</code>，</li> <li>使用<code>useCallback</code>，目的是为了缓存方法(useMemo是为了缓存变量)。 然后在第一次进入方法时用<code>useEffect</code>来注册<code>resize</code>监听时间。</li> <li>为了防止一直监听所以在方法移除时，使用return的方式移除监听。最后返回size变量就可以了。</li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//自定义函数</span>
+<span class="token keyword">const</span> <span class="token function-variable function">useSelfSize</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span> size<span class="token punctuation">,</span> setSize <span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">width</span><span class="token operator">:</span> window<span class="token punctuation">.</span>document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientWidth<span class="token punctuation">,</span>
+    <span class="token literal-property property">height</span><span class="token operator">:</span> window<span class="token punctuation">.</span>document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> handleOnSize <span class="token operator">=</span> <span class="token function">useCallback</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">setSize</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">width</span><span class="token operator">:</span> window<span class="token punctuation">.</span>document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientWidth<span class="token punctuation">,</span>
+      <span class="token literal-property property">height</span><span class="token operator">:</span> window<span class="token punctuation">.</span>document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'resize'</span><span class="token punctuation">,</span> handleOnSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'add'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'remove'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      window<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'resize'</span><span class="token punctuation">,</span> handleOnSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>handleOnSize<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> size<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 在组件中使用自定义函数</span>
+<span class="token keyword">const</span> <span class="token function-variable function">SelfFunc</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> size <span class="token operator">=</span> <span class="token function">useSelfSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+      <span class="token literal-property property">当前窗口的宽高为</span><span class="token operator">:</span><span class="token punctuation">{</span>size<span class="token punctuation">.</span>width<span class="token punctuation">}</span>x<span class="token punctuation">{</span>size<span class="token punctuation">.</span>height<span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+
+# This workflow will <span class="token keyword">do</span> a clean install <span class="token keyword">of</span> node dependencies<span class="token punctuation">,</span> build the source code and run tests across different versions <span class="token keyword">of</span> node
+# For more information see<span class="token operator">:</span> https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>help<span class="token punctuation">.</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>actions<span class="token operator">/</span>language<span class="token operator">-</span>and<span class="token operator">-</span>framework<span class="token operator">-</span>guides<span class="token operator">/</span>using<span class="token operator">-</span>nodejs<span class="token operator">-</span><span class="token keyword">with</span><span class="token operator">-</span>github<span class="token operator">-</span>actions
+
+<span class="token literal-property property">name</span><span class="token operator">:</span> Node<span class="token punctuation">.</span>js <span class="token constant">CI</span>
+
+<span class="token literal-property property">on</span><span class="token operator">:</span>
+  <span class="token literal-property property">push</span><span class="token operator">:</span>
+    <span class="token literal-property property">branches</span><span class="token operator">:</span> <span class="token punctuation">[</span> test <span class="token punctuation">]</span>
+  <span class="token literal-property property">pull_request</span><span class="token operator">:</span>
+    <span class="token literal-property property">branches</span><span class="token operator">:</span> <span class="token punctuation">[</span> test <span class="token punctuation">]</span>
+
+<span class="token literal-property property">jobs</span><span class="token operator">:</span>
+  <span class="token literal-property property">build</span><span class="token operator">:</span>
+
+    runs<span class="token operator">-</span>on<span class="token operator">:</span> ubuntu<span class="token operator">-</span>latest
+
+    <span class="token literal-property property">strategy</span><span class="token operator">:</span>
+      <span class="token literal-property property">matrix</span><span class="token operator">:</span>
+        node<span class="token operator">-</span>version<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">.</span>x<span class="token punctuation">]</span>
+
+    <span class="token literal-property property">steps</span><span class="token operator">:</span>
+    <span class="token operator">-</span> name<span class="token operator">:</span> <span class="token number">1.</span> git checkout<span class="token operator">...</span>
+      <span class="token literal-property property">uses</span><span class="token operator">:</span> actions<span class="token operator">/</span>checkout@v2
+    <span class="token operator">-</span> name<span class="token operator">:</span> Use Node<span class="token punctuation">.</span>js $<span class="token punctuation">{</span><span class="token punctuation">{</span> matrix<span class="token punctuation">.</span>node<span class="token operator">-</span>version <span class="token punctuation">}</span><span class="token punctuation">}</span>
+      <span class="token literal-property property">uses</span><span class="token operator">:</span> actions<span class="token operator">/</span>setup<span class="token operator">-</span>node@v1
+      <span class="token keyword">with</span><span class="token operator">:</span>
+        node<span class="token operator">-</span>version<span class="token operator">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> matrix<span class="token punctuation">.</span>node<span class="token operator">-</span>version <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    
+    <span class="token operator">-</span> name<span class="token operator">:</span> install hexo<span class="token operator">...</span>
+      <span class="token literal-property property">run</span><span class="token operator">:</span> <span class="token operator">|</span>
+        npm install yarn
+        yarn
+        
+    <span class="token operator">-</span> name<span class="token operator">:</span> hexo generate <span class="token keyword">public</span> files<span class="token operator">...</span>
+      <span class="token literal-property property">run</span><span class="token operator">:</span> <span class="token operator">|</span>
+        yarn clean
+        yarn build  
+
+    <span class="token operator">-</span> name<span class="token operator">:</span> hexo deploy <span class="token operator">...</span>
+      <span class="token literal-property property">run</span><span class="token operator">:</span> <span class="token operator">|</span>
+        mkdir <span class="token operator">-</span>p <span class="token operator">~</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">.ssh</span><span class="token regex-delimiter">/</span></span>
+        echo <span class="token string">&quot;${{ secrets.GITHUB_ACTION }}&quot;</span> <span class="token operator">&gt;</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>id_rsa
+        chmod <span class="token number">600</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>id_rsa
+        ssh<span class="token operator">-</span>keyscan github<span class="token punctuation">.</span>com <span class="token operator">&gt;&gt;</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>known_hosts
+        
+        git config <span class="token operator">--</span>global user<span class="token punctuation">.</span>name <span class="token string">&quot;XXXXXX&quot;</span>
+        git config <span class="token operator">--</span>global user<span class="token punctuation">.</span>email <span class="token string">&quot;XXXXXX@XXXXXX.com&quot;</span>
+        git config <span class="token operator">--</span>global core<span class="token punctuation">.</span>quotepath <span class="token boolean">false</span>
+        
+        hexo d
+
+    <span class="token operator">-</span> name<span class="token operator">:</span> Setup Git Infomation
+      <span class="token literal-property property">run</span><span class="token operator">:</span>
+        git config <span class="token operator">--</span>global user<span class="token punctuation">.</span>name zhouqd 
+        git config <span class="token operator">--</span>global user<span class="token punctuation">.</span>email zhouqd1997@<span class="token number">163</span><span class="token punctuation">.</span>com
+
+    <span class="token operator">-</span> name<span class="token operator">:</span> Setup Deploy Private Key
+      <span class="token literal-property property">env</span><span class="token operator">:</span>
+        <span class="token constant">HEXO_DEPLOY_PRIVATE_KEY</span><span class="token operator">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets<span class="token punctuation">.</span><span class="token constant">HEXO_DEPLOY_PRIVATE_KEY</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+      <span class="token literal-property property">run</span><span class="token operator">:</span> <span class="token operator">|</span>
+        mkdir <span class="token operator">-</span>p <span class="token operator">~</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">.ssh</span><span class="token regex-delimiter">/</span></span>
+        echo <span class="token string">&quot;$HEXO_DEPLOY_PRIVATE_KEY&quot;</span> <span class="token operator">&gt;</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>id_rsa 
+        chmod <span class="token number">600</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>id_rsa
+        ssh<span class="token operator">-</span>keyscan github<span class="token punctuation">.</span>com <span class="token operator">&gt;&gt;</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>known_hosts
+
+      <span class="token literal-property property">env</span><span class="token operator">:</span>
+        <span class="token constant">CI</span><span class="token operator">:</span> <span class="token boolean">true</span>  
+    <span class="token operator">-</span> run<span class="token operator">:</span> npm install <span class="token operator">-</span>g yarn
+    <span class="token operator">-</span> run<span class="token operator">:</span> yarn
+    <span class="token operator">-</span> run<span class="token operator">:</span> yarn clean
+    <span class="token operator">-</span> run<span class="token operator">:</span> yarn build
+    <span class="token operator">-</span> run<span class="token operator">:</span> yarn deploy
+
+    
+    
+    # This workflow will <span class="token keyword">do</span> a clean install <span class="token keyword">of</span> node dependencies<span class="token punctuation">,</span> build the source code and run tests across different versions <span class="token keyword">of</span> node
+# For more information see<span class="token operator">:</span> https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>help<span class="token punctuation">.</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>actions<span class="token operator">/</span>language<span class="token operator">-</span>and<span class="token operator">-</span>framework<span class="token operator">-</span>guides<span class="token operator">/</span>using<span class="token operator">-</span>nodejs<span class="token operator">-</span><span class="token keyword">with</span><span class="token operator">-</span>github<span class="token operator">-</span>actions
+
+<span class="token literal-property property">name</span><span class="token operator">:</span> Node<span class="token punctuation">.</span>js <span class="token constant">CI</span>
+
+<span class="token literal-property property">on</span><span class="token operator">:</span>
+  <span class="token literal-property property">push</span><span class="token operator">:</span>
+    <span class="token literal-property property">branches</span><span class="token operator">:</span> <span class="token punctuation">[</span> test <span class="token punctuation">]</span>
+  <span class="token literal-property property">pull_request</span><span class="token operator">:</span>
+    <span class="token literal-property property">branches</span><span class="token operator">:</span> <span class="token punctuation">[</span> test <span class="token punctuation">]</span>
+
+<span class="token literal-property property">jobs</span><span class="token operator">:</span>
+  <span class="token literal-property property">build</span><span class="token operator">:</span>
+
+    runs<span class="token operator">-</span>on<span class="token operator">:</span> ubuntu<span class="token operator">-</span>latest
+
+    <span class="token literal-property property">strategy</span><span class="token operator">:</span>
+      <span class="token literal-property property">matrix</span><span class="token operator">:</span>
+        node<span class="token operator">-</span>version<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">.</span>x<span class="token punctuation">]</span>
+
+    <span class="token literal-property property">steps</span><span class="token operator">:</span>
+    <span class="token operator">-</span> name<span class="token operator">:</span> <span class="token number">1.</span> git checkout<span class="token operator">...</span>
+      <span class="token literal-property property">uses</span><span class="token operator">:</span> actions<span class="token operator">/</span>checkout@v2
+    <span class="token operator">-</span> name<span class="token operator">:</span> Use Node<span class="token punctuation">.</span>js $<span class="token punctuation">{</span><span class="token punctuation">{</span> matrix<span class="token punctuation">.</span>node<span class="token operator">-</span>version <span class="token punctuation">}</span><span class="token punctuation">}</span>
+      <span class="token literal-property property">uses</span><span class="token operator">:</span> actions<span class="token operator">/</span>setup<span class="token operator">-</span>node@v1
+      <span class="token keyword">with</span><span class="token operator">:</span>
+        node<span class="token operator">-</span>version<span class="token operator">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> matrix<span class="token punctuation">.</span>node<span class="token operator">-</span>version <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    
+    <span class="token operator">-</span> name<span class="token operator">:</span> install hexo<span class="token operator">...</span>
+      <span class="token literal-property property">run</span><span class="token operator">:</span> <span class="token operator">|</span>
+        npm install yarn
+        yarn
+        
+    <span class="token operator">-</span> name<span class="token operator">:</span> hexo generate <span class="token keyword">public</span> files<span class="token operator">...</span>
+      <span class="token literal-property property">run</span><span class="token operator">:</span> <span class="token operator">|</span>
+        yarn clean
+        yarn build
+
+    <span class="token operator">-</span> name<span class="token operator">:</span> Setup Git Infomation
+      <span class="token literal-property property">run</span><span class="token operator">:</span>
+        git config <span class="token operator">--</span>global user<span class="token punctuation">.</span>name zhouqd 
+        git config <span class="token operator">--</span>global user<span class="token punctuation">.</span>email zhouqd1997@<span class="token number">163</span><span class="token punctuation">.</span>com
+ 
+    <span class="token operator">-</span> name<span class="token operator">:</span> hexo deploy <span class="token operator">...</span>
+      <span class="token literal-property property">run</span><span class="token operator">:</span> <span class="token operator">|</span>
+        mkdir <span class="token operator">-</span>p <span class="token operator">~</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">.ssh</span><span class="token regex-delimiter">/</span></span>
+        echo <span class="token string">&quot;${{ secrets.GITHUB_ACTION }}&quot;</span> <span class="token operator">&gt;</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>id_rsa
+        chmod <span class="token number">600</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>id_rsa
+        ssh<span class="token operator">-</span>keyscan github<span class="token punctuation">.</span>com <span class="token operator">&gt;&gt;</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>known_hosts
+        
+        yarn deploy
+    <span class="token operator">-</span> name<span class="token operator">:</span> <span class="token constant">CI</span> <span class="token operator">...</span>
+      <span class="token literal-property property">env</span><span class="token operator">:</span>
+        <span class="token constant">ACCESS_TOKEN</span><span class="token operator">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets<span class="token punctuation">.</span><span class="token constant">ACCESS_TOKEN</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token constant">CI</span><span class="token operator">:</span> <span class="token boolean">true</span>  
+
+
+        mkdir <span class="token operator">-</span>p <span class="token operator">~</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">.ssh</span><span class="token regex-delimiter">/</span></span>
+        echo <span class="token string">&quot;$HEXO_DEPLOY_PRIVATE_KEY&quot;</span> <span class="token operator">&gt;</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>id_rsa 
+        chmod <span class="token number">600</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>id_rsa
+        ssh<span class="token operator">-</span>keyscan github<span class="token punctuation">.</span>com <span class="token operator">&gt;&gt;</span> <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>known_hosts
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">5/8/2024, 3:01:19 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/base/7-hooks基础/todo-list.html" class="prev">
+        使用Hooks实现的TodoList
+      </a></span> <span class="next"><a href="/base/7-hooks基础/如何使用usemeo.html">
+        如何使用 React.useMemo() 进行快速记忆？
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.27287fd6.js" defer></script><script src="/assets/js/2.57da4f88.js" defer></script><script src="/assets/js/1.a76cc220.js" defer></script><script src="/assets/js/49.611d9085.js" defer></script>
+  </body>
+</html>

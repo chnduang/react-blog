@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>duangdong的react</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?0088ce24040b03f2947322ab31d23414";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+    <script>
+  var _hmt = _hmt || [];
+  _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
+    shouldTrackUrlChange: function (newPath, oldPath) {
+      newPath = newPath.split('#')[0];
+      oldPath = oldPath.split('#')[0];
+      return newPath != oldPath;
+    }}
+  ]);
+  </script>
+    <meta name="description" content="react相关知识归纳总结">
+    <meta name="keywords" content="react,react进阶,react性能优化,react-hooks,react源码">
+    
+    <link rel="preload" href="/assets/css/0.styles.b4a844ec.css" as="style"><link rel="preload" href="/assets/js/app.27287fd6.js" as="script"><link rel="preload" href="/assets/js/2.57da4f88.js" as="script"><link rel="preload" href="/assets/js/1.a76cc220.js" as="script"><link rel="preload" href="/assets/js/119.df1f998f.js" as="script"><link rel="prefetch" href="/assets/js/10.50f73657.js"><link rel="prefetch" href="/assets/js/100.27126660.js"><link rel="prefetch" href="/assets/js/101.09cf74ec.js"><link rel="prefetch" href="/assets/js/102.8cd6b4eb.js"><link rel="prefetch" href="/assets/js/103.c4f25168.js"><link rel="prefetch" href="/assets/js/104.4f1b4569.js"><link rel="prefetch" href="/assets/js/105.bc4fc023.js"><link rel="prefetch" href="/assets/js/106.b9d5be0c.js"><link rel="prefetch" href="/assets/js/107.f9a44dd7.js"><link rel="prefetch" href="/assets/js/108.0424a7b7.js"><link rel="prefetch" href="/assets/js/109.086a89ae.js"><link rel="prefetch" href="/assets/js/11.0390ceee.js"><link rel="prefetch" href="/assets/js/110.1e4c2c77.js"><link rel="prefetch" href="/assets/js/111.16e80560.js"><link rel="prefetch" href="/assets/js/112.441e61a6.js"><link rel="prefetch" href="/assets/js/113.41a44465.js"><link rel="prefetch" href="/assets/js/114.9efb5469.js"><link rel="prefetch" href="/assets/js/115.d095bf75.js"><link rel="prefetch" href="/assets/js/116.b368a7c1.js"><link rel="prefetch" href="/assets/js/117.3a319a71.js"><link rel="prefetch" href="/assets/js/118.7ea17677.js"><link rel="prefetch" href="/assets/js/12.f88bec36.js"><link rel="prefetch" href="/assets/js/120.935f9aea.js"><link rel="prefetch" href="/assets/js/121.c09de772.js"><link rel="prefetch" href="/assets/js/122.32443376.js"><link rel="prefetch" href="/assets/js/123.d0f8ea63.js"><link rel="prefetch" href="/assets/js/124.fdbcd92d.js"><link rel="prefetch" href="/assets/js/125.0de5eb94.js"><link rel="prefetch" href="/assets/js/126.fb5e629b.js"><link rel="prefetch" href="/assets/js/127.866d8d58.js"><link rel="prefetch" href="/assets/js/128.1aad073e.js"><link rel="prefetch" href="/assets/js/129.328f52fd.js"><link rel="prefetch" href="/assets/js/13.963ad03b.js"><link rel="prefetch" href="/assets/js/130.ac9676d9.js"><link rel="prefetch" href="/assets/js/131.9852c015.js"><link rel="prefetch" href="/assets/js/132.806bcfe3.js"><link rel="prefetch" href="/assets/js/133.073ecd1e.js"><link rel="prefetch" href="/assets/js/134.e2683d73.js"><link rel="prefetch" href="/assets/js/135.d16cdb0b.js"><link rel="prefetch" href="/assets/js/136.c3b47da6.js"><link rel="prefetch" href="/assets/js/137.f7fec328.js"><link rel="prefetch" href="/assets/js/138.ec6ab500.js"><link rel="prefetch" href="/assets/js/139.18b97522.js"><link rel="prefetch" href="/assets/js/14.512f15b9.js"><link rel="prefetch" href="/assets/js/140.c7df1047.js"><link rel="prefetch" href="/assets/js/141.484c6ca5.js"><link rel="prefetch" href="/assets/js/142.8eff7a66.js"><link rel="prefetch" href="/assets/js/143.60569694.js"><link rel="prefetch" href="/assets/js/144.01883b7c.js"><link rel="prefetch" href="/assets/js/145.a9241012.js"><link rel="prefetch" href="/assets/js/146.4b6f364c.js"><link rel="prefetch" href="/assets/js/147.9ed57153.js"><link rel="prefetch" href="/assets/js/148.e18d806a.js"><link rel="prefetch" href="/assets/js/149.e24c9de5.js"><link rel="prefetch" href="/assets/js/15.a674496c.js"><link rel="prefetch" href="/assets/js/16.ed7e507f.js"><link rel="prefetch" href="/assets/js/17.de667ca5.js"><link rel="prefetch" href="/assets/js/18.b44e84af.js"><link rel="prefetch" href="/assets/js/19.5b5ad6a1.js"><link rel="prefetch" href="/assets/js/20.6800493a.js"><link rel="prefetch" href="/assets/js/21.6589052c.js"><link rel="prefetch" href="/assets/js/22.f648d829.js"><link rel="prefetch" href="/assets/js/23.f1afbc9c.js"><link rel="prefetch" href="/assets/js/24.7f3fc444.js"><link rel="prefetch" href="/assets/js/25.5a945cd4.js"><link rel="prefetch" href="/assets/js/26.7ef56339.js"><link rel="prefetch" href="/assets/js/27.74941107.js"><link rel="prefetch" href="/assets/js/28.20a36928.js"><link rel="prefetch" href="/assets/js/29.7cda6a44.js"><link rel="prefetch" href="/assets/js/3.13e892f5.js"><link rel="prefetch" href="/assets/js/30.97f5cf7e.js"><link rel="prefetch" href="/assets/js/31.eeee5c14.js"><link rel="prefetch" href="/assets/js/32.a2125816.js"><link rel="prefetch" href="/assets/js/33.b3fdf3bc.js"><link rel="prefetch" href="/assets/js/34.908ac5fb.js"><link rel="prefetch" href="/assets/js/35.9459a7c7.js"><link rel="prefetch" href="/assets/js/36.dc8e2582.js"><link rel="prefetch" href="/assets/js/37.27c69606.js"><link rel="prefetch" href="/assets/js/38.10b82911.js"><link rel="prefetch" href="/assets/js/39.fdc5aecb.js"><link rel="prefetch" href="/assets/js/4.5bdb9365.js"><link rel="prefetch" href="/assets/js/40.901c96dc.js"><link rel="prefetch" href="/assets/js/41.4cbb9c4b.js"><link rel="prefetch" href="/assets/js/42.da47ce58.js"><link rel="prefetch" href="/assets/js/43.a7669073.js"><link rel="prefetch" href="/assets/js/44.08cc8605.js"><link rel="prefetch" href="/assets/js/45.5461c987.js"><link rel="prefetch" href="/assets/js/46.4c5ed7f9.js"><link rel="prefetch" href="/assets/js/47.450abe13.js"><link rel="prefetch" href="/assets/js/48.d0a778f3.js"><link rel="prefetch" href="/assets/js/49.611d9085.js"><link rel="prefetch" href="/assets/js/5.7c68fdb5.js"><link rel="prefetch" href="/assets/js/50.2563fd92.js"><link rel="prefetch" href="/assets/js/51.ff64258c.js"><link rel="prefetch" href="/assets/js/52.d47acb9b.js"><link rel="prefetch" href="/assets/js/53.09fd35d1.js"><link rel="prefetch" href="/assets/js/54.5e523072.js"><link rel="prefetch" href="/assets/js/55.8278650d.js"><link rel="prefetch" href="/assets/js/56.425f7e44.js"><link rel="prefetch" href="/assets/js/57.44699db6.js"><link rel="prefetch" href="/assets/js/58.25067fcf.js"><link rel="prefetch" href="/assets/js/59.3814ee9e.js"><link rel="prefetch" href="/assets/js/6.c8da7ca7.js"><link rel="prefetch" href="/assets/js/60.82621500.js"><link rel="prefetch" href="/assets/js/61.9880375b.js"><link rel="prefetch" href="/assets/js/62.3924c2b9.js"><link rel="prefetch" href="/assets/js/63.ff3650b8.js"><link rel="prefetch" href="/assets/js/64.0d46b236.js"><link rel="prefetch" href="/assets/js/65.f255f222.js"><link rel="prefetch" href="/assets/js/66.d797120d.js"><link rel="prefetch" href="/assets/js/67.aa46c62c.js"><link rel="prefetch" href="/assets/js/68.0dbf39cf.js"><link rel="prefetch" href="/assets/js/69.116b53df.js"><link rel="prefetch" href="/assets/js/7.e4c88d0e.js"><link rel="prefetch" href="/assets/js/70.a05986f2.js"><link rel="prefetch" href="/assets/js/71.562a4365.js"><link rel="prefetch" href="/assets/js/72.c10c6194.js"><link rel="prefetch" href="/assets/js/73.d85c71e5.js"><link rel="prefetch" href="/assets/js/74.73f72e00.js"><link rel="prefetch" href="/assets/js/75.62c76a28.js"><link rel="prefetch" href="/assets/js/76.8d0d9036.js"><link rel="prefetch" href="/assets/js/77.4ede6642.js"><link rel="prefetch" href="/assets/js/78.7d4d4152.js"><link rel="prefetch" href="/assets/js/79.720e767d.js"><link rel="prefetch" href="/assets/js/80.e9d86233.js"><link rel="prefetch" href="/assets/js/81.40ea5e9f.js"><link rel="prefetch" href="/assets/js/82.78074ee1.js"><link rel="prefetch" href="/assets/js/83.72133cbf.js"><link rel="prefetch" href="/assets/js/84.52c5ea65.js"><link rel="prefetch" href="/assets/js/85.afce36a7.js"><link rel="prefetch" href="/assets/js/86.bdc638dd.js"><link rel="prefetch" href="/assets/js/87.11e34480.js"><link rel="prefetch" href="/assets/js/88.5fd9f0ef.js"><link rel="prefetch" href="/assets/js/89.718ec134.js"><link rel="prefetch" href="/assets/js/90.11f956de.js"><link rel="prefetch" href="/assets/js/91.985d80f2.js"><link rel="prefetch" href="/assets/js/92.9c876df3.js"><link rel="prefetch" href="/assets/js/93.da92c068.js"><link rel="prefetch" href="/assets/js/94.cf4ee959.js"><link rel="prefetch" href="/assets/js/95.665f55e6.js"><link rel="prefetch" href="/assets/js/96.2e80356d.js"><link rel="prefetch" href="/assets/js/97.d7d8ba2d.js"><link rel="prefetch" href="/assets/js/98.70eab878.js"><link rel="prefetch" href="/assets/js/99.60ddb42d.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.5143d2e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b4a844ec.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">duangdong的react</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link router-link-active">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link router-link-active">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/source-code/" aria-current="page" class="sidebar-link">章节列表</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>实现-concurrent</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>实现-diff</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>实现-hooks</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>实现-状态更新</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/source-code/实现-状态更新/mental.html" class="sidebar-link">/source-code/实现-状态更新/mental.html</a></li><li><a href="/source-code/实现-状态更新/prepare.html" class="active sidebar-link">/source-code/实现-状态更新/prepare.html</a></li><li><a href="/source-code/实现-状态更新/priority.html" class="sidebar-link">/source-code/实现-状态更新/priority.html</a></li><li><a href="/source-code/实现-状态更新/reactdom.html" class="sidebar-link">/source-code/实现-状态更新/reactdom.html</a></li><li><a href="/source-code/实现-状态更新/setstate.html" class="sidebar-link">/source-code/实现-状态更新/setstate.html</a></li><li><a href="/source-code/实现-状态更新/update.html" class="sidebar-link">/source-code/实现-状态更新/update.html</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>架构-commit阶段</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>架构-render阶段</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理念-react理念</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理念-源码结构</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/source-code/生命周期.html" class="sidebar-link">生命周期</a></li><li><a href="/source-code/调度.html" class="sidebar-link">基础</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>经过前几章的学习，我们终于有足够的前置知识理解<strong>状态更新</strong>的整个流程。</p> <p>这一章我们看看几种常见的触发<strong>状态更新</strong>的方法是如何完成工作的。</p> <h2 id="几个关键节点"><a href="#几个关键节点" class="header-anchor">#</a> 几个关键节点</h2> <p>在开始学习前，我们先了解源码中几个关键节点（即几个关键函数的调用）。通过这章的学习，我们会将这些关键节点的调用路径串起来。</p> <p>先从我们所熟知的概念开始。</p> <h3 id="render阶段的开始"><a href="#render阶段的开始" class="header-anchor">#</a> render阶段的开始</h3> <p>我们在<a href="/source-code/process/reconciler.html">render阶段流程概览一节</a>讲到，</p> <p><code>render阶段</code>开始于<code>performSyncWorkOnRoot</code>或<code>performConcurrentWorkOnRoot</code>方法的调用。这取决于本次更新是同步更新还是异步更新。</p> <h3 id="commit阶段的开始"><a href="#commit阶段的开始" class="header-anchor">#</a> commit阶段的开始</h3> <p>我们在<a href="/source-code/renderer/prepare.html">commit阶段流程概览一节</a>讲到，</p> <p><code>commit阶段</code>开始于<code>commitRoot</code>方法的调用。其中<code>rootFiber</code>会作为传参。</p> <p>我们已经知道，<code>render阶段</code>完成后会进入<code>commit阶段</code>。让我们继续补全从<code>触发状态更新</code>到<code>render阶段</code>的路径。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>触发状态更新（根据场景调用不同方法）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+    ？
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+render阶段（<span class="token variable"><span class="token variable">`</span>performSyncWorkOnRoot<span class="token variable">`</span></span> 或 <span class="token variable"><span class="token variable">`</span>performConcurrentWorkOnRoot<span class="token variable">`</span></span>）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+commit阶段（<span class="token variable"><span class="token variable">`</span>commitRoot<span class="token variable">`</span></span>）
+</code></pre></div><h3 id="创建update对象"><a href="#创建update对象" class="header-anchor">#</a> 创建Update对象</h3> <p>在<code>React</code>中，有如下方法可以触发状态更新（排除<code>SSR</code>相关）：</p> <ul><li><p>ReactDOM.render</p></li> <li><p>this.setState</p></li> <li><p>this.forceUpdate</p></li> <li><p>useState</p></li> <li><p>useReducer</p></li></ul> <p>这些方法调用的场景各不相同，他们是如何接入同一套<strong>状态更新机制</strong>呢？</p> <p>答案是：每次<code>状态更新</code>都会创建一个保存<strong>更新状态相关内容</strong>的对象，我们叫他<code>Update</code>。在<code>render阶段</code>的<code>beginWork</code>中会根据<code>Update</code>计算新的<code>state</code>。</p> <p>我们会在下一节详细讲解<code>Update</code>。</p> <h3 id="从fiber到root"><a href="#从fiber到root" class="header-anchor">#</a> 从fiber到root</h3> <p>现在<code>触发状态更新的fiber</code>上已经包含<code>Update</code>对象。</p> <p>我们知道，<code>render阶段</code>是从<code>rootFiber</code>开始向下遍历。那么如何从<code>触发状态更新的fiber</code>得到<code>rootFiber</code>呢？</p> <p>答案是：调用<code>markUpdateLaneFromFiberToRoot</code>方法。</p> <blockquote><p>你可以从<a href="https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L636" target="_blank" rel="noopener noreferrer">这里<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>看到<code>markUpdateLaneFromFiberToRoot</code>的源码</p></blockquote> <p>该方法做的工作可以概括为：从<code>触发状态更新的fiber</code>一直向上遍历到<code>rootFiber</code>，并返回<code>rootFiber</code>。</p> <p>由于不同更新优先级不尽相同，所以过程中还会更新遍历到的<code>fiber</code>的优先级。这对于我们当前属于超纲内容。</p> <h3 id="调度更新"><a href="#调度更新" class="header-anchor">#</a> 调度更新</h3> <p>现在我们拥有一个<code>rootFiber</code>，该<code>rootFiber</code>对应的<code>Fiber树</code>中某个<code>Fiber节点</code>包含一个<code>Update</code>。</p> <p>接下来通知<code>Scheduler</code>根据<strong>更新</strong>的优先级，决定以<strong>同步</strong>还是<strong>异步</strong>的方式调度本次更新。</p> <p>这里调用的方法是<code>ensureRootIsScheduled</code>。</p> <p>以下是<code>ensureRootIsScheduled</code>最核心的一段代码：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">if</span> <span class="token punctuation">(</span>newCallbackPriority <span class="token operator">===</span> SyncLanePriority<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 任务已经过期，需要同步执行render阶段</span>
+  newCallbackNode <span class="token operator">=</span> <span class="token function">scheduleSyncCallback</span><span class="token punctuation">(</span>
+    <span class="token function">performSyncWorkOnRoot</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> root<span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 根据任务优先级异步执行render阶段</span>
+  <span class="token keyword">var</span> schedulerPriorityLevel <span class="token operator">=</span> <span class="token function">lanePriorityToSchedulerPriority</span><span class="token punctuation">(</span>
+    newCallbackPriority
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  newCallbackNode <span class="token operator">=</span> <span class="token function">scheduleCallback</span><span class="token punctuation">(</span>
+    schedulerPriorityLevel<span class="token punctuation">,</span>
+    <span class="token function">performConcurrentWorkOnRoot</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> root<span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>你可以从<a href="https://github.com/facebook/react/blob/b6df4417c79c11cfb44f965fab55b573882b1d54/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L602" target="_blank" rel="noopener noreferrer">这里<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>看到<code>ensureRootIsScheduled</code>的源码</p></blockquote> <p>其中，<code>scheduleCallback</code>和<code>scheduleSyncCallback</code>会调用<code>Scheduler</code>提供的调度方法根据<code>优先级</code>调度回调函数执行。</p> <p>可以看到，这里调度的回调函数为：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">performSyncWorkOnRoot</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">performConcurrentWorkOnRoot</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>即<code>render阶段</code>的入口函数。</p> <p>至此，<code>状态更新</code>就和我们所熟知的<code>render阶段</code>连接上了。</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>让我们梳理下<code>状态更新</code>的整个调用路径的关键节点：</p> <div class="language-sh extra-class"><pre class="language-sh"><code>触发状态更新（根据场景调用不同方法）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+创建Update对象（接下来三节详解）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+从fiber到root（<span class="token variable"><span class="token variable">`</span>markUpdateLaneFromFiberToRoot<span class="token variable">`</span></span>）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+调度更新（<span class="token variable"><span class="token variable">`</span>ensureRootIsScheduled<span class="token variable">`</span></span>）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+render阶段（<span class="token variable"><span class="token variable">`</span>performSyncWorkOnRoot<span class="token variable">`</span></span> 或 <span class="token variable"><span class="token variable">`</span>performConcurrentWorkOnRoot<span class="token variable">`</span></span>）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+commit阶段（<span class="token variable"><span class="token variable">`</span>commitRoot<span class="token variable">`</span></span>）
+</code></pre></div><h2 id="总结-2"><a href="#总结-2" class="header-anchor">#</a> 总结</h2> <p>本节我们了解了<strong>状态更新</strong>的整个流程。</p> <p>在接下来三节中，我们会花大量篇幅讲解<code>Update</code>的工作机制，因为他是构成<code>React concurrent mode</code>的核心机制之一。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">5/8/2024, 3:01:19 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/source-code/实现-状态更新/mental.html" class="prev">
+        /source-code/实现-状态更新/mental.html
+      </a></span> <span class="next"><a href="/source-code/实现-状态更新/priority.html">
+        /source-code/实现-状态更新/priority.html
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.27287fd6.js" defer></script><script src="/assets/js/2.57da4f88.js" defer></script><script src="/assets/js/1.a76cc220.js" defer></script><script src="/assets/js/119.df1f998f.js" defer></script>
+  </body>
+</html>

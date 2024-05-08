@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Egg.js | duangdong的react</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?0088ce24040b03f2947322ab31d23414";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+    <script>
+  var _hmt = _hmt || [];
+  _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
+    shouldTrackUrlChange: function (newPath, oldPath) {
+      newPath = newPath.split('#')[0];
+      oldPath = oldPath.split('#')[0];
+      return newPath != oldPath;
+    }}
+  ]);
+  </script>
+    <meta name="description" content="react相关知识归纳总结">
+    <meta name="keywords" content="react,react进阶,react性能优化,react-hooks,react源码">
+    
+    <link rel="preload" href="/assets/css/0.styles.b4a844ec.css" as="style"><link rel="preload" href="/assets/js/app.27287fd6.js" as="script"><link rel="preload" href="/assets/js/2.57da4f88.js" as="script"><link rel="preload" href="/assets/js/1.a76cc220.js" as="script"><link rel="preload" href="/assets/js/43.a7669073.js" as="script"><link rel="prefetch" href="/assets/js/10.50f73657.js"><link rel="prefetch" href="/assets/js/100.27126660.js"><link rel="prefetch" href="/assets/js/101.09cf74ec.js"><link rel="prefetch" href="/assets/js/102.8cd6b4eb.js"><link rel="prefetch" href="/assets/js/103.c4f25168.js"><link rel="prefetch" href="/assets/js/104.4f1b4569.js"><link rel="prefetch" href="/assets/js/105.bc4fc023.js"><link rel="prefetch" href="/assets/js/106.b9d5be0c.js"><link rel="prefetch" href="/assets/js/107.f9a44dd7.js"><link rel="prefetch" href="/assets/js/108.0424a7b7.js"><link rel="prefetch" href="/assets/js/109.086a89ae.js"><link rel="prefetch" href="/assets/js/11.0390ceee.js"><link rel="prefetch" href="/assets/js/110.1e4c2c77.js"><link rel="prefetch" href="/assets/js/111.16e80560.js"><link rel="prefetch" href="/assets/js/112.441e61a6.js"><link rel="prefetch" href="/assets/js/113.41a44465.js"><link rel="prefetch" href="/assets/js/114.9efb5469.js"><link rel="prefetch" href="/assets/js/115.d095bf75.js"><link rel="prefetch" href="/assets/js/116.b368a7c1.js"><link rel="prefetch" href="/assets/js/117.3a319a71.js"><link rel="prefetch" href="/assets/js/118.7ea17677.js"><link rel="prefetch" href="/assets/js/119.df1f998f.js"><link rel="prefetch" href="/assets/js/12.f88bec36.js"><link rel="prefetch" href="/assets/js/120.935f9aea.js"><link rel="prefetch" href="/assets/js/121.c09de772.js"><link rel="prefetch" href="/assets/js/122.32443376.js"><link rel="prefetch" href="/assets/js/123.d0f8ea63.js"><link rel="prefetch" href="/assets/js/124.fdbcd92d.js"><link rel="prefetch" href="/assets/js/125.0de5eb94.js"><link rel="prefetch" href="/assets/js/126.fb5e629b.js"><link rel="prefetch" href="/assets/js/127.866d8d58.js"><link rel="prefetch" href="/assets/js/128.1aad073e.js"><link rel="prefetch" href="/assets/js/129.328f52fd.js"><link rel="prefetch" href="/assets/js/13.963ad03b.js"><link rel="prefetch" href="/assets/js/130.ac9676d9.js"><link rel="prefetch" href="/assets/js/131.9852c015.js"><link rel="prefetch" href="/assets/js/132.806bcfe3.js"><link rel="prefetch" href="/assets/js/133.073ecd1e.js"><link rel="prefetch" href="/assets/js/134.e2683d73.js"><link rel="prefetch" href="/assets/js/135.d16cdb0b.js"><link rel="prefetch" href="/assets/js/136.c3b47da6.js"><link rel="prefetch" href="/assets/js/137.f7fec328.js"><link rel="prefetch" href="/assets/js/138.ec6ab500.js"><link rel="prefetch" href="/assets/js/139.18b97522.js"><link rel="prefetch" href="/assets/js/14.512f15b9.js"><link rel="prefetch" href="/assets/js/140.c7df1047.js"><link rel="prefetch" href="/assets/js/141.484c6ca5.js"><link rel="prefetch" href="/assets/js/142.8eff7a66.js"><link rel="prefetch" href="/assets/js/143.60569694.js"><link rel="prefetch" href="/assets/js/144.01883b7c.js"><link rel="prefetch" href="/assets/js/145.a9241012.js"><link rel="prefetch" href="/assets/js/146.4b6f364c.js"><link rel="prefetch" href="/assets/js/147.9ed57153.js"><link rel="prefetch" href="/assets/js/148.e18d806a.js"><link rel="prefetch" href="/assets/js/149.e24c9de5.js"><link rel="prefetch" href="/assets/js/15.a674496c.js"><link rel="prefetch" href="/assets/js/16.ed7e507f.js"><link rel="prefetch" href="/assets/js/17.de667ca5.js"><link rel="prefetch" href="/assets/js/18.b44e84af.js"><link rel="prefetch" href="/assets/js/19.5b5ad6a1.js"><link rel="prefetch" href="/assets/js/20.6800493a.js"><link rel="prefetch" href="/assets/js/21.6589052c.js"><link rel="prefetch" href="/assets/js/22.f648d829.js"><link rel="prefetch" href="/assets/js/23.f1afbc9c.js"><link rel="prefetch" href="/assets/js/24.7f3fc444.js"><link rel="prefetch" href="/assets/js/25.5a945cd4.js"><link rel="prefetch" href="/assets/js/26.7ef56339.js"><link rel="prefetch" href="/assets/js/27.74941107.js"><link rel="prefetch" href="/assets/js/28.20a36928.js"><link rel="prefetch" href="/assets/js/29.7cda6a44.js"><link rel="prefetch" href="/assets/js/3.13e892f5.js"><link rel="prefetch" href="/assets/js/30.97f5cf7e.js"><link rel="prefetch" href="/assets/js/31.eeee5c14.js"><link rel="prefetch" href="/assets/js/32.a2125816.js"><link rel="prefetch" href="/assets/js/33.b3fdf3bc.js"><link rel="prefetch" href="/assets/js/34.908ac5fb.js"><link rel="prefetch" href="/assets/js/35.9459a7c7.js"><link rel="prefetch" href="/assets/js/36.dc8e2582.js"><link rel="prefetch" href="/assets/js/37.27c69606.js"><link rel="prefetch" href="/assets/js/38.10b82911.js"><link rel="prefetch" href="/assets/js/39.fdc5aecb.js"><link rel="prefetch" href="/assets/js/4.5bdb9365.js"><link rel="prefetch" href="/assets/js/40.901c96dc.js"><link rel="prefetch" href="/assets/js/41.4cbb9c4b.js"><link rel="prefetch" href="/assets/js/42.da47ce58.js"><link rel="prefetch" href="/assets/js/44.08cc8605.js"><link rel="prefetch" href="/assets/js/45.5461c987.js"><link rel="prefetch" href="/assets/js/46.4c5ed7f9.js"><link rel="prefetch" href="/assets/js/47.450abe13.js"><link rel="prefetch" href="/assets/js/48.d0a778f3.js"><link rel="prefetch" href="/assets/js/49.611d9085.js"><link rel="prefetch" href="/assets/js/5.7c68fdb5.js"><link rel="prefetch" href="/assets/js/50.2563fd92.js"><link rel="prefetch" href="/assets/js/51.ff64258c.js"><link rel="prefetch" href="/assets/js/52.d47acb9b.js"><link rel="prefetch" href="/assets/js/53.09fd35d1.js"><link rel="prefetch" href="/assets/js/54.5e523072.js"><link rel="prefetch" href="/assets/js/55.8278650d.js"><link rel="prefetch" href="/assets/js/56.425f7e44.js"><link rel="prefetch" href="/assets/js/57.44699db6.js"><link rel="prefetch" href="/assets/js/58.25067fcf.js"><link rel="prefetch" href="/assets/js/59.3814ee9e.js"><link rel="prefetch" href="/assets/js/6.c8da7ca7.js"><link rel="prefetch" href="/assets/js/60.82621500.js"><link rel="prefetch" href="/assets/js/61.9880375b.js"><link rel="prefetch" href="/assets/js/62.3924c2b9.js"><link rel="prefetch" href="/assets/js/63.ff3650b8.js"><link rel="prefetch" href="/assets/js/64.0d46b236.js"><link rel="prefetch" href="/assets/js/65.f255f222.js"><link rel="prefetch" href="/assets/js/66.d797120d.js"><link rel="prefetch" href="/assets/js/67.aa46c62c.js"><link rel="prefetch" href="/assets/js/68.0dbf39cf.js"><link rel="prefetch" href="/assets/js/69.116b53df.js"><link rel="prefetch" href="/assets/js/7.e4c88d0e.js"><link rel="prefetch" href="/assets/js/70.a05986f2.js"><link rel="prefetch" href="/assets/js/71.562a4365.js"><link rel="prefetch" href="/assets/js/72.c10c6194.js"><link rel="prefetch" href="/assets/js/73.d85c71e5.js"><link rel="prefetch" href="/assets/js/74.73f72e00.js"><link rel="prefetch" href="/assets/js/75.62c76a28.js"><link rel="prefetch" href="/assets/js/76.8d0d9036.js"><link rel="prefetch" href="/assets/js/77.4ede6642.js"><link rel="prefetch" href="/assets/js/78.7d4d4152.js"><link rel="prefetch" href="/assets/js/79.720e767d.js"><link rel="prefetch" href="/assets/js/80.e9d86233.js"><link rel="prefetch" href="/assets/js/81.40ea5e9f.js"><link rel="prefetch" href="/assets/js/82.78074ee1.js"><link rel="prefetch" href="/assets/js/83.72133cbf.js"><link rel="prefetch" href="/assets/js/84.52c5ea65.js"><link rel="prefetch" href="/assets/js/85.afce36a7.js"><link rel="prefetch" href="/assets/js/86.bdc638dd.js"><link rel="prefetch" href="/assets/js/87.11e34480.js"><link rel="prefetch" href="/assets/js/88.5fd9f0ef.js"><link rel="prefetch" href="/assets/js/89.718ec134.js"><link rel="prefetch" href="/assets/js/90.11f956de.js"><link rel="prefetch" href="/assets/js/91.985d80f2.js"><link rel="prefetch" href="/assets/js/92.9c876df3.js"><link rel="prefetch" href="/assets/js/93.da92c068.js"><link rel="prefetch" href="/assets/js/94.cf4ee959.js"><link rel="prefetch" href="/assets/js/95.665f55e6.js"><link rel="prefetch" href="/assets/js/96.2e80356d.js"><link rel="prefetch" href="/assets/js/97.d7d8ba2d.js"><link rel="prefetch" href="/assets/js/98.70eab878.js"><link rel="prefetch" href="/assets/js/99.60ddb42d.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.5143d2e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b4a844ec.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">duangdong的react</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/base/" aria-current="page" class="sidebar-link">性能优化</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>6-SSR</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/base/6-SSR/eggjs-nextjs.html" class="sidebar-link">Eggjs-Nextjs</a></li><li><a href="/base/6-SSR/eggjs.html" aria-current="page" class="active sidebar-link">Egg.js</a></li><li><a href="/base/6-SSR/nextjs.html" class="sidebar-link">Nextjs</a></li><li><a href="/base/6-SSR/question.html" class="sidebar-link">相关：</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>7-hooks基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Native</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/base/React 代码共享最佳实践方式.html" class="sidebar-link">React 代码共享最佳实践方式</a></li><li><a href="/base/React组件性能优化—function-component.html" class="sidebar-link">React 组件性能优化—function component</a></li><li><a href="/base/clean-react.html" class="sidebar-link">如何编写Cleaner React代码</a></li><li><a href="/base/life.html" class="sidebar-link">componentWillReceiveProps</a></li><li><a href="/base/propType.html" class="sidebar-link">propType</a></li><li><a href="/base/修改端口.html" class="sidebar-link">关于脚手架生成的运行端口配置</a></li><li><a href="/base/初学.html" class="sidebar-link">今日小结</a></li><li><a href="/base/如何使用React创建视频和动画.html" class="sidebar-link">如何使用React创建视频和动画</a></li><li><a href="/base/提高 React 代码质量.html" class="sidebar-link">6 个提高 React 代码质量的方法 - 让你的 React 代码更简洁</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="egg-js"><a href="#egg-js" class="header-anchor">#</a> Egg.js</h2> <h3 id="简介"><a href="#简介" class="header-anchor">#</a> 简介</h3> <p><strong>Egg.js 为企业级框架和应用而生</strong>，帮助开发团队和开发人员降低开发和维护成本。</p> <p>专注于提供 Web 开发的核心功能和一套灵活可扩展的插件机制，不会做出技术选型，因为固定的技术选型会使框架的扩展性变差，无法满足各种定制需求。</p> <p>Egg 的插件机制有很高的可扩展性，<strong>一个插件只做一件事</strong>，Egg 通过框架聚合这些插件，并根据自己的业务场景定制配置，这样应用的开发成本就变得很低。</p> <p>Egg 奉行『<strong>约定优于配置</strong>』，按照<a href="https://eggjs.org/zh-cn/advanced/loader.html" target="_blank" rel="noopener noreferrer">一套统一的约定<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>进行应用开发，Egg 有很高的扩展性，可以按照团队的约定定制框架。使用 <a href="https://eggjs.org/zh-cn/advanced/loader.html" target="_blank" rel="noopener noreferrer">Loader<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 可以让框架根据不同环境定义默认配置，还可以覆盖 Egg 的默认约定。</p> <h3 id="特性"><a href="#特性" class="header-anchor">#</a> 特性</h3> <ul><li>提供基于 Egg <a href="https://eggjs.org/zh-cn/advanced/framework.html" target="_blank" rel="noopener noreferrer">定制上层框架<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>的能力</li> <li>高度可扩展的<a href="https://eggjs.org/zh-cn/basics/plugin.html" target="_blank" rel="noopener noreferrer">插件机制<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>内置<a href="https://eggjs.org/zh-cn/advanced/cluster-client.html" target="_blank" rel="noopener noreferrer">多进程管理<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>基于 <a href="http://koajs.com/" target="_blank" rel="noopener noreferrer">Koa<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 开发，性能优异</li> <li>框架稳定，测试覆盖率高</li> <li><a href="https://eggjs.org/zh-cn/tutorials/progressive.html" target="_blank" rel="noopener noreferrer">渐进式开发<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>(根据设备的支持情况来提供更多功能，提供离线能力，推送通知，甚至原生应用的外观和速度，以及对资源进行本地缓存。)</li></ul> <h3 id="egg和koa"><a href="#egg和koa" class="header-anchor">#</a> Egg和koa</h3> <blockquote><p>如上述，Koa 是一个非常优秀的框架，然而对于企业级应用来说，它还比较基础。</p> <p>而 Egg 选择了 Koa 作为其基础框架，在它的模型基础上，进一步对它进行了一些增强。</p> <p>Eggjs的官网网站有很详细的文档 https://eggjs.org/zh-cn/intro/index.html</p></blockquote> <ul><li>在 Express 和 Koa 中，经常会引入许许多多的中间件来提供各种各样的功能，而 Egg 提供了一个更加强大的插件机制，让这些独立领域的功能模块可以更加容易编写。
+<ul><li>extend：扩展基础对象的上下文，提供各种工具类、属性。</li> <li>middleware：增加一个或多个中间件，提供请求的前置、后置处理逻辑。</li> <li>config：配置各个环境下插件自身的默认配置项。</li> <li>一个独立领域下的插件实现，可以在代码维护性非常高的情况下实现非常完善的功能，而插件也支持配置各个环境下的默认（最佳）配置，让我们使用插件的时候几乎可以不需要修改配置项。</li></ul></li></ul> <h3 id="快速搭建环境"><a href="#快速搭建环境" class="header-anchor">#</a> 快速搭建环境</h3> <ul><li><p>运行环境</p> <ul><li>建议选择Node.js稳定版本，最低要求 8.x</li></ul></li> <li><p>初始化项目</p> <ul><li><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> init egg <span class="token parameter variable">--type</span><span class="token operator">=</span>simple   //--type<span class="token operator">=</span>simple可以去掉然后自己配置
+<span class="token builtin class-name">cd</span> demo
+<span class="token function">npm</span> <span class="token function">install</span>
+</code></pre></div></li></ul></li> <li><p>启动项目</p> <ul><li><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> run dev
+浏览器打开：localhost:7001
+</code></pre></div></li></ul></li></ul> <p><strong>注意：实际项目中，推荐使用脚手架直接初始化，所以这里不做手动初始化项目了。</strong></p> <ul><li><p>如果了解java的可以看出eggjs的项目目录结构以及处理请求的模式和javaweb很像，controller,service,view；不陌生的是都是MVCde 开发模式，不同就是如何拿数据给请求者</p></li> <li><p>项目目录</p> <ul><li><div class="language-txt extra-class"><pre class="language-txt"><code>app文件夹:
+	项目开发文件，程序员主要操作的文件，项目的大部分代码都会写在这里。
+config文件夹：
+	这个是整个项目的配置目录，项目和服务端的配置都在这里边进行设置。
+logs文件夹：
+	日志文件夹，正常情况下不用修改和查看里边内容。
+node_modules:
+	项目所需要的模块文件，这个前端应该都非常了解，不多作介绍。
+run文件夹：
+	运行项目时，生成的配置文件，基本不修改里边的文件。
+test文件夹：
+	测试使用的配合文件，这个在测试时会使用。
+.autod.conf.js: 
+	egg.js自己生成的配置文件，不需要进行修改。
+eslinttrc和eslintignore：
+	代码格式化的配置文件。
+gitgnore：
+	git设置忽略管理的配置文件。
+package.json：
+	包管理和命令配置文件，这个文件经常进行配置。
+</code></pre></div></li> <li><p>app目录中</p> <div class="language-txt extra-class"><pre class="language-txt"><code>controller文件夹：
+	控制器，渲染和简单的业务逻辑都会写道这个文件里。配置路由时也会用到（路由配置需要的文件都要写在控制器里）。
+public文件夹：
+	公用文件夹，把一些公用资源都放在这个文件夹下。
+router.js: 
+	项目的路由配置文件，当用户访问服务的时候，在没有中间件的情况下，会先访问router.js文件。
+service文件夹：
+	这个是当我们的业务逻辑比较复杂或和数据库打交道时，会把业务逻辑放到这个文件中。
+view文件夹：
+	模板文件夹，相当于表现层的专属文件夹，这个项目，我们使用接口的形式，所以不需要建立view文件夹。
+extend文件：
+	当我们需要写一些模板中使用的扩展方法时，我们会放到这个文件夹里。
+middleware：
+	中间件文件夹，用来写中间件的，比如最常用的路由首位。
+</code></pre></div></li></ul></li></ul> <h4 id="扩展插件"><a href="#扩展插件" class="header-anchor">#</a> 扩展插件</h4> <p>在基于 Egg 的框架或者应用中，我们可以通过定义 <code>app/extend/{application,context,request,response}.js</code>
+这里表示可以创建application,context,request,response四个js文件</p> <p>来扩展 Koa 中对应的四个对象的原型，通过这个功能，我们可以快速的增加更多的辅助方法，例如我们在 <code>app/extend/context.js</code> 中写入下列代码：</p> <div class="language- extra-class"><pre class="language-text"><code>// ./app/extend/context.js
+module.exports = {
+  get isIOS() {//get表示通过这个isIOS得到什么记得添加
+    const iosReg = /iphone|ipad|ipod/i;//正则
+    return iosReg.test(this.get('user-agent'));
+      //User Agent显示使用的浏览器类型及版本、操作系统及版本、浏览器内核、等信息的标识。
+  },
+};
+</code></pre></div><p>在 Controller 中，我们就可以使用到刚才定义的这个便捷属性了：</p> <div class="language- extra-class"><pre class="language-text"><code>// ./app/controller/home.js
+const Controller = require('egg').Controller;//从egg上引入控制器
+class HomeController extends Controller {//声明一个类并从constroller继承
+    async index() {//声明一个函数
+        this.ctx.body = this.ctx.isIOS
+            ? '你的操作系统是IOS.'
+            : '你的操作系统不是IOS.';
+    }
+}
+module.exports = HomeController;//把这个类默认暴露出去
+</code></pre></div><ul><li><p>静态资源</p> <ul><li>Egg 内置了<code>static</code>插件static 插件默认映射 <code>app/public/</code> 目录，我们把静态资源都放到 <code>app/public</code> 目录即可：</li></ul></li> <li><p>模板渲染</p> <ul><li>框架并不强制你使用某种模板引擎，只是约定了 <a href="https://eggjs.org/zh-cn/advanced/view-plugin.html" target="_blank" rel="noopener noreferrer">View 插件开发规范<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>，开发者可以引入不同的插件来实现差异化定制。</li></ul></li> <li><p>更多用法参见 <a href="https://eggjs.org/zh-cn/core/view.html" target="_blank" rel="noopener noreferrer">View<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>，在本例中，我们使用 <a href="https://mozilla.github.io/nunjucks/" target="_blank" rel="noopener noreferrer">Nunjucks<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 来渲染，先安装对应的插件 <a href="https://github.com/eggjs/egg-view-nunjucks" target="_blank" rel="noopener noreferrer">egg-view-nunjucks<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> ：</p></li></ul> <div class="language- extra-class"><pre class="language-text"><code>npm i egg-view-nunjucks --save
+</code></pre></div><p>开启插件：</p> <div class="language- extra-class"><pre class="language-text"><code>// ./config/plugin.js
+exports.nunjucks = {
+  enable: true,//使用
+  package: 'egg-view-nunjucks'//使用什么插件
+};
+// ./config/config.default.js
+exports.keys = '此处改为你自己的 Cookie 安全字符串';
+// 添加 view 配置
+exports.view = {
+  defaultViewEngine: 'nunjucks',//默认视图引擎
+  mapping: {//.tpl结尾的文件
+    '.tpl': 'nunjucks',
+  },
+};
+</code></pre></div><p>为列表页编写模板文件，一般放置在 <code>./app/view</code> 目录下</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;!-- ./app/view/news/list.tpl --&gt;
+&lt;!-- {% %} 来当做模板，与现有的html标记混用。和php干的事情是一样的。--&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hacker News&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/public/css/news.css&quot; /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;ul class=&quot;news-view view&quot;&gt;
+      {% for item in list %}&lt;!-- 这里可以直接拿到dataList中的list但无法拿到dataList --&gt;
+        &lt;li class=&quot;item&quot;&gt;
+          &lt;a href=&quot;{{ item.url }}&quot;&gt;{{ item.title }}&lt;/a&gt;
+        &lt;/li&gt;
+      {% endfor %}&lt;!-- 结束for循环 --&gt;
+    &lt;/ul&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div><p>添加 Controller 和 Router</p> <div class="language- extra-class"><pre class="language-text"><code>// ./app/controller/news.js
+const Controller = require('egg').Controller;
+class NewsController extends Controller {
+  async list() {
+    const dataList = {
+      list: [
+        { id: 1, title: 'this is news 1', url: '/news/1' },
+        { id: 2, title: 'this is news 2', url: '/news/2' }
+      ]
+    };
+    await this.ctx.render('news/list.tpl', dataList);
+      //渲染list.tpl文件且把dataList的内容传过去
+  }
+}
+
+module.exports = NewsController;
+// ./app/router.js
+module.exports = app =&gt; {
+  const { router, controller } = app;
+  router.get('/', controller.home.index);
+  router.get('/news', controller.news.list);
+};
+</code></pre></div><p>启动浏览器，访问 http://localhost:7001/news 即可看到渲染后的页面。</p> <ul><li>编写 service
+<ul><li>在实际应用中，Controller 一般不会自己产出数据，也不会包含复杂的逻辑，复杂的过程应该交给业务逻辑层 <a href="https://eggjs.org/zh-cn/basics/service.html" target="_blank" rel="noopener noreferrer">Service<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。</li></ul></li></ul> <p>我们来添加一个 Service 抓取页面的数据 ，如下：这里只是demo写法，根据实际情况再改变</p> <div class="language- extra-class"><pre class="language-text"><code>// ./app/service/news.js
+const Service = require('egg').Service;
+class NewsService extends Service {
+  async list(page) {//得到传来的页码参数
+    // 读取配置拿到API接口
+    const { serverUrl } = this.config.news;
+
+    //使用内置的curl发出请求拿回数据
+    //结构出来result，在这里给他改名叫做idList
+    const { result: idList } = await this.ctx.curl(`${serverUrl}/topstories.json`, {
+      data: {//携带信息
+        orderBy: '&quot;$key&quot;',//根据什么排序
+        startAt: `${page}`,//起始页
+        endAt: `${page+1}`,//结束页
+      },
+      dataType: 'json',//需要返回的数据类型
+    });
+
+    // 获取详细信息
+    const newsList = await Promise.all(
+        //获取对象的所有键名
+      Object.keys(idList).map(key =&gt; {
+        const url = `${serverUrl}/item/${idList[key]}.json`;
+        return this.ctx.curl(url, { dataType: 'json' });//再去请求每一个的详细信息
+      })
+    );
+    return newsList.map(res =&gt; res.data);//把每一条的数据的data返回出去。
+  }
+}
+module.exports = NewsService;
+</code></pre></div><p>框架提供了内置的 <a href="https://eggjs.org/zh-cn/core/httpclient.html" target="_blank" rel="noopener noreferrer">HttpClient<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 来方便开发者使用 HTTP 请求。
+<code>this.ctx.curl(api地址:string,配置:json)</code></p> <p>然后稍微修改下之前的 Controller：</p> <div class="language- extra-class"><pre class="language-text"><code>// ./app/controller/news.js
+const Controller = require('egg').Controller;
+
+class NewsController extends Controller {
+  async list() {
+    const ctx = this.ctx;
+    const page = ctx.query.page || 1;//获取用户url里面的page值没有就返回1
+    const newsList = await ctx.service.news.list(page);//传过去，声明newsList接受return回来的数据
+    await ctx.render('news/list.tpl', { list: newsList });//把list传过去，他的数据是newsList
+  }
+}
+module.exports = NewsController;
+</code></pre></div><p>还需增加 <code>app/service/news.js</code> 中读取到的配置：</p> <div class="language- extra-class"><pre class="language-text"><code>// ./config/config.default.js
+// 添加 news 的配置项
+exports.news = {
+  serverUrl: 'API接口地址'
+};
+</code></pre></div><ul><li><p>编写扩展</p> <ul><li><p>如果时间的数据是 UnixTime 格式的，我们希望显示为便于阅读的格式。框架提供了一种快速扩展的方式，只需在 <code>app/extend</code> 目录下提供扩展脚本即可，具体参见<a href="https://eggjs.org/zh-cn/basics/extend.html" target="_blank" rel="noopener noreferrer">扩展<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。在这里，我们可以使用 View 插件支持的 Helper 来实现：</p> <div class="language-js extra-class"><pre class="language-js"><code>npm i moment <span class="token operator">--</span>save
+<span class="token comment">// ./app/extend/helper.js</span>
+<span class="token keyword">const</span> moment <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'moment'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+exports<span class="token punctuation">.</span><span class="token function-variable function">relativeTime</span> <span class="token operator">=</span> <span class="token parameter">time</span> <span class="token operator">=&gt;</span> <span class="token function">moment</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>time <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fromNow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li></ul></li> <li><p>在模板里面使用：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- ./app/view/news/list.tpl --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Hacker News<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/public/css/news.css<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>news-view view<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      {% for item in list %}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{ item.url }}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>{{ item.title }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+      {% endfor %}
+      {{ helper.relativeTime(item.time) }}<span class="token comment">&lt;!--通过这样的方法使用 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></li> <li><p>编写中间</p> <ul><li><p>假设我们的新闻站点，禁止百度爬虫访问。可以通过 <a href="https://eggjs.org/zh-cn/basics/middleware.html" target="_blank" rel="noopener noreferrer">Middleware<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 判断 User-Agent，如下：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// ./app/middleware/robot.js</span>
+<span class="token comment">// options === app.config.robot //这里的robot是这个文件的名字</span>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">options<span class="token punctuation">,</span> app</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">robotMiddleware</span><span class="token punctuation">(</span><span class="token parameter">ctx<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> source <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'user-agent'</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">''</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> match <span class="token operator">=</span> options<span class="token punctuation">.</span>ua<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token parameter">ua</span> <span class="token operator">=&gt;</span> ua<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//some()会让ua数组中的每一项去执行()里面的函数，如果有一个元素满足条件，则表达式返回true , 剩余的元素不会再执行检测。</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>match<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ctx<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">403</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>message <span class="token operator">=</span> <span class="token string">'Go away, robot.'</span><span class="token punctuation">;</span><span class="token comment">//别用中文</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//放行</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// ./config/config.default.js</span>
+<span class="token comment">// 添加中间件</span>
+exports<span class="token punctuation">.</span>middleware <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token string">'robot'</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// 添加配置</span>
+exports<span class="token punctuation">.</span>robot <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">ua</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">Baiduspider</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></li></ul></li></ul> <p>现在可以使用 <code>curl http://localhost:7001/news -A &quot;Baiduspider&quot;</code> 看看效果。</p> <p>如果你是window用户在CMD下是无法执行此命令的，推荐你安装Git Bash运行此命令</p> <ul><li><p>配置文件</p> <blockquote><p>写业务的时候，不可避免的需要有配置文件，框架提供了强大的配置合并管理功能：</p></blockquote> <ul><li>支持按环境变量加载不同的配置文件，如 <code>config.local.js</code>， <code>config.prod.js</code> 等等。</li> <li>应用/插件/框架都可以配置自己的配置文件，框架将按顺序合并加载。</li> <li>具体合并逻辑可参见<a href="https://eggjs.org/zh-cn/basics/config.html#%E9%85%8D%E7%BD%AE%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F" target="_blank" rel="noopener noreferrer">配置文件<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。</li></ul></li></ul> <div class="language- extra-class"><pre class="language-text"><code>// ./config/config.default.js
+// 这里是默认值
+exports.robot = {
+  ua: [
+    /curl/i,
+    /Baiduspider/i,
+  ],
+};
+// ./config/config.local.js
+// 仅在开发模式下读取，将覆盖默认值
+exports.robot = {
+  ua: [
+    /Baiduspider/i,
+  ],
+};
+// ./app/service/some.js
+const Service = require('egg').Service;
+
+class SomeService extends Service {
+  async list() {
+    const rule = this.config.robot.ua;// /Baiduspider/i,
+  }
+}
+module.exports = SomeService;
+</code></pre></div><ul><li>单元测试</li></ul> <p>单元测试非常重要，框架也提供了 <a href="https://github.com/eggjs/egg-bin" target="_blank" rel="noopener noreferrer">egg-bin<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 来帮开发者无痛的编写测试。</p> <p>测试文件应该放在项目根目录下的 test 目录下，并以 <code>test.js</code> 为后缀名，即 <code>./test/**/*.test.js</code>。</p> <p>**表示任何文件夹
+*表示任何文件</p> <div class="language- extra-class"><pre class="language-text"><code>npm i egg-mock --save-dev
+</code></pre></div><p>然后配置依赖和 <code>npm scripts</code>配置：</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;egg-bin test&quot;,
+  }
+}
+// ./test/app/middleware/robot.test.js
+const { app, mock, assert } = require('egg-mock/bootstrap');
+//他会去找到./app/middleware/robot.js进行测试
+describe('test/app/middleware/robot.test.js', () =&gt; {
+  it('爬虫', () =&gt; {
+    return app.httpRequest()
+      .get('/')
+      .set('User-Agent', &quot;Baiduspider&quot;)
+      .expect(403);
+  });
+});
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">5/8/2024, 3:01:19 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/base/6-SSR/eggjs-nextjs.html" class="prev">
+        Eggjs-Nextjs
+      </a></span> <span class="next"><a href="/base/6-SSR/nextjs.html">
+        Nextjs
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.27287fd6.js" defer></script><script src="/assets/js/2.57da4f88.js" defer></script><script src="/assets/js/1.a76cc220.js" defer></script><script src="/assets/js/43.a7669073.js" defer></script>
+  </body>
+</html>

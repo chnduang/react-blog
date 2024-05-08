@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>如何使用React创建视频和动画 | duangdong的react</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?0088ce24040b03f2947322ab31d23414";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+    <script>
+  var _hmt = _hmt || [];
+  _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
+    shouldTrackUrlChange: function (newPath, oldPath) {
+      newPath = newPath.split('#')[0];
+      oldPath = oldPath.split('#')[0];
+      return newPath != oldPath;
+    }}
+  ]);
+  </script>
+    <meta name="description" content="react相关知识归纳总结">
+    <meta name="keywords" content="react,react进阶,react性能优化,react-hooks,react源码">
+    
+    <link rel="preload" href="/assets/css/0.styles.b4a844ec.css" as="style"><link rel="preload" href="/assets/js/app.27287fd6.js" as="script"><link rel="preload" href="/assets/js/2.57da4f88.js" as="script"><link rel="preload" href="/assets/js/1.a76cc220.js" as="script"><link rel="preload" href="/assets/js/60.82621500.js" as="script"><link rel="prefetch" href="/assets/js/10.50f73657.js"><link rel="prefetch" href="/assets/js/100.27126660.js"><link rel="prefetch" href="/assets/js/101.09cf74ec.js"><link rel="prefetch" href="/assets/js/102.8cd6b4eb.js"><link rel="prefetch" href="/assets/js/103.c4f25168.js"><link rel="prefetch" href="/assets/js/104.4f1b4569.js"><link rel="prefetch" href="/assets/js/105.bc4fc023.js"><link rel="prefetch" href="/assets/js/106.b9d5be0c.js"><link rel="prefetch" href="/assets/js/107.f9a44dd7.js"><link rel="prefetch" href="/assets/js/108.0424a7b7.js"><link rel="prefetch" href="/assets/js/109.086a89ae.js"><link rel="prefetch" href="/assets/js/11.0390ceee.js"><link rel="prefetch" href="/assets/js/110.1e4c2c77.js"><link rel="prefetch" href="/assets/js/111.16e80560.js"><link rel="prefetch" href="/assets/js/112.441e61a6.js"><link rel="prefetch" href="/assets/js/113.41a44465.js"><link rel="prefetch" href="/assets/js/114.9efb5469.js"><link rel="prefetch" href="/assets/js/115.d095bf75.js"><link rel="prefetch" href="/assets/js/116.b368a7c1.js"><link rel="prefetch" href="/assets/js/117.3a319a71.js"><link rel="prefetch" href="/assets/js/118.7ea17677.js"><link rel="prefetch" href="/assets/js/119.df1f998f.js"><link rel="prefetch" href="/assets/js/12.f88bec36.js"><link rel="prefetch" href="/assets/js/120.935f9aea.js"><link rel="prefetch" href="/assets/js/121.c09de772.js"><link rel="prefetch" href="/assets/js/122.32443376.js"><link rel="prefetch" href="/assets/js/123.d0f8ea63.js"><link rel="prefetch" href="/assets/js/124.fdbcd92d.js"><link rel="prefetch" href="/assets/js/125.0de5eb94.js"><link rel="prefetch" href="/assets/js/126.fb5e629b.js"><link rel="prefetch" href="/assets/js/127.866d8d58.js"><link rel="prefetch" href="/assets/js/128.1aad073e.js"><link rel="prefetch" href="/assets/js/129.328f52fd.js"><link rel="prefetch" href="/assets/js/13.963ad03b.js"><link rel="prefetch" href="/assets/js/130.ac9676d9.js"><link rel="prefetch" href="/assets/js/131.9852c015.js"><link rel="prefetch" href="/assets/js/132.806bcfe3.js"><link rel="prefetch" href="/assets/js/133.073ecd1e.js"><link rel="prefetch" href="/assets/js/134.e2683d73.js"><link rel="prefetch" href="/assets/js/135.d16cdb0b.js"><link rel="prefetch" href="/assets/js/136.c3b47da6.js"><link rel="prefetch" href="/assets/js/137.f7fec328.js"><link rel="prefetch" href="/assets/js/138.ec6ab500.js"><link rel="prefetch" href="/assets/js/139.18b97522.js"><link rel="prefetch" href="/assets/js/14.512f15b9.js"><link rel="prefetch" href="/assets/js/140.c7df1047.js"><link rel="prefetch" href="/assets/js/141.484c6ca5.js"><link rel="prefetch" href="/assets/js/142.8eff7a66.js"><link rel="prefetch" href="/assets/js/143.60569694.js"><link rel="prefetch" href="/assets/js/144.01883b7c.js"><link rel="prefetch" href="/assets/js/145.a9241012.js"><link rel="prefetch" href="/assets/js/146.4b6f364c.js"><link rel="prefetch" href="/assets/js/147.9ed57153.js"><link rel="prefetch" href="/assets/js/148.e18d806a.js"><link rel="prefetch" href="/assets/js/149.e24c9de5.js"><link rel="prefetch" href="/assets/js/15.a674496c.js"><link rel="prefetch" href="/assets/js/16.ed7e507f.js"><link rel="prefetch" href="/assets/js/17.de667ca5.js"><link rel="prefetch" href="/assets/js/18.b44e84af.js"><link rel="prefetch" href="/assets/js/19.5b5ad6a1.js"><link rel="prefetch" href="/assets/js/20.6800493a.js"><link rel="prefetch" href="/assets/js/21.6589052c.js"><link rel="prefetch" href="/assets/js/22.f648d829.js"><link rel="prefetch" href="/assets/js/23.f1afbc9c.js"><link rel="prefetch" href="/assets/js/24.7f3fc444.js"><link rel="prefetch" href="/assets/js/25.5a945cd4.js"><link rel="prefetch" href="/assets/js/26.7ef56339.js"><link rel="prefetch" href="/assets/js/27.74941107.js"><link rel="prefetch" href="/assets/js/28.20a36928.js"><link rel="prefetch" href="/assets/js/29.7cda6a44.js"><link rel="prefetch" href="/assets/js/3.13e892f5.js"><link rel="prefetch" href="/assets/js/30.97f5cf7e.js"><link rel="prefetch" href="/assets/js/31.eeee5c14.js"><link rel="prefetch" href="/assets/js/32.a2125816.js"><link rel="prefetch" href="/assets/js/33.b3fdf3bc.js"><link rel="prefetch" href="/assets/js/34.908ac5fb.js"><link rel="prefetch" href="/assets/js/35.9459a7c7.js"><link rel="prefetch" href="/assets/js/36.dc8e2582.js"><link rel="prefetch" href="/assets/js/37.27c69606.js"><link rel="prefetch" href="/assets/js/38.10b82911.js"><link rel="prefetch" href="/assets/js/39.fdc5aecb.js"><link rel="prefetch" href="/assets/js/4.5bdb9365.js"><link rel="prefetch" href="/assets/js/40.901c96dc.js"><link rel="prefetch" href="/assets/js/41.4cbb9c4b.js"><link rel="prefetch" href="/assets/js/42.da47ce58.js"><link rel="prefetch" href="/assets/js/43.a7669073.js"><link rel="prefetch" href="/assets/js/44.08cc8605.js"><link rel="prefetch" href="/assets/js/45.5461c987.js"><link rel="prefetch" href="/assets/js/46.4c5ed7f9.js"><link rel="prefetch" href="/assets/js/47.450abe13.js"><link rel="prefetch" href="/assets/js/48.d0a778f3.js"><link rel="prefetch" href="/assets/js/49.611d9085.js"><link rel="prefetch" href="/assets/js/5.7c68fdb5.js"><link rel="prefetch" href="/assets/js/50.2563fd92.js"><link rel="prefetch" href="/assets/js/51.ff64258c.js"><link rel="prefetch" href="/assets/js/52.d47acb9b.js"><link rel="prefetch" href="/assets/js/53.09fd35d1.js"><link rel="prefetch" href="/assets/js/54.5e523072.js"><link rel="prefetch" href="/assets/js/55.8278650d.js"><link rel="prefetch" href="/assets/js/56.425f7e44.js"><link rel="prefetch" href="/assets/js/57.44699db6.js"><link rel="prefetch" href="/assets/js/58.25067fcf.js"><link rel="prefetch" href="/assets/js/59.3814ee9e.js"><link rel="prefetch" href="/assets/js/6.c8da7ca7.js"><link rel="prefetch" href="/assets/js/61.9880375b.js"><link rel="prefetch" href="/assets/js/62.3924c2b9.js"><link rel="prefetch" href="/assets/js/63.ff3650b8.js"><link rel="prefetch" href="/assets/js/64.0d46b236.js"><link rel="prefetch" href="/assets/js/65.f255f222.js"><link rel="prefetch" href="/assets/js/66.d797120d.js"><link rel="prefetch" href="/assets/js/67.aa46c62c.js"><link rel="prefetch" href="/assets/js/68.0dbf39cf.js"><link rel="prefetch" href="/assets/js/69.116b53df.js"><link rel="prefetch" href="/assets/js/7.e4c88d0e.js"><link rel="prefetch" href="/assets/js/70.a05986f2.js"><link rel="prefetch" href="/assets/js/71.562a4365.js"><link rel="prefetch" href="/assets/js/72.c10c6194.js"><link rel="prefetch" href="/assets/js/73.d85c71e5.js"><link rel="prefetch" href="/assets/js/74.73f72e00.js"><link rel="prefetch" href="/assets/js/75.62c76a28.js"><link rel="prefetch" href="/assets/js/76.8d0d9036.js"><link rel="prefetch" href="/assets/js/77.4ede6642.js"><link rel="prefetch" href="/assets/js/78.7d4d4152.js"><link rel="prefetch" href="/assets/js/79.720e767d.js"><link rel="prefetch" href="/assets/js/80.e9d86233.js"><link rel="prefetch" href="/assets/js/81.40ea5e9f.js"><link rel="prefetch" href="/assets/js/82.78074ee1.js"><link rel="prefetch" href="/assets/js/83.72133cbf.js"><link rel="prefetch" href="/assets/js/84.52c5ea65.js"><link rel="prefetch" href="/assets/js/85.afce36a7.js"><link rel="prefetch" href="/assets/js/86.bdc638dd.js"><link rel="prefetch" href="/assets/js/87.11e34480.js"><link rel="prefetch" href="/assets/js/88.5fd9f0ef.js"><link rel="prefetch" href="/assets/js/89.718ec134.js"><link rel="prefetch" href="/assets/js/90.11f956de.js"><link rel="prefetch" href="/assets/js/91.985d80f2.js"><link rel="prefetch" href="/assets/js/92.9c876df3.js"><link rel="prefetch" href="/assets/js/93.da92c068.js"><link rel="prefetch" href="/assets/js/94.cf4ee959.js"><link rel="prefetch" href="/assets/js/95.665f55e6.js"><link rel="prefetch" href="/assets/js/96.2e80356d.js"><link rel="prefetch" href="/assets/js/97.d7d8ba2d.js"><link rel="prefetch" href="/assets/js/98.70eab878.js"><link rel="prefetch" href="/assets/js/99.60ddb42d.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.5143d2e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b4a844ec.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">duangdong的react</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/base/" aria-current="page" class="sidebar-link">性能优化</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>6-SSR</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>7-hooks基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Native</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/base/React 代码共享最佳实践方式.html" class="sidebar-link">React 代码共享最佳实践方式</a></li><li><a href="/base/React组件性能优化—function-component.html" class="sidebar-link">React 组件性能优化—function component</a></li><li><a href="/base/clean-react.html" class="sidebar-link">如何编写Cleaner React代码</a></li><li><a href="/base/life.html" class="sidebar-link">componentWillReceiveProps</a></li><li><a href="/base/propType.html" class="sidebar-link">propType</a></li><li><a href="/base/修改端口.html" class="sidebar-link">关于脚手架生成的运行端口配置</a></li><li><a href="/base/初学.html" class="sidebar-link">今日小结</a></li><li><a href="/base/如何使用React创建视频和动画.html" class="active sidebar-link">如何使用React创建视频和动画</a></li><li><a href="/base/提高 React 代码质量.html" class="sidebar-link">6 个提高 React 代码质量的方法 - 让你的 React 代码更简洁</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="如何使用react创建视频和动画"><a href="#如何使用react创建视频和动画" class="header-anchor">#</a> 如何使用React创建视频和动画</h2> <blockquote><p><a href="https://mp.weixin.qq.com/s/Y0N4SEaYw1cv1vFHp_0FIQ" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/Y0N4SEaYw1cv1vFHp_0FIQ<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p>如何使用 <strong>React Remotion</strong> 来创建视频的，如果你之前对视频很感兴趣的话，这篇文章可以参考。</p> <h2 id="正文"><a href="#正文" class="header-anchor">#</a> 正文</h2> <p><strong>Remotion</strong>是一个最近推出的库，它允许您使用 React 创建视频和动态图形。作为一名 Web 开发人员，我发现它非常有趣，因为它为我们自己创建视频和动画打开了一扇新的大门。</p> <p>它的官网：</p> <blockquote><p>https://www.remotion.dev/</p></blockquote> <h2 id="简介"><a href="#简介" class="header-anchor">#</a> 简介</h2> <p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/Voibl9R35rqoY5PUxX23QKQhHhRIK7VYpWK1CsqDqickgPTUACJvNm9M1G6EwCEASn41mJSOwmYlRI24jaSX2EAQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片">Source: https://www.remotion.dev/</p> <p>正如我提到的，Remotion是最近推出的一个令人兴奋的库，它允许你使用你最喜欢的网络技术，如HTML、CSS、JavaScript、TypeScript等来创建视频和动画。</p> <p>除此之外，你还可以使用你所有关于编程、函数、算法、API的知识来为视频添加各种效果。作为一个基于React的库，Remotion能够最大限度地利用Reacts的特性，如可重用的组件、强大的组合和快速重载。</p> <blockquote><p>Remotion还配备了一个被称为Remotion Player的播放器，它给你带来了真正的视频编辑器的感觉，它可以用浏览器来播放和审查你的视频。</p></blockquote> <h2 id="如何设置remotion"><a href="#如何设置remotion" class="header-anchor">#</a> 如何设置Remotion？</h2> <p>创建一个新的Remotion项目是非常简单的。但有两个依赖项你应该先安装。</p> <h3 id="步骤1-安装nodejs和ffmpeg"><a href="#步骤1-安装nodejs和ffmpeg" class="header-anchor">#</a> 步骤1：安装NodeJS和FFMPEG</h3> <p>由于安装NodeJS是非常常见的，我将重点介绍安装FFMPEG。首先，你需要从他们的下载页面下载合适版本的FFMPEG。</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片">FFMPEG Downloads page.</p> <p>然后将其解压到你选择的文件夹中，并在CMD中以管理员权限运行以下命令（在windows中）来更新你的路径变量。</p> <div class="language- extra-class"><pre class="language-text"><code>setx /M PATH &quot;path\to\ffmpeg\bin;%PATH%&quot; 
+</code></pre></div><h3 id="第2步-启动新项目"><a href="#第2步-启动新项目" class="header-anchor">#</a> 第2步：启动新项目</h3> <p>安装完上述依赖后，初始化一个新的Remotion视频只需要一个命令，你可以使用yarn或npm来实现。</p> <div class="language- extra-class"><pre class="language-text"><code>yarn create video
+or
+npm init video
+</code></pre></div><p>你已经成功地初始化了你的第一个Remotion项目，你可以使用npm run start来启动该项目。</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片">Default Remotion Project</p> <hr> <h2 id="remotion的基础知识"><a href="#remotion的基础知识" class="header-anchor">#</a> Remotion的基础知识</h2> <p>既然你已经启动了你的Remotion项目，你可以开始创建你的视频。但我认为在这之前，如果你对Remotion的基础知识有一定的了解会更好。</p> <h3 id="video-properties"><a href="#video-properties" class="header-anchor">#</a> Video Properties</h3> <blockquote><p>Width, height, durationInFrames, fps是由Remotion提供的视频属性。</p></blockquote> <p>你可以在组件中使用这些属性来配置组件的像素大小，该组件应该播放多少帧，以及每秒钟的帧数。</p> <div class="language- extra-class"><pre class="language-text"><code>import { useVideoConfig } from “remotion”;export const ExampleVideo = () =&gt; {
+ const { fps, durationInFrames, width, height } = useVideoConfig();return (
+ &lt;div style={{ flex: 1, justifyContent: “center”, alignItems: “center” }}&gt;
+   This video is {durationInFrames / fps} seconds long.
+ &lt;/div&gt;
+ );
+};
+</code></pre></div><p>建议使用useVideoConfig派生这些属性，就像上面的例子一样，使你的组件可以重复使用。</p> <h3 id="compositions"><a href="#compositions" class="header-anchor">#</a> Compositions</h3> <p>Compositions也是Remotion中的一种组件，在这里你可以使用上述属性作为元数据。</p> <div class="language- extra-class"><pre class="language-text"><code>import {Composition} from 'remotion';
+import {HelloReaders} from './HelloReaders';export const RemotionVideo: React.FC = () =&gt; {
+ return (
+   &lt;&gt;
+    &lt;Composition
+     id=”HelloReaders”
+     component={HelloReaders}
+     durationInFrames={150}
+     fps={30}
+     width={1024}
+     height={720}
+     defaultProps={{
+      titleText: ‘Welcome to My Blog’,
+      titleColor: ‘black’,
+     }}
+    /&gt;
+    &lt;Composition
+     ...
+    /&gt;
+    &lt;Composition
+     ...
+    /&gt;
+  &lt;/&gt;
+ );
+}
+</code></pre></div><p>如果你观察项目中的Video.tsx文件，你会看到3个Composition组件，每个组件中都有元数据，包括视频属性。</p> <p>同时，这些组合也显示在Remotion Player的左上角。</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片">Compositions List</p> <h3 id="animation-properties"><a href="#animation-properties" class="header-anchor">#</a> Animation Properties</h3> <p>当涉及到视频时，动画是最重要的，而Remotion为您提供了配置一些惊人的动画的自由。例如，如果你需要一个简单的脸部效果，你可以逐帧调整帧的不透明度。</p> <div class="language- extra-class"><pre class="language-text"><code>const frame = useCurrentFrame();
+const opacity = frame &gt;= 20 ? 1 : (frame / 20);
+return (
+ &lt;div style={{
+   opacity: opacity
+ }}&gt;
+  Hello Readers!
+ &lt;/div&gt;
+)
+</code></pre></div><blockquote><p>除此之外，Remotion还有2个内建的函数，名为<strong>interpolate</strong>和<strong>spring</strong>，你可以用它们来建立更高级的动画。</p></blockquote> <p>插值函数接受4个输入参数，包括输入值（主要是帧），输入可以承担的范围值，你想把输入映射到的数值范围，以及一个可选参数。</p> <p>弹簧动画通过使动画更自然，让你在演示中更有创意。例如，下面的弹簧动画配置会给你的文本添加一个小的缩放效果。</p> <div class="language- extra-class"><pre class="language-text"><code>const {fps} = useVideoConfig();
+const scale = spring({
+  fps,
+  from: 0,
+  to: 1,
+  frame
+});return (
+  &lt;span
+    style={{
+      color: titleColor,
+      marginLeft: 10,
+      marginRight: 10,
+      transform: `scale(${scale})`,
+      display: ‘inline-block’,
+    }}
+  &gt;
+  Welcome to My Blog
+  &lt;/span&gt;
+)
+</code></pre></div><p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片">Spring animation</p> <h3 id="sequence-component"><a href="#sequence-component" class="header-anchor">#</a> Sequence Component</h3> <p>Remotion中的 <strong>Sequence组件</strong>完成了2个主要任务。它主要是用来给视频中的元素分配不同的时间框架。在保持元素之间的联系的同时，它也允许你重复使用同一个组件。</p> <p><strong>Sequence组件</strong>是一个高阶组件，它有能力容纳子组件。除此之外，它还接受3个prop，包括2个必需的prop和1个可选的prop。</p> <ul><li>name : 这是一个可选的prop。你指定的名字将出现在Remotion播放器的时间线上。如果你使用正确的命名模式，你将能够理解每个组件是如何连接的。</li></ul> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片">Timeline View of Remotion Player</p> <ul><li>from: 这定义了框架，该组件应该出现在视频中。</li> <li>durationInFrames: 以帧为单位的<strong>Sequence组件</strong>的长度。</li></ul> <p>例如，下面的<strong>Sequence组件</strong>将在20帧后出现在视频中，并将持续到结束，因为durationOnFrames是无限的。</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;Sequence from={20} durationInFrames={Infinity}&gt;
+   &lt;Title titleText={titleText} titleColor={titleColor} /&gt;&lt;/Sequence&gt;
+</code></pre></div><p>由于你现在对Remotion中的几个基本属性和组件有了基本的了解，我们可以开始使用Remotion创建第一个视频。</p> <hr> <h2 id="创建一个简单的视频"><a href="#创建一个简单的视频" class="header-anchor">#</a> 创建一个简单的视频</h2> <p>正如你在上面的例子中已经看到的，我将创建一个简单的视频来显示我的博客的标志和欢迎词，并有一些动画。</p> <p>我将使用我们在文章开头创建的默认项目布局。</p> <h3 id="步骤1"><a href="#步骤1" class="header-anchor">#</a> 步骤1</h3> <p>首先，我为我的视频中的3个元素创建了3个组件：Logo.tsx, Title.tsx和SubText.tsx。</p> <p><code>Logo.tsx</code> <strong>file:</strong></p> <div class="language- extra-class"><pre class="language-text"><code>import {spring, useCurrentFrame, useVideoConfig} from ‘remotion’;
+import {Img} from ‘remotion’;
+import image from ‘./logo.png’
+export const Logo: React.FC&lt;{
+transitionStart: number;
+ }&gt; = ({transitionStart}) =&gt; {
+   
+  const videoConfig = useVideoConfig();
+  const frame = useCurrentFrame();
+   return (
+   &lt;div
+    style={{
+     textAlign: ‘center’,
+     marginTop: ‘10%’,
+     width: videoConfig.width,
+     height: videoConfig.height,
+    }}
+   &gt;
+   &lt;Img 
+    style={{
+     transform:`scale(${spring({
+      fps: videoConfig.fps,
+      frame: frame — transitionStart,
+      config: {
+       damping: 100,
+       stiffness: 200,
+       mass: 0.5,
+      },
+     })})`,
+    }} 
+    src={image}&gt;&lt;/Img&gt;
+   &lt;/div&gt;
+ );
+};
+</code></pre></div><p><code>Title.tsx</code> <strong>file:</strong></p> <div class="language- extra-class"><pre class="language-text"><code>import {spring, useCurrentFrame, useVideoConfig} from 'remotion';export const Title: React.FC&lt;{
+ titleText: string;
+ titleColor: string;
+}&gt; = ({titleText, titleColor}) =&gt; { const videoConfig = useVideoConfig();
+ const frame = useCurrentFrame();
+ const text = titleText.split(‘ ‘).map((text) =&gt; ` ${text} `);
+ return (
+  &lt;h1
+   style={{
+    fontFamily: ‘Helvetica, Arial’,
+    fontWeight: ‘bold’,
+    fontSize: 110,
+    textAlign: ‘center’,
+    position: ‘absolute’,
+    bottom: 160,
+    width: ‘100%’,
+   }}
+  &gt;
+  {text.map((text, i) =&gt; {
+   return (
+    &lt;span
+     key={text}
+     style={{
+      color: titleColor,
+      marginLeft: 10,
+      marginRight: 10,
+      transform: `scale(${spring({
+       fps: videoConfig.fps,
+       frame: frame — i * 5,
+       config: {
+        damping: 100,
+        stiffness: 200,
+        mass: 0.5,
+       },
+      })})`,
+      display: ‘inline-block’,
+     }}
+    &gt;
+    {text}
+    &lt;/span&gt;
+   );
+  })}
+ &lt;/h1&gt;
+);
+};
+</code></pre></div><p><code>SubText.tsx</code> <strong>file:</strong></p> <div class="language- extra-class"><pre class="language-text"><code>import {interpolate, useCurrentFrame} from 'remotion';export const Title: React.FC&lt;{
+ titleText: string;
+ titleColor: string;
+}&gt; = ({titleText, titleColor}) =&gt; {
+ 
+ const frame = useCurrentFrame();
+ const opacity = interpolate(frame, [0, 30], [0, 1]);return (
+  &lt;div
+   style={{
+    fontFamily: 'Helvetica, Arial',
+    fontSize: 40,
+    textAlign: 'center',
+    position: 'absolute',
+    bottom: 140,
+    width: '100%',
+    opacity,
+   }}
+  &gt;
+   Follow me on{' '}&lt;code&gt; medium.com &lt;/code&gt;{' '} for more articles
+  &lt;/div&gt;
+ );
+};
+</code></pre></div><h3 id="步骤2"><a href="#步骤2" class="header-anchor">#</a> 步骤2</h3> <p>然后，我把这3个组件导入到MyVideo.tsx中，并用Sequence组件包装，为每个组件分配相关的时间框架。除此之外，我还将几个prop和动画传递给子组件。</p> <div class="language- extra-class"><pre class="language-text"><code>import {interpolate, Sequence, useCurrentFrame, useVideoConfig} from ‘remotion’;
+import {Logo} from ‘./components/Logo’;
+import {SubText} from ‘./components/SubText’;
+import {Title} from ‘./components/Title’;export const MyVideo: React.FC&lt;{
+titleText: string;
+titleColor: string;
+}&gt; = ({titleText, titleColor}) =&gt; {const frame = useCurrentFrame();
+const videoConfig = useVideoConfig();
+const opacity = 
+ interpolate(
+  frame,
+  [videoConfig.durationInFrames — 25, 
+   videoConfig.durationInFrames
+   15
+  ],
+  [1, 0],
+  {extrapolateLeft: ‘clamp’,extrapolateRight: ‘clamp’,}
+ );
+const transitionStart = 0;return (
+ &lt;div style={{flex: 1, backgroundColor: ‘white’}}&gt;
+ &lt;div style={{opacity}}&gt;  &lt;Sequence 
+   from={0} 
+   durationInFrames={videoConfig.durationInFrames}&gt;
+    &lt;Logo transitionStart={transitionStart} /&gt;
+  &lt;/Sequence&gt;  &lt;Sequence 
+   from={transitionStart + 35} 
+   durationInFrames={Infinity}&gt;
+    &lt;Title titleText={titleText} titleColor={titleColor} /&gt;
+  &lt;/Sequence&gt;  &lt;Sequence 
+   from={transitionStart + 75} 
+   durationInFrames={Infinity}&gt;
+    &lt;SubText /&gt;
+  &lt;/Sequence&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+);
+};
+</code></pre></div><h3 id="步骤3"><a href="#步骤3" class="header-anchor">#</a> 步骤3</h3> <p>最后，我将上述所有文件导入Video.tsx，并使用Composition组件传递相关元数据。</p> <div class="language- extra-class"><pre class="language-text"><code>import {Composition} from ‘remotion’;
+import {MyVideo} from ‘./MyVideo’;
+import {Logo} from ‘./components/Logo’;
+import {SubText} from ‘./components/SubText’;
+export const RemotionVideo: React.FC = () =&gt; {
+ return (
+  &lt;&gt;
+   &lt;Composition
+    id=”HelloReaders”
+    component={HelloReaders}
+    durationInFrames={150}
+    fps={30}
+    width={1920}
+    height={1080}
+    defaultProps={{
+     titleText: ‘Welcome to My Blog’,
+     titleColor: ‘black’,
+    }}
+   /&gt;
+   &lt;Composition
+    id=”Logo”
+    component={Logo}
+    durationInFrames={200}
+    fps={30}
+    width={1920}
+    height={1080}
+   /&gt;
+   &lt;Composition
+    id=”Title”
+    component={SubText}
+    durationInFrames={100}
+    fps={30}
+    width={1920}
+    height={1080}
+   /&gt;
+  &lt;/&gt;
+ );
+};
+</code></pre></div><p>现在，你就可以运行你的第一个Remotion视频了。你可以使用<strong>npm run start</strong>在开发模式下看到它，或者使用npm run build保存为mp4文件。</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片">Finalized Video in Development Mode</p> <h2 id="结论"><a href="#结论" class="header-anchor">#</a> 结论</h2> <p>虽然Remotion还很年轻，但它已经有了一些惊人的功能。它可能还达不到专业视频编辑器的质量。但我们肯定可以期待一些惊喜的到来。</p> <p>此外，Remotion还有像参数化渲染、服务器端渲染和数据获取这样的功能，这些对于开发者来说是非常熟悉的。他们可以利用自己的经验，从这个工具中获得最大的收益。</p> <p>最重要的是，对于那些寻求创建个人使用的小视频或动画的方法的人来说，它是一个很好的选择。</p> <p>在我看来，我们可以利用<strong>Remotion</strong>来创建简单的视频和动画，用我们所掌握的网络开发知识。但在视频编辑功能方面，很多东西需要改进和简化。</p> <p>不过，我强烈建议你下载<strong>Remotion</strong>，并给它一个机会。这将是一种全新的体验。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">5/8/2024, 3:01:19 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/base/初学.html" class="prev">
+        今日小结
+      </a></span> <span class="next"><a href="/base/提高 React 代码质量.html">
+        6 个提高 React 代码质量的方法 - 让你的 React 代码更简洁
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.27287fd6.js" defer></script><script src="/assets/js/2.57da4f88.js" defer></script><script src="/assets/js/1.a76cc220.js" defer></script><script src="/assets/js/60.82621500.js" defer></script>
+  </body>
+</html>

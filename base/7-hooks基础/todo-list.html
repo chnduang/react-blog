@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用Hooks实现的TodoList | duangdong的react</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?0088ce24040b03f2947322ab31d23414";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+    <script>
+  var _hmt = _hmt || [];
+  _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
+    shouldTrackUrlChange: function (newPath, oldPath) {
+      newPath = newPath.split('#')[0];
+      oldPath = oldPath.split('#')[0];
+      return newPath != oldPath;
+    }}
+  ]);
+  </script>
+    <meta name="description" content="react相关知识归纳总结">
+    <meta name="keywords" content="react,react进阶,react性能优化,react-hooks,react源码">
+    
+    <link rel="preload" href="/assets/css/0.styles.b4a844ec.css" as="style"><link rel="preload" href="/assets/js/app.27287fd6.js" as="script"><link rel="preload" href="/assets/js/2.57da4f88.js" as="script"><link rel="preload" href="/assets/js/1.a76cc220.js" as="script"><link rel="preload" href="/assets/js/48.d0a778f3.js" as="script"><link rel="prefetch" href="/assets/js/10.50f73657.js"><link rel="prefetch" href="/assets/js/100.27126660.js"><link rel="prefetch" href="/assets/js/101.09cf74ec.js"><link rel="prefetch" href="/assets/js/102.8cd6b4eb.js"><link rel="prefetch" href="/assets/js/103.c4f25168.js"><link rel="prefetch" href="/assets/js/104.4f1b4569.js"><link rel="prefetch" href="/assets/js/105.bc4fc023.js"><link rel="prefetch" href="/assets/js/106.b9d5be0c.js"><link rel="prefetch" href="/assets/js/107.f9a44dd7.js"><link rel="prefetch" href="/assets/js/108.0424a7b7.js"><link rel="prefetch" href="/assets/js/109.086a89ae.js"><link rel="prefetch" href="/assets/js/11.0390ceee.js"><link rel="prefetch" href="/assets/js/110.1e4c2c77.js"><link rel="prefetch" href="/assets/js/111.16e80560.js"><link rel="prefetch" href="/assets/js/112.441e61a6.js"><link rel="prefetch" href="/assets/js/113.41a44465.js"><link rel="prefetch" href="/assets/js/114.9efb5469.js"><link rel="prefetch" href="/assets/js/115.d095bf75.js"><link rel="prefetch" href="/assets/js/116.b368a7c1.js"><link rel="prefetch" href="/assets/js/117.3a319a71.js"><link rel="prefetch" href="/assets/js/118.7ea17677.js"><link rel="prefetch" href="/assets/js/119.df1f998f.js"><link rel="prefetch" href="/assets/js/12.f88bec36.js"><link rel="prefetch" href="/assets/js/120.935f9aea.js"><link rel="prefetch" href="/assets/js/121.c09de772.js"><link rel="prefetch" href="/assets/js/122.32443376.js"><link rel="prefetch" href="/assets/js/123.d0f8ea63.js"><link rel="prefetch" href="/assets/js/124.fdbcd92d.js"><link rel="prefetch" href="/assets/js/125.0de5eb94.js"><link rel="prefetch" href="/assets/js/126.fb5e629b.js"><link rel="prefetch" href="/assets/js/127.866d8d58.js"><link rel="prefetch" href="/assets/js/128.1aad073e.js"><link rel="prefetch" href="/assets/js/129.328f52fd.js"><link rel="prefetch" href="/assets/js/13.963ad03b.js"><link rel="prefetch" href="/assets/js/130.ac9676d9.js"><link rel="prefetch" href="/assets/js/131.9852c015.js"><link rel="prefetch" href="/assets/js/132.806bcfe3.js"><link rel="prefetch" href="/assets/js/133.073ecd1e.js"><link rel="prefetch" href="/assets/js/134.e2683d73.js"><link rel="prefetch" href="/assets/js/135.d16cdb0b.js"><link rel="prefetch" href="/assets/js/136.c3b47da6.js"><link rel="prefetch" href="/assets/js/137.f7fec328.js"><link rel="prefetch" href="/assets/js/138.ec6ab500.js"><link rel="prefetch" href="/assets/js/139.18b97522.js"><link rel="prefetch" href="/assets/js/14.512f15b9.js"><link rel="prefetch" href="/assets/js/140.c7df1047.js"><link rel="prefetch" href="/assets/js/141.484c6ca5.js"><link rel="prefetch" href="/assets/js/142.8eff7a66.js"><link rel="prefetch" href="/assets/js/143.60569694.js"><link rel="prefetch" href="/assets/js/144.01883b7c.js"><link rel="prefetch" href="/assets/js/145.a9241012.js"><link rel="prefetch" href="/assets/js/146.4b6f364c.js"><link rel="prefetch" href="/assets/js/147.9ed57153.js"><link rel="prefetch" href="/assets/js/148.e18d806a.js"><link rel="prefetch" href="/assets/js/149.e24c9de5.js"><link rel="prefetch" href="/assets/js/15.a674496c.js"><link rel="prefetch" href="/assets/js/16.ed7e507f.js"><link rel="prefetch" href="/assets/js/17.de667ca5.js"><link rel="prefetch" href="/assets/js/18.b44e84af.js"><link rel="prefetch" href="/assets/js/19.5b5ad6a1.js"><link rel="prefetch" href="/assets/js/20.6800493a.js"><link rel="prefetch" href="/assets/js/21.6589052c.js"><link rel="prefetch" href="/assets/js/22.f648d829.js"><link rel="prefetch" href="/assets/js/23.f1afbc9c.js"><link rel="prefetch" href="/assets/js/24.7f3fc444.js"><link rel="prefetch" href="/assets/js/25.5a945cd4.js"><link rel="prefetch" href="/assets/js/26.7ef56339.js"><link rel="prefetch" href="/assets/js/27.74941107.js"><link rel="prefetch" href="/assets/js/28.20a36928.js"><link rel="prefetch" href="/assets/js/29.7cda6a44.js"><link rel="prefetch" href="/assets/js/3.13e892f5.js"><link rel="prefetch" href="/assets/js/30.97f5cf7e.js"><link rel="prefetch" href="/assets/js/31.eeee5c14.js"><link rel="prefetch" href="/assets/js/32.a2125816.js"><link rel="prefetch" href="/assets/js/33.b3fdf3bc.js"><link rel="prefetch" href="/assets/js/34.908ac5fb.js"><link rel="prefetch" href="/assets/js/35.9459a7c7.js"><link rel="prefetch" href="/assets/js/36.dc8e2582.js"><link rel="prefetch" href="/assets/js/37.27c69606.js"><link rel="prefetch" href="/assets/js/38.10b82911.js"><link rel="prefetch" href="/assets/js/39.fdc5aecb.js"><link rel="prefetch" href="/assets/js/4.5bdb9365.js"><link rel="prefetch" href="/assets/js/40.901c96dc.js"><link rel="prefetch" href="/assets/js/41.4cbb9c4b.js"><link rel="prefetch" href="/assets/js/42.da47ce58.js"><link rel="prefetch" href="/assets/js/43.a7669073.js"><link rel="prefetch" href="/assets/js/44.08cc8605.js"><link rel="prefetch" href="/assets/js/45.5461c987.js"><link rel="prefetch" href="/assets/js/46.4c5ed7f9.js"><link rel="prefetch" href="/assets/js/47.450abe13.js"><link rel="prefetch" href="/assets/js/49.611d9085.js"><link rel="prefetch" href="/assets/js/5.7c68fdb5.js"><link rel="prefetch" href="/assets/js/50.2563fd92.js"><link rel="prefetch" href="/assets/js/51.ff64258c.js"><link rel="prefetch" href="/assets/js/52.d47acb9b.js"><link rel="prefetch" href="/assets/js/53.09fd35d1.js"><link rel="prefetch" href="/assets/js/54.5e523072.js"><link rel="prefetch" href="/assets/js/55.8278650d.js"><link rel="prefetch" href="/assets/js/56.425f7e44.js"><link rel="prefetch" href="/assets/js/57.44699db6.js"><link rel="prefetch" href="/assets/js/58.25067fcf.js"><link rel="prefetch" href="/assets/js/59.3814ee9e.js"><link rel="prefetch" href="/assets/js/6.c8da7ca7.js"><link rel="prefetch" href="/assets/js/60.82621500.js"><link rel="prefetch" href="/assets/js/61.9880375b.js"><link rel="prefetch" href="/assets/js/62.3924c2b9.js"><link rel="prefetch" href="/assets/js/63.ff3650b8.js"><link rel="prefetch" href="/assets/js/64.0d46b236.js"><link rel="prefetch" href="/assets/js/65.f255f222.js"><link rel="prefetch" href="/assets/js/66.d797120d.js"><link rel="prefetch" href="/assets/js/67.aa46c62c.js"><link rel="prefetch" href="/assets/js/68.0dbf39cf.js"><link rel="prefetch" href="/assets/js/69.116b53df.js"><link rel="prefetch" href="/assets/js/7.e4c88d0e.js"><link rel="prefetch" href="/assets/js/70.a05986f2.js"><link rel="prefetch" href="/assets/js/71.562a4365.js"><link rel="prefetch" href="/assets/js/72.c10c6194.js"><link rel="prefetch" href="/assets/js/73.d85c71e5.js"><link rel="prefetch" href="/assets/js/74.73f72e00.js"><link rel="prefetch" href="/assets/js/75.62c76a28.js"><link rel="prefetch" href="/assets/js/76.8d0d9036.js"><link rel="prefetch" href="/assets/js/77.4ede6642.js"><link rel="prefetch" href="/assets/js/78.7d4d4152.js"><link rel="prefetch" href="/assets/js/79.720e767d.js"><link rel="prefetch" href="/assets/js/80.e9d86233.js"><link rel="prefetch" href="/assets/js/81.40ea5e9f.js"><link rel="prefetch" href="/assets/js/82.78074ee1.js"><link rel="prefetch" href="/assets/js/83.72133cbf.js"><link rel="prefetch" href="/assets/js/84.52c5ea65.js"><link rel="prefetch" href="/assets/js/85.afce36a7.js"><link rel="prefetch" href="/assets/js/86.bdc638dd.js"><link rel="prefetch" href="/assets/js/87.11e34480.js"><link rel="prefetch" href="/assets/js/88.5fd9f0ef.js"><link rel="prefetch" href="/assets/js/89.718ec134.js"><link rel="prefetch" href="/assets/js/90.11f956de.js"><link rel="prefetch" href="/assets/js/91.985d80f2.js"><link rel="prefetch" href="/assets/js/92.9c876df3.js"><link rel="prefetch" href="/assets/js/93.da92c068.js"><link rel="prefetch" href="/assets/js/94.cf4ee959.js"><link rel="prefetch" href="/assets/js/95.665f55e6.js"><link rel="prefetch" href="/assets/js/96.2e80356d.js"><link rel="prefetch" href="/assets/js/97.d7d8ba2d.js"><link rel="prefetch" href="/assets/js/98.70eab878.js"><link rel="prefetch" href="/assets/js/99.60ddb42d.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.5143d2e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b4a844ec.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">duangdong的react</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/base/" aria-current="page" class="sidebar-link">性能优化</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>6-SSR</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>7-hooks基础</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/base/7-hooks基础/eslint-plugin.html" class="sidebar-link">eslint-plugin-react-hooks配置</a></li><li><a href="/base/7-hooks基础/mobx.html" class="sidebar-link">基础用法</a></li><li><a href="/base/7-hooks基础/todo-list.html" class="active sidebar-link">使用Hooks实现的TodoList</a></li><li><a href="/base/7-hooks基础/基础.html" class="sidebar-link">Hooks</a></li><li><a href="/base/7-hooks基础/如何使用usemeo.html" class="sidebar-link">如何使用 React.useMemo() 进行快速记忆？</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Native</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/base/React 代码共享最佳实践方式.html" class="sidebar-link">React 代码共享最佳实践方式</a></li><li><a href="/base/React组件性能优化—function-component.html" class="sidebar-link">React 组件性能优化—function component</a></li><li><a href="/base/clean-react.html" class="sidebar-link">如何编写Cleaner React代码</a></li><li><a href="/base/life.html" class="sidebar-link">componentWillReceiveProps</a></li><li><a href="/base/propType.html" class="sidebar-link">propType</a></li><li><a href="/base/修改端口.html" class="sidebar-link">关于脚手架生成的运行端口配置</a></li><li><a href="/base/初学.html" class="sidebar-link">今日小结</a></li><li><a href="/base/如何使用React创建视频和动画.html" class="sidebar-link">如何使用React创建视频和动画</a></li><li><a href="/base/提高 React 代码质量.html" class="sidebar-link">6 个提高 React 代码质量的方法 - 让你的 React 代码更简洁</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="使用hooks实现的todolist"><a href="#使用hooks实现的todolist" class="header-anchor">#</a> 使用Hooks实现的TodoList</h2> <h3 id="拆分组件"><a href="#拆分组件" class="header-anchor">#</a> 拆分组件</h3> <ul><li><p>将其划分为三个模块</p></li> <li><p>所有的组件我就只在一个js文件中写的</p></li> <li><p>以下是全部的代码</p></li> <li><p>具体说明，我在注释中解释</p></li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState<span class="token punctuation">,</span> useRef<span class="token punctuation">,</span> useEffect<span class="token punctuation">,</span> useCallback<span class="token punctuation">,</span> memo <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./App.css'</span>
+
+<span class="token comment">/**
+ * App: 最外层组件，是入口
+ * TodoInput: 输入框
+ * TodoList: 下面的数据显示，最外层
+ * TodoListItem: 每条数据
+*/</span>
+<span class="token keyword">let</span> time <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> Local_key <span class="token operator">=</span> <span class="token string">'_todo_'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> TodoInput <span class="token operator">=</span> <span class="token function">memo</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> addTodo <span class="token punctuation">}</span> <span class="token operator">=</span> props<span class="token punctuation">;</span>
+  <span class="token comment">// 用来获取输入框里的值</span>
+  <span class="token keyword">const</span> textValue <span class="token operator">=</span> <span class="token function">useRef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">handleSubmit</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> newValue <span class="token operator">=</span> textValue<span class="token punctuation">.</span>current<span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>newValue<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">addTodo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token operator">++</span>time<span class="token punctuation">,</span>
+      <span class="token literal-property property">content</span><span class="token operator">:</span> newValue<span class="token punctuation">,</span>
+      <span class="token literal-property property">complete</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    textValue<span class="token punctuation">.</span>current<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">&quot;input-list&quot;</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>todo<span class="token operator">-</span>list<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>form onSubmit<span class="token operator">=</span><span class="token punctuation">{</span>handleSubmit<span class="token punctuation">}</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>input
+          type<span class="token operator">=</span><span class="token string">&quot;text&quot;</span>
+          ref<span class="token operator">=</span><span class="token punctuation">{</span>textValue<span class="token punctuation">}</span>
+          placeholder<span class="token operator">=</span><span class="token string">&quot;input todo list&quot;</span>
+          className<span class="token operator">=</span><span class="token string">&quot;input-value&quot;</span>
+        <span class="token operator">/</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>form<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> TodoList <span class="token operator">=</span> <span class="token function">memo</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> todos<span class="token punctuation">,</span> changeTodo<span class="token punctuation">,</span> removeTodo <span class="token punctuation">}</span> <span class="token operator">=</span> props<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">&quot;content-list&quot;</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>ul<span class="token operator">&gt;</span>
+        <span class="token punctuation">{</span>
+          todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token punctuation">(</span>
+              <span class="token operator">&lt;</span>TodoListItem 
+                key<span class="token operator">=</span><span class="token punctuation">{</span>item<span class="token punctuation">.</span>id<span class="token punctuation">}</span>
+                changeTodo<span class="token operator">=</span><span class="token punctuation">{</span>changeTodo<span class="token punctuation">}</span>
+                removeTodo<span class="token operator">=</span><span class="token punctuation">{</span>removeTodo<span class="token punctuation">}</span>
+                todo<span class="token operator">=</span><span class="token punctuation">{</span>item<span class="token punctuation">}</span>
+              <span class="token operator">/</span><span class="token operator">&gt;</span>
+            <span class="token punctuation">)</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> TodoListItem <span class="token operator">=</span> <span class="token function">memo</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> <span class="token literal-property property">todo</span><span class="token operator">:</span><span class="token punctuation">{</span> id<span class="token punctuation">,</span> complete<span class="token punctuation">,</span> content <span class="token punctuation">}</span><span class="token punctuation">,</span> changeTodo<span class="token punctuation">,</span> removeTodo <span class="token punctuation">}</span> <span class="token operator">=</span> props<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">handleOnChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">changeTodo</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">handleRemove</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">removeTodo</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>li className<span class="token operator">=</span><span class="token string">&quot;todo-item&quot;</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>input
+        type<span class="token operator">=</span><span class="token string">&quot;checkbox&quot;</span>
+        onChange<span class="token operator">=</span><span class="token punctuation">{</span>handleOnChange<span class="token punctuation">}</span>
+        checked<span class="token operator">=</span><span class="token punctuation">{</span>complete<span class="token punctuation">}</span>
+      <span class="token operator">/</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>label className<span class="token operator">=</span><span class="token punctuation">{</span>complete <span class="token operator">?</span> <span class="token string">'complete'</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">}</span><span class="token operator">&gt;</span><span class="token punctuation">{</span>content<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>label<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span>handleRemove<span class="token punctuation">}</span><span class="token operator">&gt;</span>移除<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//入口</span>
+<span class="token keyword">const</span> <span class="token function-variable function">App</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>todos<span class="token punctuation">,</span> setTodo<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 增加事项</span>
+  <span class="token keyword">const</span> addTodo <span class="token operator">=</span> <span class="token function">useCallback</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">todo</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">setTodo</span><span class="token punctuation">(</span><span class="token parameter">todos</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span><span class="token operator">...</span>todos<span class="token punctuation">,</span> todo<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 移除事项</span>
+  <span class="token keyword">const</span> removeTodo <span class="token operator">=</span> <span class="token function">useCallback</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">setTodo</span><span class="token punctuation">(</span><span class="token parameter">todos</span> <span class="token operator">=&gt;</span> todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> item<span class="token punctuation">.</span>id <span class="token operator">!==</span> id
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 改变状态</span>
+  <span class="token keyword">const</span> changeTodo <span class="token operator">=</span> <span class="token function">useCallback</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">setTodo</span><span class="token punctuation">(</span><span class="token parameter">todos</span> <span class="token operator">=&gt;</span> todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">todo</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> todo<span class="token punctuation">.</span>id <span class="token operator">===</span> id 
+          <span class="token operator">?</span> <span class="token punctuation">{</span>
+              <span class="token operator">...</span>todo<span class="token punctuation">,</span>
+              <span class="token literal-property property">complete</span><span class="token operator">:</span> <span class="token operator">!</span>todo<span class="token punctuation">.</span>complete
+            <span class="token punctuation">}</span>
+          <span class="token operator">:</span> todo
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 使用localStorage存储数据,让下次打开保留上一次的数据</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>Local_key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setTodo</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span>Local_key<span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>todos<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>todos<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">&quot;todo-list&quot;</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>TodoInput addTodo<span class="token operator">=</span><span class="token punctuation">{</span>addTodo<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>TodoList
+        removeTodo<span class="token operator">=</span><span class="token punctuation">{</span>removeTodo<span class="token punctuation">}</span>
+        changeTodo<span class="token operator">=</span><span class="token punctuation">{</span>changeTodo<span class="token punctuation">}</span>
+        todos<span class="token operator">=</span><span class="token punctuation">{</span>todos<span class="token punctuation">}</span>
+      <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> App<span class="token punctuation">;</span>
+
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">5/8/2024, 3:01:19 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/base/7-hooks基础/mobx.html" class="prev">
+        基础用法
+      </a></span> <span class="next"><a href="/base/7-hooks基础/基础.html">
+        Hooks
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.27287fd6.js" defer></script><script src="/assets/js/2.57da4f88.js" defer></script><script src="/assets/js/1.a76cc220.js" defer></script><script src="/assets/js/48.d0a778f3.js" defer></script>
+  </body>
+</html>

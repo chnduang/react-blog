@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>自动化测试-jest学习与使用 | duangdong的react</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?0088ce24040b03f2947322ab31d23414";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+    <script>
+  var _hmt = _hmt || [];
+  _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
+    shouldTrackUrlChange: function (newPath, oldPath) {
+      newPath = newPath.split('#')[0];
+      oldPath = oldPath.split('#')[0];
+      return newPath != oldPath;
+    }}
+  ]);
+  </script>
+    <meta name="description" content="react相关知识归纳总结">
+    <meta name="keywords" content="react,react进阶,react性能优化,react-hooks,react源码">
+    
+    <link rel="preload" href="/assets/css/0.styles.b4a844ec.css" as="style"><link rel="preload" href="/assets/js/app.27287fd6.js" as="script"><link rel="preload" href="/assets/js/2.57da4f88.js" as="script"><link rel="preload" href="/assets/js/1.a76cc220.js" as="script"><link rel="preload" href="/assets/js/96.2e80356d.js" as="script"><link rel="prefetch" href="/assets/js/10.50f73657.js"><link rel="prefetch" href="/assets/js/100.27126660.js"><link rel="prefetch" href="/assets/js/101.09cf74ec.js"><link rel="prefetch" href="/assets/js/102.8cd6b4eb.js"><link rel="prefetch" href="/assets/js/103.c4f25168.js"><link rel="prefetch" href="/assets/js/104.4f1b4569.js"><link rel="prefetch" href="/assets/js/105.bc4fc023.js"><link rel="prefetch" href="/assets/js/106.b9d5be0c.js"><link rel="prefetch" href="/assets/js/107.f9a44dd7.js"><link rel="prefetch" href="/assets/js/108.0424a7b7.js"><link rel="prefetch" href="/assets/js/109.086a89ae.js"><link rel="prefetch" href="/assets/js/11.0390ceee.js"><link rel="prefetch" href="/assets/js/110.1e4c2c77.js"><link rel="prefetch" href="/assets/js/111.16e80560.js"><link rel="prefetch" href="/assets/js/112.441e61a6.js"><link rel="prefetch" href="/assets/js/113.41a44465.js"><link rel="prefetch" href="/assets/js/114.9efb5469.js"><link rel="prefetch" href="/assets/js/115.d095bf75.js"><link rel="prefetch" href="/assets/js/116.b368a7c1.js"><link rel="prefetch" href="/assets/js/117.3a319a71.js"><link rel="prefetch" href="/assets/js/118.7ea17677.js"><link rel="prefetch" href="/assets/js/119.df1f998f.js"><link rel="prefetch" href="/assets/js/12.f88bec36.js"><link rel="prefetch" href="/assets/js/120.935f9aea.js"><link rel="prefetch" href="/assets/js/121.c09de772.js"><link rel="prefetch" href="/assets/js/122.32443376.js"><link rel="prefetch" href="/assets/js/123.d0f8ea63.js"><link rel="prefetch" href="/assets/js/124.fdbcd92d.js"><link rel="prefetch" href="/assets/js/125.0de5eb94.js"><link rel="prefetch" href="/assets/js/126.fb5e629b.js"><link rel="prefetch" href="/assets/js/127.866d8d58.js"><link rel="prefetch" href="/assets/js/128.1aad073e.js"><link rel="prefetch" href="/assets/js/129.328f52fd.js"><link rel="prefetch" href="/assets/js/13.963ad03b.js"><link rel="prefetch" href="/assets/js/130.ac9676d9.js"><link rel="prefetch" href="/assets/js/131.9852c015.js"><link rel="prefetch" href="/assets/js/132.806bcfe3.js"><link rel="prefetch" href="/assets/js/133.073ecd1e.js"><link rel="prefetch" href="/assets/js/134.e2683d73.js"><link rel="prefetch" href="/assets/js/135.d16cdb0b.js"><link rel="prefetch" href="/assets/js/136.c3b47da6.js"><link rel="prefetch" href="/assets/js/137.f7fec328.js"><link rel="prefetch" href="/assets/js/138.ec6ab500.js"><link rel="prefetch" href="/assets/js/139.18b97522.js"><link rel="prefetch" href="/assets/js/14.512f15b9.js"><link rel="prefetch" href="/assets/js/140.c7df1047.js"><link rel="prefetch" href="/assets/js/141.484c6ca5.js"><link rel="prefetch" href="/assets/js/142.8eff7a66.js"><link rel="prefetch" href="/assets/js/143.60569694.js"><link rel="prefetch" href="/assets/js/144.01883b7c.js"><link rel="prefetch" href="/assets/js/145.a9241012.js"><link rel="prefetch" href="/assets/js/146.4b6f364c.js"><link rel="prefetch" href="/assets/js/147.9ed57153.js"><link rel="prefetch" href="/assets/js/148.e18d806a.js"><link rel="prefetch" href="/assets/js/149.e24c9de5.js"><link rel="prefetch" href="/assets/js/15.a674496c.js"><link rel="prefetch" href="/assets/js/16.ed7e507f.js"><link rel="prefetch" href="/assets/js/17.de667ca5.js"><link rel="prefetch" href="/assets/js/18.b44e84af.js"><link rel="prefetch" href="/assets/js/19.5b5ad6a1.js"><link rel="prefetch" href="/assets/js/20.6800493a.js"><link rel="prefetch" href="/assets/js/21.6589052c.js"><link rel="prefetch" href="/assets/js/22.f648d829.js"><link rel="prefetch" href="/assets/js/23.f1afbc9c.js"><link rel="prefetch" href="/assets/js/24.7f3fc444.js"><link rel="prefetch" href="/assets/js/25.5a945cd4.js"><link rel="prefetch" href="/assets/js/26.7ef56339.js"><link rel="prefetch" href="/assets/js/27.74941107.js"><link rel="prefetch" href="/assets/js/28.20a36928.js"><link rel="prefetch" href="/assets/js/29.7cda6a44.js"><link rel="prefetch" href="/assets/js/3.13e892f5.js"><link rel="prefetch" href="/assets/js/30.97f5cf7e.js"><link rel="prefetch" href="/assets/js/31.eeee5c14.js"><link rel="prefetch" href="/assets/js/32.a2125816.js"><link rel="prefetch" href="/assets/js/33.b3fdf3bc.js"><link rel="prefetch" href="/assets/js/34.908ac5fb.js"><link rel="prefetch" href="/assets/js/35.9459a7c7.js"><link rel="prefetch" href="/assets/js/36.dc8e2582.js"><link rel="prefetch" href="/assets/js/37.27c69606.js"><link rel="prefetch" href="/assets/js/38.10b82911.js"><link rel="prefetch" href="/assets/js/39.fdc5aecb.js"><link rel="prefetch" href="/assets/js/4.5bdb9365.js"><link rel="prefetch" href="/assets/js/40.901c96dc.js"><link rel="prefetch" href="/assets/js/41.4cbb9c4b.js"><link rel="prefetch" href="/assets/js/42.da47ce58.js"><link rel="prefetch" href="/assets/js/43.a7669073.js"><link rel="prefetch" href="/assets/js/44.08cc8605.js"><link rel="prefetch" href="/assets/js/45.5461c987.js"><link rel="prefetch" href="/assets/js/46.4c5ed7f9.js"><link rel="prefetch" href="/assets/js/47.450abe13.js"><link rel="prefetch" href="/assets/js/48.d0a778f3.js"><link rel="prefetch" href="/assets/js/49.611d9085.js"><link rel="prefetch" href="/assets/js/5.7c68fdb5.js"><link rel="prefetch" href="/assets/js/50.2563fd92.js"><link rel="prefetch" href="/assets/js/51.ff64258c.js"><link rel="prefetch" href="/assets/js/52.d47acb9b.js"><link rel="prefetch" href="/assets/js/53.09fd35d1.js"><link rel="prefetch" href="/assets/js/54.5e523072.js"><link rel="prefetch" href="/assets/js/55.8278650d.js"><link rel="prefetch" href="/assets/js/56.425f7e44.js"><link rel="prefetch" href="/assets/js/57.44699db6.js"><link rel="prefetch" href="/assets/js/58.25067fcf.js"><link rel="prefetch" href="/assets/js/59.3814ee9e.js"><link rel="prefetch" href="/assets/js/6.c8da7ca7.js"><link rel="prefetch" href="/assets/js/60.82621500.js"><link rel="prefetch" href="/assets/js/61.9880375b.js"><link rel="prefetch" href="/assets/js/62.3924c2b9.js"><link rel="prefetch" href="/assets/js/63.ff3650b8.js"><link rel="prefetch" href="/assets/js/64.0d46b236.js"><link rel="prefetch" href="/assets/js/65.f255f222.js"><link rel="prefetch" href="/assets/js/66.d797120d.js"><link rel="prefetch" href="/assets/js/67.aa46c62c.js"><link rel="prefetch" href="/assets/js/68.0dbf39cf.js"><link rel="prefetch" href="/assets/js/69.116b53df.js"><link rel="prefetch" href="/assets/js/7.e4c88d0e.js"><link rel="prefetch" href="/assets/js/70.a05986f2.js"><link rel="prefetch" href="/assets/js/71.562a4365.js"><link rel="prefetch" href="/assets/js/72.c10c6194.js"><link rel="prefetch" href="/assets/js/73.d85c71e5.js"><link rel="prefetch" href="/assets/js/74.73f72e00.js"><link rel="prefetch" href="/assets/js/75.62c76a28.js"><link rel="prefetch" href="/assets/js/76.8d0d9036.js"><link rel="prefetch" href="/assets/js/77.4ede6642.js"><link rel="prefetch" href="/assets/js/78.7d4d4152.js"><link rel="prefetch" href="/assets/js/79.720e767d.js"><link rel="prefetch" href="/assets/js/80.e9d86233.js"><link rel="prefetch" href="/assets/js/81.40ea5e9f.js"><link rel="prefetch" href="/assets/js/82.78074ee1.js"><link rel="prefetch" href="/assets/js/83.72133cbf.js"><link rel="prefetch" href="/assets/js/84.52c5ea65.js"><link rel="prefetch" href="/assets/js/85.afce36a7.js"><link rel="prefetch" href="/assets/js/86.bdc638dd.js"><link rel="prefetch" href="/assets/js/87.11e34480.js"><link rel="prefetch" href="/assets/js/88.5fd9f0ef.js"><link rel="prefetch" href="/assets/js/89.718ec134.js"><link rel="prefetch" href="/assets/js/90.11f956de.js"><link rel="prefetch" href="/assets/js/91.985d80f2.js"><link rel="prefetch" href="/assets/js/92.9c876df3.js"><link rel="prefetch" href="/assets/js/93.da92c068.js"><link rel="prefetch" href="/assets/js/94.cf4ee959.js"><link rel="prefetch" href="/assets/js/95.665f55e6.js"><link rel="prefetch" href="/assets/js/97.d7d8ba2d.js"><link rel="prefetch" href="/assets/js/98.70eab878.js"><link rel="prefetch" href="/assets/js/99.60ddb42d.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.5143d2e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b4a844ec.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">duangdong的react</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link router-link-active">
+  单元测试
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link router-link-active">
+  单元测试
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/jest/" aria-current="page" class="sidebar-link">单元测试</a></li><li><a href="/jest/Tdd-Bdd.html" class="sidebar-link">TDD 与BDD</a></li><li><a href="/jest/jest.html" class="sidebar-link">Jest</a></li><li><a href="/jest/jest自动化测试.html" class="active sidebar-link">自动化测试-jest学习与使用</a></li><li><a href="/jest/vue.html" class="sidebar-link">vue自动化测试</a></li><li><a href="/jest/彻底搞懂Jest单元测试框架.html" class="sidebar-link">彻底搞懂 Jest 单元测试框架</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="自动化测试-jest学习与使用"><a href="#自动化测试-jest学习与使用" class="header-anchor">#</a> 自动化测试-jest学习与使用</h2> <h3 id="自动化测试概念"><a href="#自动化测试概念" class="header-anchor">#</a> 自动化测试概念</h3> <blockquote><p>编写一段js 去运行生产中的js代码
+我们预期会出现的结果与实际出现的结果是否相等
+在上线前检测成问题，这样通过代码自动检测</p></blockquote> <h3 id="自动化测试的优势"><a href="#自动化测试的优势" class="header-anchor">#</a> 自动化测试的优势</h3> <ul><li>更好的代码组织，项目的可维护性增强</li> <li>更小的Bug出现概率，尤其是回归测试中的Bug</li> <li>修改工程质量差的项目，更加安全</li> <li>项目具备潜在的文档特性</li> <li>扩展前端知识面</li> <li>学习自动化测试更有利于读懂各种源码，测试用例其实就是源码的文档，他详细告诉了实现的功能</li></ul> <blockquote><p>测试：单元测试，和集成测试</p> <p>单元测试
+只关注，该单元的代码，对于外部的引入不关心，如果对性能有影响就会用mock
+就想上面的测试demo，只关心有没有执行过a,b方法并不关心执行的结果</p> <p>简单说就是对单一功能的测试</p> <p>集成测试
+对单元中所有都测试
+我不仅要执行，同时也关心执行后对该单元的影响</p> <p>对多种功能的集合测试</p></blockquote> <h3 id="jest初始化工程"><a href="#jest初始化工程" class="header-anchor">#</a> Jest初始化工程</h3> <h4 id="安装"><a href="#安装" class="header-anchor">#</a> 安装</h4> <div class="language-js extra-class"><pre class="language-js"><code>yarn add jest @babel<span class="token operator">/</span>preset<span class="token operator">-</span>env @babel<span class="token operator">/</span>core <span class="token operator">-</span><span class="token constant">D</span>
+</code></pre></div><h4 id="配置jest"><a href="#配置jest" class="header-anchor">#</a> 配置jest</h4> <blockquote><p>使用以下命令会在项目的根目录新增一个<code>jest.config.js</code>的文件</p> <p>运行jest的配置文件</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code>npx jest <span class="token operator">--</span>init
+</code></pre></div><h4 id="package-json"><a href="#package-json" class="header-anchor">#</a> package.json</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token string-property property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token string">&quot;jest --watch&quot;</span>，
+  <span class="token string-property property">&quot;test:cover&quot;</span><span class="token operator">:</span> <span class="token string">&quot;jest --coverage&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+  
+<span class="token comment">// 按 o 的时候报错</span>
+<span class="token comment">// 需要在git中使用，通过git来记录修改的文件所以要安装git并初始化git文件同时需要提交到本地</span>
+–watch is not supported without git<span class="token operator">/</span>hg<span class="token punctuation">,</span> please use <span class="token operator">--</span>watchAll
+</code></pre></div><h4 id="测试覆盖率"><a href="#测试覆盖率" class="header-anchor">#</a> 测试覆盖率</h4> <ul><li>在jest.config.js中 添加</li></ul> <div class="language-js extra-class"><pre class="language-js"><code> <span class="token literal-property property">coverageDirectory</span><span class="token operator">:</span> <span class="token string">&quot;coverage&quot;</span><span class="token punctuation">,</span><span class="token comment">//生成代码覆盖率报告会放在coverage目录下</span>
+</code></pre></div><ul><li>会在根目录生成coverage文件夹，点击打开lcov-report 下的 index.html 就能看见图形化界面</li></ul> <blockquote><p>jest 默认是commoJs的规范是在node环境下运行，如果想用es6的语法，需要安装babel转换
+在你运行jest时，jest内部封装了，会运行 jest（babel-jest)检测你是否安装了babel-core，就会去取.babelrc的配置,
+运行测试前结合babel先把代码进行一次转化</p></blockquote> <h4 id="配置-babelrc"><a href="#配置-babelrc" class="header-anchor">#</a> 配置.babelrc</h4> <blockquote><p>在根目录新建一个文件.babelrc</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;presets&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;@babel/preset-env&quot;</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="jest-相关命令"><a href="#jest-相关命令" class="header-anchor">#</a> jest 相关命令</h4> <blockquote><p>当没有改动或者错误的文件时，再次按对应提示单词就能退出当前模式</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 按 f 以仅运行失败的测试。</span>
+› Press f to run only failed tests<span class="token punctuation">.</span>
+<span class="token comment">// 按 o 仅运行与已更改文件相关的测试。</span>
+ › Press o to only run tests related to changed files<span class="token punctuation">.</span>
+<span class="token comment">//  按 p 以按文件名正则表达式模式进行筛选</span>
+<span class="token comment">//只想执行那些测试文件就可以用p模式 </span>
+ › Press p to filter by a filename regex pattern<span class="token punctuation">.</span>
+<span class="token comment">//  按 t 以按测试名称 regex 模式进行筛选</span>
+<span class="token comment">// 只想执行那些测试用例就可以用t模式 也叫feilter模式</span>
+ › Press t to filter by a test name regex pattern<span class="token punctuation">.</span>
+<span class="token comment">//  按q退出监视</span>
+ › Press q to quit watch mode<span class="token punctuation">.</span>
+<span class="token comment">//  按u确定更新快照（只在快照时显示）</span>
+ › Press u to update failing snapshots<span class="token punctuation">.</span>
+<span class="token comment">//  按i以交互方式更新失败的快照。</span>
+  Press i to update failing snapshots interactively<span class="token punctuation">.</span>
+<span class="token comment">// 按 s 跳过当前用例</span>
+   Press s to skip the current test<span class="token punctuation">.</span>
+<span class="token comment">//  按 Enter 可触发测试运行。</span>
+ › Press Enter to trigger a test run<span class="token punctuation">.</span>
+<span class="token comment">//  按w展示所有使用方式</span>
+ Watch Usage<span class="token operator">:</span> Press w to show more<span class="token punctuation">.</span>
+</code></pre></div><h3 id="jest使用"><a href="#jest使用" class="header-anchor">#</a> Jest使用</h3> <blockquote><p>以下是简单的测试用例但会涉及jest中常用的一些方法</p> <p>对于归类分组，你可以手动自己分文件，来归类，也可以用describe来分类</p></blockquote> <p>新建一个math.js 用来创建 加减方法</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span>y</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x<span class="token operator">+</span>y
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">minus</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span>y</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x<span class="token operator">-</span>y
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">multi</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span>y</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x<span class="token operator">*</span>y
+<span class="token punctuation">}</span>
+</code></pre></div><p>下面我们就来测试一下这个math.js</p> <blockquote><p>通过代码去执行方法，或模拟用户行为</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//引入需要测试的方法</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>add<span class="token punctuation">,</span>minus<span class="token punctuation">,</span>multi<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./math'</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试加法 3+3'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">//我期望3+3得到6</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试减法 3-3'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">minus</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试乘法 3*3'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">multi</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>test原理 简单用原生js来实现一下上述代码</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>add<span class="token punctuation">,</span>minus<span class="token punctuation">,</span>multi<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./math'</span>
+
+<span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> expected <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>result<span class="token operator">!==</span> expected<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">throw</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">3+7应该等于</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>expected<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,但是结果却是</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>result<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token function">minus</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> expected <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>result<span class="token operator">!==</span> expected<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">throw</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">3-3应该等于</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>expected<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,但是结果却是</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>result<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 实现一个</span>
+<span class="token comment">//  expect(add(3,3)).toBe(6)</span>
+<span class="token comment">//  expect(minus(6,3)).toBe(3)</span>
+<span class="token keyword">function</span> <span class="token function">expect</span> <span class="token punctuation">(</span><span class="token parameter">result</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">toBe</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">actual</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>result<span class="token operator">!==</span>actual<span class="token punctuation">)</span><span class="token punctuation">{</span>
+          <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">预期值和实际值不相等 预期</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>actual<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> 结果却是</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>result<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//  expect(add(3,3)).toBe(6)</span>
+
+<span class="token comment">// 进一步完善</span>
+<span class="token keyword">function</span> <span class="token function">test</span> <span class="token punctuation">(</span><span class="token parameter">desc<span class="token punctuation">,</span>fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">try</span><span class="token punctuation">{</span>
+    <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>desc<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">通过测试</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>desc<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">没有通过测试 </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>e<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试加法 3+3'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="jest匹配器"><a href="#jest匹配器" class="header-anchor">#</a> jest匹配器</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试10与10匹配'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">//toBe 匹配器</span>
+  <span class="token comment">//类似 object.is  ===</span>
+  <span class="token comment">// 只能匹配值，不能匹配对象等引用</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+
+<span class="token function">test</span> <span class="token punctuation">(</span><span class="token string">'测试对象内容相等'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">//toEqual 匹配器</span>
+  <span class="token comment">// 能匹配值，对象等引用</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">one</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toEqual</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">one</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token function">test</span> <span class="token punctuation">(</span><span class="token string">'测试内容为null'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">//toBeNull 匹配器</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeNull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token function">test</span> <span class="token punctuation">(</span><span class="token string">'测试内容为undefined'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">//toBeUndefined 匹配器</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeUndefined</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token function">test</span> <span class="token punctuation">(</span><span class="token string">'测试内容为defined'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">//toBeDefined 匹配器</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeDefined</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">&quot;测试内容为真&quot;</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">// toBeTruthy 匹配器</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeTruthy</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">&quot;测试内容为假&quot;</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">// toBeFalsy 匹配器</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeFalsy</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">&quot;不为真&quot;</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">// not 匹配器取反操作</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span>not<span class="token punctuation">.</span><span class="token function">toBeFalsy</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">// 数字相关匹配器</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'count大于9'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token number">10</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeGreaterThan</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'count小于9'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">// toBeLessThanOrEqual</span>
+  <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token number">8</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeLessThan</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'count大于等于9'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token number">9</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeGreaterThanOrEqual</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+
+<span class="token comment">// js运算错误示例</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">&quot;0.1+0.2&quot;</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">0.1</span>
+  <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">0.2</span>
+  <span class="token comment">// expect(a+b).toEqual(0.3)</span>
+  <span class="token comment">/* 
+   Expected: 0.3
+    Received: 0.30000000000000004
+*/</span>
+<span class="token comment">// 对于浮点型计算匹配需要使用</span>
+<span class="token comment">// toBeCloseTo</span>
+<span class="token function">expect</span><span class="token punctuation">(</span>a<span class="token operator">+</span>b<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeCloseTo</span><span class="token punctuation">(</span><span class="token number">0.3</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// String 相关匹配器</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">&quot;str中包含字符&quot;</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token comment">//toMatch 可以是正则表达式</span>
+    <span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">&quot;www.baidu.com&quot;</span>
+    <span class="token comment">// expect(str).toMatch('baidu')</span>
+     <span class="token function">expect</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toMatch</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">baid</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 数组相关匹配器</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">&quot;数组中包含某一项&quot;</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span>
+  <span class="token comment">// 可以set后在匹配</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toContain</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 异常</span>
+<span class="token keyword">const</span> <span class="token function-variable function">throwNewErrorFunc</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'this is a new error'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'toThorow'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>throwNewErrorFunc<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toThrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// 如果要填写内容意思就是匹配异常内容相当，也可以是正则表达式</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="jest中的钩子函数"><a href="#jest中的钩子函数" class="header-anchor">#</a> jest中的钩子函数</h4> <blockquote><p>以下列举常用也是重点使用的几个</p></blockquote> <ul><li>beforeAll 所有测试用例之前</li> <li>beforeEach 每个测试用例执行前都调用</li> <li>afterEach 每个测试用例执行之后</li> <li>afterAll 所有测试用执行之后</li></ul> <blockquote><p>每一个describe都是一个单独的作用域，可以作用于，下面的所有的describe，
+同级的互不影响，每个describe都可以拥有独自的钩子函数，执行顺序，先执行外部，再执行内部</p></blockquote> <p>新建一个文件counter.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//模拟用于测试的方法</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Counter</span><span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>number <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">addOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>number<span class="token operator">+=</span><span class="token number">1</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">addTwo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>number<span class="token operator">+=</span><span class="token number">2</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">minusOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>number<span class="token operator">-=</span><span class="token number">1</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">minusTwo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>number<span class="token operator">-=</span><span class="token number">2</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>测试该文件 新建 counter.test.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Counter <span class="token keyword">from</span> <span class="token string">&quot;./counter&quot;</span>
+
+<span class="token comment">// 相同的归类分组</span>
+  <span class="token comment">// 2种方式，一种分文件，一种是用describe分组</span>
+<span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">'测试counter的相关代码'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span> 
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'测试counter的相关代码'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> counter  <span class="token operator">=</span> <span class="token keyword">null</span>
+<span class="token function">beforeAll</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">// 所有测试用例之前</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'beforeAll'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">// 每个测试用例执行前都调用</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'beforeEach'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  counter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Counter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">afterEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">// 每个测试用例执行之后</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'afterEach'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">afterAll</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token comment">// 所有测试用例之后</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'AfterAll'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+
+    <span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">'测试增加的代码'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+      <span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'beforeEach to add'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token function">afterEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'afterEach to add'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token function">afterAll</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'afterAll to add'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token function">beforeAll</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'beforeAll to add'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'测试增加的代码'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试Counter中的addOne方法'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'测试Counter中的addOne方法'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        counter<span class="token punctuation">.</span><span class="token function">addOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">expect</span><span class="token punctuation">(</span>counter<span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试Counter中的addTwo方法'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'测试Counter中的addTwo方法'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        counter<span class="token punctuation">.</span><span class="token function">addTwo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">expect</span><span class="token punctuation">(</span>counter<span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">'测试减少的代码'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'测试减少的代码'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试Counter中的minusOne方法'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'测试Counter中的minusOne方法'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        counter<span class="token punctuation">.</span><span class="token function">minusOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">expect</span><span class="token punctuation">(</span>counter<span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      
+        <span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试Counter中的minusTwo方法'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'测试Counter中的minusTwo方法'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          counter<span class="token punctuation">.</span><span class="token function">minusTwo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token function">expect</span><span class="token punctuation">(</span>counter<span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token comment">// 如果只想执行某一个用例，可以用test.only来修饰 only可以同时存在多个</span>
+<span class="token comment">/* 
+// 每一个describe都是一个单独的作用域，可以作用于，下面的所有的describe，
+  同级的互不影响，每个describe都可以拥有独自的钩子函数，执行顺序，先执行外部，再执行内部
+
+
+*/</span>
+<span class="token comment">/* 
+执行顺序如下：
+  console.log counter.test.js:7
+    测试counter的相关代码
+
+  console.log counter.test.js:44
+    测试增加的代码
+
+  console.log counter.test.js:58
+    测试减少的代码
+
+  console.log counter.test.js:12
+    beforeAll
+
+  console.log counter.test.js:42
+    beforeAll to add
+
+  console.log counter.test.js:18
+    beforeEach
+
+  console.log counter.test.js:33
+    beforeEach to add
+
+  console.log counter.test.js:46
+    测试Counter中的addOne方法
+
+  console.log counter.test.js:36
+    afterEach to add
+
+  console.log counter.test.js:23
+    afterEach
+
+  console.log counter.test.js:39
+    afterAll to add
+
+  console.log counter.test.js:18
+    beforeEach
+
+  console.log counter.test.js:60
+    测试Counter中的minusOne方法
+
+  console.log counter.test.js:23
+    afterEach
+
+  console.log counter.test.js:27
+    AfterAll
+*/</span>
+</code></pre></div><h4 id="jest测试异步代码"><a href="#jest测试异步代码" class="header-anchor">#</a> jest测试异步代码</h4> <blockquote><p>安装 axios</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code>yarn add axios <span class="token operator">-</span><span class="token constant">D</span>
+</code></pre></div><p>新建文件 fetchData用于模拟异步代码</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
+<span class="token comment">//该接口返回值</span>
+<span class="token comment">//{</span>
+ <span class="token comment">// &quot;success&quot;: true</span>
+<span class="token comment">//}</span>
+<span class="token comment">//回调类型的异步函数</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">fetchDataCbk</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/api/demo.json'</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">fn</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>data<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//无回调类型的异步函数</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">fetchData</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/react/api/demo.json'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>测试文件fetchData.test.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>fetchData<span class="token punctuation">,</span>fetchDataCbk<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./fetchData&quot;</span>
+<span class="token comment">// 回调类型的异步函数测试</span>
+<span class="token comment">// 只有执行到done执行才结束</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'用done来测试返回结果为{success:true}'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token parameter">done</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token function">fetchDataCbk</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token function">expect</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toEqual</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">success</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 无回调类型的异步函数测试</span>
+<span class="token comment">//多种实现方法</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试返回结果为{success:true}'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toEqual</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">success</span><span class="token operator">:</span><span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试返回结果为{success:true}'</span><span class="token punctuation">,</span><span class="token keyword">async</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+ <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toEqual</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">success</span><span class="token operator">:</span><span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试返回结果为{success:true}'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>resolves<span class="token punctuation">.</span><span class="token function">toMatchObject</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">success</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试返回结果为{success:true}'</span><span class="token punctuation">,</span><span class="token keyword">async</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">await</span> <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>resolves<span class="token punctuation">.</span><span class="token function">toMatchObject</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">success</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+ <span class="token comment">//测试返回404</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试返回结果为 404'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  expect<span class="token punctuation">.</span><span class="token function">assertions</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//测试用例必须执行一次</span>
+  <span class="token keyword">return</span> <span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token function">expect</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'404'</span><span class="token punctuation">)</span><span class="token operator">!==</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试返回结果为 404'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span>  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>rejects<span class="token punctuation">.</span><span class="token function">toThrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="jest-中的mock"><a href="#jest-中的mock" class="header-anchor">#</a> jest 中的mock</h4> <blockquote><p>当我们测试请求时，我们并不需要测试接口返回的数据，接口测试是属于后端的测试了，我们只关心，代码是否正常执行
+而且如果都去请求，那么测试效率会很慢，这个时候我们就需要用mock来模拟ajax请求，不去请求真实的ajax</p></blockquote> <p>新建文件 demo.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Axios <span class="token keyword">from</span> <span class="token string">&quot;axios&quot;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">runCallback</span>  <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">callBack</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">callBack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">createObject</span>  <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">callBack</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">new</span> <span class="token class-name">callBack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">getData</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/api'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>测试 demo.test.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>runCallback<span class="token punctuation">,</span>createObject<span class="token punctuation">,</span>getData<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./demo'</span>
+<span class="token keyword">import</span> Axios <span class="token keyword">from</span> <span class="token string">&quot;axios&quot;</span>
+
+jest<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'axios'</span><span class="token punctuation">)</span> <span class="token comment">//模拟axios</span>
+<span class="token comment">//回调的异步函数</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试runCallback'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+ 
+  <span class="token comment">// 可以自由定义返回值</span>
+  <span class="token keyword">const</span> func <span class="token operator">=</span> jest<span class="token punctuation">.</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'456'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token comment">// 上面等同提出来下面</span>
+  <span class="token comment">// func.mockImplementation(()=&gt;{</span>
+  <span class="token comment">//   return '456'</span>
+  <span class="token comment">// })</span>
+
+  <span class="token comment">// 如果只想返回this</span>
+  <span class="token comment">// func.mockReturnThis()</span>
+
+  <span class="token comment">// func.mockReturnValueOnce('一次返回')</span>
+  <span class="token comment">// func.mockReturnValue('456') 定义返回值</span>
+  	<span class="token function">runCallback</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span>
+ <span class="token comment">// 通过jest.fn 创建的mock函数，可以用toBeCallEd捕获这个函数是否被调用了</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeCalled</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// expect(func).toBeCalledWith('value') 每一次调用传入的都是value</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>func<span class="token punctuation">.</span>mock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">/*打印的mock：
+   {
+      calls: [ [] ], //包含调用时，传递的参数，可以通过判断calls的length来判断调用了几次
+      instances: [ undefined ],指func 运行时，this的指向
+      invocationCallOrder: [ 1 ],调用的顺序
+      results: [ { type: 'return', value: '456' } ] 执行调用的返回值
+    }
+  */</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试createObject'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> fn <span class="token operator">=</span> jest<span class="token punctuation">.</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">createObject</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fn<span class="token punctuation">.</span>mock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// 模拟返回，不会去请求真实的数据</span>
+  <span class="token comment">// mockResolvedValueOnce</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试getData'</span><span class="token punctuation">,</span><span class="token keyword">async</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  axios<span class="token punctuation">.</span>get<span class="token punctuation">.</span><span class="token function">mockResolvedValue</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">data</span><span class="token operator">:</span><span class="token string">'data'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">await</span> <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token function">expect</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toEqual</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">data</span><span class="token operator">:</span><span class="token string">'data'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>我们除开上面的模拟axios的方式，我们还可以通过模拟异步函数，通过使用模拟的异步函数来达到不请求axios的效果</p> <p>被测试文件 demo.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Axios <span class="token keyword">from</span> <span class="token string">&quot;axios&quot;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">fetchData</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/api'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">getNumber</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token number">123</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在同级创建一个<code>_mocks_</code>文件夹</p> <p>同样创建一个demo.js来模拟原demo.js 的异步请求</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">fetchData</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolved<span class="token punctuation">,</span>reject</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token function">resolved</span><span class="token punctuation">(</span><span class="token string">&quot;(function(){return '123'})()&quot;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>测试文件 demo.test.js</p> <div class="language-js extra-class"><pre class="language-js"><code>jest<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'./demo.js'</span><span class="token punctuation">)</span> 
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span>fetchD<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./demo'</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span>getData<span class="token punctuation">}</span> <span class="token operator">=</span> jest<span class="token punctuation">.</span><span class="token function">requireActual</span><span class="token punctuation">(</span><span class="token string">'./demo.js'</span><span class="token punctuation">)</span> <span class="token comment">//引入真正的demo</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试异步fetchData'</span><span class="token punctuation">,</span><span class="token keyword">async</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">fetchD</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">eval</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toEqual</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试同步getData'</span><span class="token punctuation">,</span><span class="token keyword">async</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">//模拟后会去查找__mocks__下的demo.js,而非真实的的demo.js</span>
+<span class="token comment">// 或者直接将config.js中的automock 改成true 自动开启模拟</span>
+<span class="token comment">// unmok  不模拟</span>
+<span class="token comment">// 当我们开启模拟时，如果想让模拟文件中异步需要模拟，而同步不需要模拟就需要下面这样引入同步方法</span>
+</code></pre></div><h4 id="快照-snapshot"><a href="#快照-snapshot" class="header-anchor">#</a> 快照 snapshot</h4> <blockquote><p>给代码生成一个副本，当代码有所变动，就去与副本中的代码对比，判断是否需要本次的修改，什么时候使用快照呢，当你的代码基本完善，无需修改时，就可以生成一个快照，以后出现代码修改，就可以通过快照的检测，知道那个文件发生了改动</p></blockquote> <p>测试文件 demo.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">generateConfig</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">sever</span><span class="token operator">:</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">port</span><span class="token operator">:</span><span class="token number">8080</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">proxy</span><span class="token operator">:</span><span class="token number">8081</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">generateAnotherConfig</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">sever</span><span class="token operator">:</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">port</span><span class="token operator">:</span><span class="token number">8080</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">proxy</span><span class="token operator">:</span><span class="token number">8082</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">generateTimeConfig</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">sever</span><span class="token operator">:</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">port</span><span class="token operator">:</span><span class="token number">8080</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">proxy</span><span class="token operator">:</span><span class="token number">8084</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">time</span><span class="token operator">:</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>测试文件 demo.test.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  generateConfig<span class="token punctuation">,</span>
+  generateAnotherConfig<span class="token punctuation">,</span>
+  generateTimeConfig
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./demo&quot;</span><span class="token punctuation">;</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">&quot;测试generateConfig 函数&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">generateConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toMatchSnapshot</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//假设，测试一个配置文件，如果你修改了配置文件，如果使用的是toEqual（），</span>
+<span class="token comment">/*那么每次修改配置，都需要同步修改test，这样很麻烦，使用toMatchSnapshot()
+(快照)， 会在根目录生成一个snapshots文件保存运行时，的测试的配置项代码，就
+好像，拍了一个照片，之后就会和对比新快照，和旧快照是否一致，判断测试用例是否
+通过， 
+假设这时修改了配置
+ 1 snapshot failed from 1 test suite. Inspect your code changes or press `u` to update them.
+ 你只需打开w操作指令，按u表示，更新快照，就可以再次通过，
+ 类似于提示你，是否要确实这次修改
+ 
+ 当出现多个快照时，如果不想所有快照都更新，想一个一个确认更新，这个时候
+ w 中会多出一个 i 模式，让你进入到一个一个确认下，这时再按u就表示确认更新快照
+ 如果感觉是错的，或者不确定，可以按s跳过该快照用例
+ */</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">&quot;测试generateAnotherConfig 函数&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">generateAnotherConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toMatchSnapshot</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 当配置项中存在new Date() 这种动态变化的参数，就需要配置去忽略它，不然无法通过</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">&quot;测试generateTimeConfig 函数&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">generateTimeConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toMatchSnapshot</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">time</span><span class="token operator">:</span> expect<span class="token punctuation">.</span><span class="token function">any</span><span class="token punctuation">(</span>Date<span class="token punctuation">)</span> <span class="token comment">//任意date类型都行</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//生成行内快照，下面的object就是运行后生成的快照</span>
+<span class="token comment">// 前置条件需要安装包cnpm i prettier@1.18.2 -D</span>
+<span class="token comment">// 行内快照 用toMatchInlineSnapshot不会单独生成一个文件，而是把快照直接</span>
+<span class="token comment">// 生成到函数内，</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">&quot;测试generateAnotherConfig 函数&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">generateAnotherConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toMatchInlineSnapshot</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    Object {
+      &quot;port&quot;: 8080,
+      &quot;proxy&quot;: 8082,
+      &quot;sever&quot;: &quot;localhost&quot;,
+    }
+  </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h4 id="jest中的timer"><a href="#jest中的timer" class="header-anchor">#</a> jest中的timer</h4> <blockquote><p>当我们测试延时器等等时，不可能去等待时间再执行，这样测试效率会极低，所以jest提供了如下方式来快捷的测试timer</p></blockquote> <p>被测试文件 timer.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">timer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  
+ <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+      <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token number">3000</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>测试文件 timer.test.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>timer<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./timer'</span>
+
+<span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  
+    jest<span class="token punctuation">.</span><span class="token function">useFakeTimers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//每个测试用例执行前，初始一下防止影响</span>
+  
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试定时器'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span>  fn <span class="token operator">=</span> jest<span class="token punctuation">.</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">timer</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// jest.runAllTimers(); //让定时器立即执行，与上面的use配对使用</span>
+  <span class="token comment">// jest.runOnlyPendingTimers(); //只执行队列中存在的timer</span>
+  jest<span class="token punctuation">.</span><span class="token function">advanceTimersByTime</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token comment">//快进定时器</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toHaveBeenCalledTimes</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment">//fn只调用一次</span>
+  jest<span class="token punctuation">.</span><span class="token function">advanceTimersByTime</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span> <span class="token comment">//快进是在上一个的基础上，存在多个测试用例时，可能会印象下面的，所以我们需要在运行之前重置一下</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toHaveBeenCalledTimes</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> 
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="jest中类的mock"><a href="#jest中类的mock" class="header-anchor">#</a> jest中类的mock</h4> <p>新建模拟类的测试文件</p> <p>util.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Util</span><span class="token punctuation">{</span>
+  <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>新建文件 demo.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Util <span class="token keyword">from</span> <span class="token string">'./util'</span>
+<span class="token keyword">const</span> <span class="token function-variable function">demoFunction</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span>b</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> util <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Util</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  util<span class="token punctuation">.</span><span class="token function">a</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+  util<span class="token punctuation">.</span><span class="token function">b</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> demoFunction
+</code></pre></div><p>测试文件 demo.test.js</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> demoFunction <span class="token keyword">from</span> <span class="token string">'./demo'</span>
+<span class="token keyword">import</span> Util <span class="token keyword">from</span> <span class="token string">'./util'</span>
+
+jest<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'./util'</span><span class="token punctuation">)</span>
+<span class="token comment">//jest.mock 发现uitl是一个类，会自动把类的构造函数和方法变成jest.fn()</span>
+<span class="token comment">/* 
+  const Util= jest.fn()
+  until.prototype.a = jest.fn()
+  until.prototype.b = jest.fn()
+  如果不满意默认处理，可以自定义在文件__mock__下util.js自行模拟
+  如果不是很复杂可以直接传递第二个参数,就会执行第二个参数的代码
+  jest.mock('./util'，()=&gt;{
+     const Util= jest.fn()
+  Util.prototype..a = jest.fn()
+  Util.prototype..b = jest.fn() 
+  return Util
+  })
+*/</span>
+
+<span class="token comment">// 这里测试的关注点是是否有执行，如果类里a b 方法很复杂就会很耗性能，而他们执行的结果并非所关心的，所以用mock模拟</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'测试 demoFunction'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token function">demoFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>Util<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toHaveBeenCalled</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//是否执行过</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>Util<span class="token punctuation">.</span>mock<span class="token punctuation">.</span>instances<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toHaveBeenCalled</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>Util<span class="token punctuation">.</span>mock<span class="token punctuation">.</span>instances<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toHaveBeenCalled</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">5/8/2024, 3:01:19 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/jest/jest.html" class="prev">
+        Jest
+      </a></span> <span class="next"><a href="/jest/vue.html">
+        vue自动化测试
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.27287fd6.js" defer></script><script src="/assets/js/2.57da4f88.js" defer></script><script src="/assets/js/1.a76cc220.js" defer></script><script src="/assets/js/96.2e80356d.js" defer></script>
+  </body>
+</html>

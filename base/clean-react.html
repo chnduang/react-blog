@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>如何编写Cleaner React代码 | duangdong的react</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?0088ce24040b03f2947322ab31d23414";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+    <script>
+  var _hmt = _hmt || [];
+  _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
+    shouldTrackUrlChange: function (newPath, oldPath) {
+      newPath = newPath.split('#')[0];
+      oldPath = oldPath.split('#')[0];
+      return newPath != oldPath;
+    }}
+  ]);
+  </script>
+    <meta name="description" content="react相关知识归纳总结">
+    <meta name="keywords" content="react,react进阶,react性能优化,react-hooks,react源码">
+    
+    <link rel="preload" href="/assets/css/0.styles.b4a844ec.css" as="style"><link rel="preload" href="/assets/js/app.27287fd6.js" as="script"><link rel="preload" href="/assets/js/2.57da4f88.js" as="script"><link rel="preload" href="/assets/js/1.a76cc220.js" as="script"><link rel="preload" href="/assets/js/55.8278650d.js" as="script"><link rel="prefetch" href="/assets/js/10.50f73657.js"><link rel="prefetch" href="/assets/js/100.27126660.js"><link rel="prefetch" href="/assets/js/101.09cf74ec.js"><link rel="prefetch" href="/assets/js/102.8cd6b4eb.js"><link rel="prefetch" href="/assets/js/103.c4f25168.js"><link rel="prefetch" href="/assets/js/104.4f1b4569.js"><link rel="prefetch" href="/assets/js/105.bc4fc023.js"><link rel="prefetch" href="/assets/js/106.b9d5be0c.js"><link rel="prefetch" href="/assets/js/107.f9a44dd7.js"><link rel="prefetch" href="/assets/js/108.0424a7b7.js"><link rel="prefetch" href="/assets/js/109.086a89ae.js"><link rel="prefetch" href="/assets/js/11.0390ceee.js"><link rel="prefetch" href="/assets/js/110.1e4c2c77.js"><link rel="prefetch" href="/assets/js/111.16e80560.js"><link rel="prefetch" href="/assets/js/112.441e61a6.js"><link rel="prefetch" href="/assets/js/113.41a44465.js"><link rel="prefetch" href="/assets/js/114.9efb5469.js"><link rel="prefetch" href="/assets/js/115.d095bf75.js"><link rel="prefetch" href="/assets/js/116.b368a7c1.js"><link rel="prefetch" href="/assets/js/117.3a319a71.js"><link rel="prefetch" href="/assets/js/118.7ea17677.js"><link rel="prefetch" href="/assets/js/119.df1f998f.js"><link rel="prefetch" href="/assets/js/12.f88bec36.js"><link rel="prefetch" href="/assets/js/120.935f9aea.js"><link rel="prefetch" href="/assets/js/121.c09de772.js"><link rel="prefetch" href="/assets/js/122.32443376.js"><link rel="prefetch" href="/assets/js/123.d0f8ea63.js"><link rel="prefetch" href="/assets/js/124.fdbcd92d.js"><link rel="prefetch" href="/assets/js/125.0de5eb94.js"><link rel="prefetch" href="/assets/js/126.fb5e629b.js"><link rel="prefetch" href="/assets/js/127.866d8d58.js"><link rel="prefetch" href="/assets/js/128.1aad073e.js"><link rel="prefetch" href="/assets/js/129.328f52fd.js"><link rel="prefetch" href="/assets/js/13.963ad03b.js"><link rel="prefetch" href="/assets/js/130.ac9676d9.js"><link rel="prefetch" href="/assets/js/131.9852c015.js"><link rel="prefetch" href="/assets/js/132.806bcfe3.js"><link rel="prefetch" href="/assets/js/133.073ecd1e.js"><link rel="prefetch" href="/assets/js/134.e2683d73.js"><link rel="prefetch" href="/assets/js/135.d16cdb0b.js"><link rel="prefetch" href="/assets/js/136.c3b47da6.js"><link rel="prefetch" href="/assets/js/137.f7fec328.js"><link rel="prefetch" href="/assets/js/138.ec6ab500.js"><link rel="prefetch" href="/assets/js/139.18b97522.js"><link rel="prefetch" href="/assets/js/14.512f15b9.js"><link rel="prefetch" href="/assets/js/140.c7df1047.js"><link rel="prefetch" href="/assets/js/141.484c6ca5.js"><link rel="prefetch" href="/assets/js/142.8eff7a66.js"><link rel="prefetch" href="/assets/js/143.60569694.js"><link rel="prefetch" href="/assets/js/144.01883b7c.js"><link rel="prefetch" href="/assets/js/145.a9241012.js"><link rel="prefetch" href="/assets/js/146.4b6f364c.js"><link rel="prefetch" href="/assets/js/147.9ed57153.js"><link rel="prefetch" href="/assets/js/148.e18d806a.js"><link rel="prefetch" href="/assets/js/149.e24c9de5.js"><link rel="prefetch" href="/assets/js/15.a674496c.js"><link rel="prefetch" href="/assets/js/16.ed7e507f.js"><link rel="prefetch" href="/assets/js/17.de667ca5.js"><link rel="prefetch" href="/assets/js/18.b44e84af.js"><link rel="prefetch" href="/assets/js/19.5b5ad6a1.js"><link rel="prefetch" href="/assets/js/20.6800493a.js"><link rel="prefetch" href="/assets/js/21.6589052c.js"><link rel="prefetch" href="/assets/js/22.f648d829.js"><link rel="prefetch" href="/assets/js/23.f1afbc9c.js"><link rel="prefetch" href="/assets/js/24.7f3fc444.js"><link rel="prefetch" href="/assets/js/25.5a945cd4.js"><link rel="prefetch" href="/assets/js/26.7ef56339.js"><link rel="prefetch" href="/assets/js/27.74941107.js"><link rel="prefetch" href="/assets/js/28.20a36928.js"><link rel="prefetch" href="/assets/js/29.7cda6a44.js"><link rel="prefetch" href="/assets/js/3.13e892f5.js"><link rel="prefetch" href="/assets/js/30.97f5cf7e.js"><link rel="prefetch" href="/assets/js/31.eeee5c14.js"><link rel="prefetch" href="/assets/js/32.a2125816.js"><link rel="prefetch" href="/assets/js/33.b3fdf3bc.js"><link rel="prefetch" href="/assets/js/34.908ac5fb.js"><link rel="prefetch" href="/assets/js/35.9459a7c7.js"><link rel="prefetch" href="/assets/js/36.dc8e2582.js"><link rel="prefetch" href="/assets/js/37.27c69606.js"><link rel="prefetch" href="/assets/js/38.10b82911.js"><link rel="prefetch" href="/assets/js/39.fdc5aecb.js"><link rel="prefetch" href="/assets/js/4.5bdb9365.js"><link rel="prefetch" href="/assets/js/40.901c96dc.js"><link rel="prefetch" href="/assets/js/41.4cbb9c4b.js"><link rel="prefetch" href="/assets/js/42.da47ce58.js"><link rel="prefetch" href="/assets/js/43.a7669073.js"><link rel="prefetch" href="/assets/js/44.08cc8605.js"><link rel="prefetch" href="/assets/js/45.5461c987.js"><link rel="prefetch" href="/assets/js/46.4c5ed7f9.js"><link rel="prefetch" href="/assets/js/47.450abe13.js"><link rel="prefetch" href="/assets/js/48.d0a778f3.js"><link rel="prefetch" href="/assets/js/49.611d9085.js"><link rel="prefetch" href="/assets/js/5.7c68fdb5.js"><link rel="prefetch" href="/assets/js/50.2563fd92.js"><link rel="prefetch" href="/assets/js/51.ff64258c.js"><link rel="prefetch" href="/assets/js/52.d47acb9b.js"><link rel="prefetch" href="/assets/js/53.09fd35d1.js"><link rel="prefetch" href="/assets/js/54.5e523072.js"><link rel="prefetch" href="/assets/js/56.425f7e44.js"><link rel="prefetch" href="/assets/js/57.44699db6.js"><link rel="prefetch" href="/assets/js/58.25067fcf.js"><link rel="prefetch" href="/assets/js/59.3814ee9e.js"><link rel="prefetch" href="/assets/js/6.c8da7ca7.js"><link rel="prefetch" href="/assets/js/60.82621500.js"><link rel="prefetch" href="/assets/js/61.9880375b.js"><link rel="prefetch" href="/assets/js/62.3924c2b9.js"><link rel="prefetch" href="/assets/js/63.ff3650b8.js"><link rel="prefetch" href="/assets/js/64.0d46b236.js"><link rel="prefetch" href="/assets/js/65.f255f222.js"><link rel="prefetch" href="/assets/js/66.d797120d.js"><link rel="prefetch" href="/assets/js/67.aa46c62c.js"><link rel="prefetch" href="/assets/js/68.0dbf39cf.js"><link rel="prefetch" href="/assets/js/69.116b53df.js"><link rel="prefetch" href="/assets/js/7.e4c88d0e.js"><link rel="prefetch" href="/assets/js/70.a05986f2.js"><link rel="prefetch" href="/assets/js/71.562a4365.js"><link rel="prefetch" href="/assets/js/72.c10c6194.js"><link rel="prefetch" href="/assets/js/73.d85c71e5.js"><link rel="prefetch" href="/assets/js/74.73f72e00.js"><link rel="prefetch" href="/assets/js/75.62c76a28.js"><link rel="prefetch" href="/assets/js/76.8d0d9036.js"><link rel="prefetch" href="/assets/js/77.4ede6642.js"><link rel="prefetch" href="/assets/js/78.7d4d4152.js"><link rel="prefetch" href="/assets/js/79.720e767d.js"><link rel="prefetch" href="/assets/js/80.e9d86233.js"><link rel="prefetch" href="/assets/js/81.40ea5e9f.js"><link rel="prefetch" href="/assets/js/82.78074ee1.js"><link rel="prefetch" href="/assets/js/83.72133cbf.js"><link rel="prefetch" href="/assets/js/84.52c5ea65.js"><link rel="prefetch" href="/assets/js/85.afce36a7.js"><link rel="prefetch" href="/assets/js/86.bdc638dd.js"><link rel="prefetch" href="/assets/js/87.11e34480.js"><link rel="prefetch" href="/assets/js/88.5fd9f0ef.js"><link rel="prefetch" href="/assets/js/89.718ec134.js"><link rel="prefetch" href="/assets/js/90.11f956de.js"><link rel="prefetch" href="/assets/js/91.985d80f2.js"><link rel="prefetch" href="/assets/js/92.9c876df3.js"><link rel="prefetch" href="/assets/js/93.da92c068.js"><link rel="prefetch" href="/assets/js/94.cf4ee959.js"><link rel="prefetch" href="/assets/js/95.665f55e6.js"><link rel="prefetch" href="/assets/js/96.2e80356d.js"><link rel="prefetch" href="/assets/js/97.d7d8ba2d.js"><link rel="prefetch" href="/assets/js/98.70eab878.js"><link rel="prefetch" href="/assets/js/99.60ddb42d.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.5143d2e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b4a844ec.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">duangdong的react</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link router-link-active">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/base/" aria-current="page" class="sidebar-link">性能优化</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>6-SSR</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>7-hooks基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Native</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/base/React 代码共享最佳实践方式.html" class="sidebar-link">React 代码共享最佳实践方式</a></li><li><a href="/base/React组件性能优化—function-component.html" class="sidebar-link">React 组件性能优化—function component</a></li><li><a href="/base/clean-react.html" aria-current="page" class="active sidebar-link">如何编写Cleaner React代码</a></li><li><a href="/base/life.html" class="sidebar-link">componentWillReceiveProps</a></li><li><a href="/base/propType.html" class="sidebar-link">propType</a></li><li><a href="/base/修改端口.html" class="sidebar-link">关于脚手架生成的运行端口配置</a></li><li><a href="/base/初学.html" class="sidebar-link">今日小结</a></li><li><a href="/base/如何使用React创建视频和动画.html" class="sidebar-link">如何使用React创建视频和动画</a></li><li><a href="/base/提高 React 代码质量.html" class="sidebar-link">6 个提高 React 代码质量的方法 - 让你的 React 代码更简洁</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="如何编写cleaner-react代码"><a href="#如何编写cleaner-react代码" class="header-anchor">#</a> 如何编写Cleaner React代码</h2> <blockquote><p><a href="https://mp.weixin.qq.com/s/F0_BLzXieiHPe6lBkerz_Q" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/F0_BLzXieiHPe6lBkerz_Q<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h2 id="正文"><a href="#正文" class="header-anchor">#</a> 正文</h2> <p>作为React开发者，我们都希望写出更干净的代码，更简单，更容易阅读。</p> <p>在本指南中，我把一些编写更干净的React代码的七个顶级方法放在一起，使得构建React项目和审查你的代码更容易。</p> <p>总的来说，学习如何编写更干净的React代码将使你成为一个更有价值的、整体上更快乐的React开发者，所以让我们马上开始吧!</p> <p>主要涉及以下几个点：</p> <ul><li>合理使用jsx。</li> <li>把不相关的代码移到一个独立的组件中。</li> <li>为每个组件创建单独的文件。</li> <li>将共享功能移入React hooks。</li> <li>尽可能多地从你的JSX中删除JavaScript。</li> <li>格式化内联样式，减少臃肿的代码。</li> <li>合理使用React context。</li></ul> <h2 id="合理使用jsx"><a href="#合理使用jsx" class="header-anchor">#</a> 合理使用JSX</h2> <p>你如何向一个给定的prop传递一个true的值？</p> <p>在下面的例子中，我们使用showTitle在Navbar组件中显示我们应用程序的标题。</p> <div class="language- extra-class"><pre class="language-text"><code>// src/App.js
+
+export default function App() {
+  return (
+    &lt;main&gt;
+      &lt;Navbar showTitle={true} /&gt;
+    &lt;/main&gt;
+  );
+}
+
+function Navbar({ showTitle }) {
+  return (
+    &lt;div&gt;
+      {showTitle &amp;&amp; &lt;h1&gt;My Special App&lt;/h1&gt;}
+    &lt;/div&gt;
+  )
+}
+</code></pre></div><p>我们是否需要明确地将showTitle设置为布尔值true？我们不需要!</p> <p>一个快速的速记方法是，在一个组件上提供的任何prop的默认值都是true。</p> <p>因此，如果我们在Navbar上添加showTitle，我们的标题元素就会显示出来。</p> <div class="language- extra-class"><pre class="language-text"><code>// src/App.js
+
+export default function App() {
+  return (
+    &lt;main&gt;
+      &lt;Navbar showTitle /&gt;
+    &lt;/main&gt;
+  );
+}
+
+function Navbar({ showTitle }) {
+  return (
+    &lt;div&gt;
+      {showTitle &amp;&amp; &lt;h1&gt;My Special App&lt;/h1&gt;} // title shown!
+    &lt;/div&gt;
+  )
+}
+</code></pre></div><p>另一个要记住的有用的速记法涉及到传递字符串prop。</p> <p>当你传递一个字符串的值时，你不需要用大括号把它包起来。</p> <p>如果我们要设置导航条的标题，使用title的prop时，我们可以把它的值放在双引号中。</p> <div class="language- extra-class"><pre class="language-text"><code>// src/App.js
+
+export default function App() {
+  return (
+    &lt;main&gt;
+      &lt;Navbar title=&quot;My Special App&quot; /&gt;
+    &lt;/main&gt;
+  );
+}
+
+function Navbar({ title }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;{title}&lt;/h1&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre></div><hr> <h2 id="把不相关的代码移到一个独立的组件中"><a href="#把不相关的代码移到一个独立的组件中" class="header-anchor">#</a> 把不相关的代码移到一个独立的组件中</h2> <p>可以说，编写更干净的React代码的最简单和最重要的方法是善于将我们的代码抽象成独立的React组件。</p> <p>让我们看一下下面的例子：</p> <div class="language- extra-class"><pre class="language-text"><code>// src/App.js
+
+export default function App() {
+  const posts = [
+    {
+      id: 1,
+      title: &quot;How to Build YouTube with React&quot;
+    },
+    {
+      id: 2,
+      title: &quot;How to Write Your First React Hook&quot;
+    }
+  ];
+
+  return (
+    &lt;main&gt;
+      &lt;Navbar title=&quot;My Special App&quot; /&gt;
+      &lt;ul&gt;
+        {posts.map(post =&gt; (
+          &lt;li key={post.id}&gt;
+            {post.title}
+          &lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/main&gt;
+  );
+}
+
+function Navbar({ title }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;{title}&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div><p>我们的应用程序正在显示一个导航条组件。我们正在用.map()遍历一个帖子数组，并在页面上显示其标题。</p> <p>我们思考一个问题，我们怎样才能使它更干净呢？</p> <p>我们为什么不把我们正在循环的代码，抽象化，并在一个单独的组件中显示它们，我们称之为<strong>FeaturePosts</strong>。</p> <p>让我们看看改进后的结果：</p> <div class="language- extra-class"><pre class="language-text"><code>// src/App.js
+
+export default function App() {
+ return (
+    &lt;main&gt;
+      &lt;Navbar title=&quot;My Special App&quot; /&gt;
+      &lt;FeaturedPosts /&gt;
+    &lt;/main&gt;
+  );
+}
+
+function Navbar({ title }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;{title}&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+
+function FeaturedPosts() {
+  const posts = [
+    {
+      id: 1,
+      title: &quot;How to Build YouTube with React&quot;
+    },
+    {
+      id: 2,
+      title: &quot;How to Write Your First React Hook&quot;
+    }
+  ];
+
+  return (
+    &lt;ul&gt;
+      {posts.map((post) =&gt; (
+        &lt;li key={post.id}&gt;{post.title}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+</code></pre></div><p>正如你所看到的，我们现在可以只看我们的App组件。</p> <p>通过阅读其中的组件名称，即Navbar和FeaturePosts，我们可以准确地看到我们的应用程序所显示的内容。</p> <h2 id="为每个组件创建单独的文件"><a href="#为每个组件创建单独的文件" class="header-anchor">#</a> 为每个组件创建单独的文件</h2> <p>从我们之前的例子来看，我们把所有的组件都放在一个文件里，即app.js文件。</p> <p>类似于我们将代码抽象成独立的组件以使我们的应用程序更具可读性，为了使我们的应用程序文件更具可读性，我们可以将我们拥有的每个组件放在一个单独的文件中。</p> <p>这又一次帮助我们在应用程序中分离关注点。这意味着每个文件只负责一个组件，如果我们想在我们的应用程序中重复使用一个组件，就不会混淆它的来源了。</p> <div class="language- extra-class"><pre class="language-text"><code>// src/App.js
+import Navbar from './components/Navbar.js';
+import FeaturedPosts from './components/FeaturedPosts.js';
+
+export default function App() {
+  return (
+    &lt;main&gt;
+      &lt;Navbar title=&quot;My Special App&quot; /&gt;
+      &lt;FeaturedPosts /&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre></div><p>我们来看看Navbar中的代码：</p> <div class="language- extra-class"><pre class="language-text"><code>// src/components/Navbar.js
+
+export default function Navbar({ title }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;{title}&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div><p>接着我们看看FeaturedPosts中代码：</p> <div class="language- extra-class"><pre class="language-text"><code>// src/components/FeaturedPosts.js
+
+export default function FeaturedPosts() {
+  const posts = [
+    {
+      id: 1,
+      title: &quot;How to Build YouTube with React&quot;
+    },
+    {
+      id: 2,
+      title: &quot;How to Write Your First React Hook&quot;
+    }
+  ];
+
+  return (
+    &lt;ul&gt;
+      {posts.map((post) =&gt; (
+        &lt;li key={post.id}&gt;{post.title}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+</code></pre></div><p>此外，通过将每个单独的组件包含在自己的文件中，我们可以避免一个文件变得过于臃肿。如果我们想把所有的组件都加入到app.js文件中，我们很容易看到我们的app.js文件变得非常大。</p> <hr> <h2 id="将共享功能移入react-hooks"><a href="#将共享功能移入react-hooks" class="header-anchor">#</a> 将共享功能移入React hooks</h2> <p>看看我们的FeaturePosts组件，假设我们不是显示静态的帖子数据，而是想从一个API中获取我们的帖子数据。</p> <p>我们可以用fetch API来做。你可以看到下面这个结果:</p> <div class="language- extra-class"><pre class="language-text"><code>// src/components/FeaturedPosts.js
+
+import React from 'react';
+
+export default function FeaturedPosts() {
+  const [posts, setPosts] = React.useState([]);  	
+    
+  React.useEffect(() =&gt; {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(res =&gt; res.json())
+      .then(data =&gt; setPosts(data));
+  }, []);
+
+  return (
+    &lt;ul&gt;
+      {posts.map((post) =&gt; (
+        &lt;li key={post.id}&gt;{post.title}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+</code></pre></div><p>然而，如果我们想在多个组件中执行这一数据请求，该怎么办？</p> <p>比方说，除了FeaturePosts组件外，我们还想创建一个具有相同数据的Post组件。我们将不得不复制我们用来获取数据的逻辑，并将其粘贴到该组件中。</p> <p>为了避免这样做，我们为什么不使用一个新的React钩子，我们可以称之为useFetchPosts:</p> <div class="language- extra-class"><pre class="language-text"><code>// src/hooks/useFetchPosts.js
+
+import React from 'react';
+
+export default function useFetchPosts() {
+  const [posts, setPosts] = React.useState([]);  	
+    
+  React.useEffect(() =&gt; {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(res =&gt; res.json())
+      .then(data =&gt; setPosts(data));
+  }, []);
+
+  return posts;
+}
+</code></pre></div><p>一旦我们在一个专门的 &quot;钩子 &quot;文件夹中创建了这个钩子，我们就可以在任何我们喜欢的组件中重复使用它，包括我们的FeaturePosts组件:</p> <div class="language- extra-class"><pre class="language-text"><code>// src/components/FeaturedPosts.js
+
+import useFetchPosts from '../hooks/useFetchPosts.js';
+
+export default function FeaturedPosts() {
+  const posts = useFetchPosts()
+
+  return (
+    &lt;ul&gt;
+      {posts.map((post) =&gt; (
+        &lt;li key={post.id}&gt;{post.title}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+</code></pre></div><hr> <h2 id="尽可能多地从你的jsx中删除javascript"><a href="#尽可能多地从你的jsx中删除javascript" class="header-anchor">#</a> 尽可能多地从你的JSX中删除JavaScript</h2> <p>另一个非常有用的，但经常被忽视的清理组件的方法是尽可能多地从我们的JSX中删除JavaScript。</p> <p>让我们看一下下面的例子:</p> <div class="language- extra-class"><pre class="language-text"><code>// src/components/FeaturedPosts.js
+
+import useFetchPosts from '../hooks/useFetchPosts.js';
+
+export default function FeaturedPosts() {
+  const posts = useFetchPosts()
+
+  return (
+    &lt;ul&gt;
+      {posts.map((post) =&gt; (
+        &lt;li onClick={event =&gt; {
+          console.log(event.target, 'clicked!');
+        }} key={post.id}&gt;{post.title}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+</code></pre></div><p>我们正试图处理一个帖子的点击事件。你可以看到，我们的JSX变得更加难以阅读。鉴于我们的函数是作为一个内联函数包含的，它掩盖了这个组件的目的，以及它的相关函数。</p> <p>我们能做什么来解决这个问题呢？我们可以把与onClick相连的内联函数提取出来，变成一个单独的处理程序，我们可以给它一个合适的名字，如handlePostClick。</p> <p>一旦我们这样做，我们的JSX就会再次变得可读。</p> <div class="language- extra-class"><pre class="language-text"><code>// src/components/FeaturedPosts.js
+
+import useFetchPosts from '../hooks/useFetchPosts.js';
+
+export default function FeaturedPosts() {
+  const posts = useFetchPosts()
+  
+  function handlePostClick(event) {
+    console.log(event.target, 'clicked!');   
+  }
+
+  return (
+    &lt;ul&gt;
+      {posts.map((post) =&gt; (
+        &lt;li onClick={handlePostClick} key={post.id}&gt;{post.title}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+</code></pre></div><hr> <h2 id="格式化内联样式-减少臃肿的代码"><a href="#格式化内联样式-减少臃肿的代码" class="header-anchor">#</a> 格式化内联样式，减少臃肿的代码</h2> <p>React开发者经常会在他们的JSX中写内联样式。</p> <p>但是，这使我们的代码更难阅读，更难写出额外的JSX。</p> <div class="language- extra-class"><pre class="language-text"><code>// src/App.js
+
+export default function App() {
+  return (
+    &lt;main style={{ textAlign: 'center' }}&gt;
+      &lt;Navbar title=&quot;My Special App&quot; /&gt;
+    &lt;/main&gt;
+  );
+}
+
+function Navbar({ title }) {
+  return (
+    &lt;div style={{ marginTop: '20px' }}&gt;
+      &lt;h1 style={{ fontWeight: 'bold' }}&gt;{title}&lt;/h1&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre></div><p>我们想把这种关注点分离的概念应用到我们的JSX样式中，把我们的内联样式移到一个CSS样式表中，我们可以把它导入我们喜欢的任何组件。</p> <p>另一种重写内联样式的方法是将它们组织成对象。你可以看到这种模式是什么样子的:</p> <div class="language- extra-class"><pre class="language-text"><code>// src/App.js
+
+export default function App() {
+  const styles = {
+    main: { textAlign: &quot;center&quot; }
+  };
+
+  return (
+    &lt;main style={styles.main}&gt;
+      &lt;Navbar title=&quot;My Special App&quot; /&gt;
+    &lt;/main&gt;
+  );
+}
+
+function Navbar({ title }) {
+  const styles = {
+    div: { marginTop: &quot;20px&quot; },
+    h1: { fontWeight: &quot;bold&quot; }
+  };
+
+  return (
+    &lt;div style={styles.div}&gt;
+      &lt;h1 style={styles.h1}&gt;{title}&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div><hr> <h2 id="合理使用react-context"><a href="#合理使用react-context" class="header-anchor">#</a> 合理使用React context</h2> <p>在你的React项目中，另一个必不可少的模式是使用React Context（特别是如果你有共同的属性，你想在你的组件中重复使用，而你发现自己写了很多重复的props）。</p> <p>例如，如果我们想在多个组件之间共享用户数据，而不是多个重复的props（一种叫做props drilling的模式），我们可以使用React库中的context功能。</p> <p>在我们的例子中，如果我们想在我们的Navbar和FeaturePosts组件中重复使用用户数据，我们所需要做的就是把我们的整个应用包裹在一个提供者组件中。</p> <p>接下来，我们可以在值prop上传递用户数据，并在useContext钩子的帮助下，在我们的各个组件中消费该上下文。</p> <div class="language- extra-class"><pre class="language-text"><code>// src/App.js
+
+import React from &quot;react&quot;;
+
+const UserContext = React.createContext();
+
+export default function App() {
+  const user = { name: &quot;Reed&quot; };
+
+  return (
+    &lt;UserContext.Provider value={user}&gt;
+      &lt;main&gt;
+        &lt;Navbar title=&quot;My Special App&quot; /&gt;
+        &lt;FeaturedPosts /&gt;
+      &lt;/main&gt;
+    &lt;/UserContext.Provider&gt;
+  );
+}
+
+// src/components/Navbar.js
+
+function Navbar({ title }) {
+  const user = React.useContext(UserContext);
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;{title}&lt;/h1&gt;
+      {user &amp;&amp; &lt;a href=&quot;/logout&quot;&gt;Logout&lt;/a&gt;}
+    &lt;/div&gt;
+  );
+}
+
+// src/components/FeaturedPosts.js
+
+function FeaturedPosts() {
+  const posts = useFetchPosts();
+  const user = React.useContext(UserContext);
+
+  if (user) return null;
+
+  return (
+    &lt;ul&gt;
+      {posts.map((post) =&gt; (
+        &lt;li key={post.id}&gt;{post.title}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">5/8/2024, 3:01:19 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/base/React组件性能优化—function-component.html" class="prev">
+        React 组件性能优化—function component
+      </a></span> <span class="next"><a href="/base/life.html">
+        componentWillReceiveProps
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.27287fd6.js" defer></script><script src="/assets/js/2.57da4f88.js" defer></script><script src="/assets/js/1.a76cc220.js" defer></script><script src="/assets/js/55.8278650d.js" defer></script>
+  </body>
+</html>

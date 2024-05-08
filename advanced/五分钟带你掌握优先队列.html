@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>五分钟带你掌握优先队列 | duangdong的react</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?0088ce24040b03f2947322ab31d23414";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+    <script>
+  var _hmt = _hmt || [];
+  _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
+    shouldTrackUrlChange: function (newPath, oldPath) {
+      newPath = newPath.split('#')[0];
+      oldPath = oldPath.split('#')[0];
+      return newPath != oldPath;
+    }}
+  ]);
+  </script>
+    <meta name="description" content="react相关知识归纳总结">
+    <meta name="keywords" content="react,react进阶,react性能优化,react-hooks,react源码">
+    
+    <link rel="preload" href="/assets/css/0.styles.b4a844ec.css" as="style"><link rel="preload" href="/assets/js/app.27287fd6.js" as="script"><link rel="preload" href="/assets/js/2.57da4f88.js" as="script"><link rel="preload" href="/assets/js/1.a76cc220.js" as="script"><link rel="preload" href="/assets/js/37.27c69606.js" as="script"><link rel="prefetch" href="/assets/js/10.50f73657.js"><link rel="prefetch" href="/assets/js/100.27126660.js"><link rel="prefetch" href="/assets/js/101.09cf74ec.js"><link rel="prefetch" href="/assets/js/102.8cd6b4eb.js"><link rel="prefetch" href="/assets/js/103.c4f25168.js"><link rel="prefetch" href="/assets/js/104.4f1b4569.js"><link rel="prefetch" href="/assets/js/105.bc4fc023.js"><link rel="prefetch" href="/assets/js/106.b9d5be0c.js"><link rel="prefetch" href="/assets/js/107.f9a44dd7.js"><link rel="prefetch" href="/assets/js/108.0424a7b7.js"><link rel="prefetch" href="/assets/js/109.086a89ae.js"><link rel="prefetch" href="/assets/js/11.0390ceee.js"><link rel="prefetch" href="/assets/js/110.1e4c2c77.js"><link rel="prefetch" href="/assets/js/111.16e80560.js"><link rel="prefetch" href="/assets/js/112.441e61a6.js"><link rel="prefetch" href="/assets/js/113.41a44465.js"><link rel="prefetch" href="/assets/js/114.9efb5469.js"><link rel="prefetch" href="/assets/js/115.d095bf75.js"><link rel="prefetch" href="/assets/js/116.b368a7c1.js"><link rel="prefetch" href="/assets/js/117.3a319a71.js"><link rel="prefetch" href="/assets/js/118.7ea17677.js"><link rel="prefetch" href="/assets/js/119.df1f998f.js"><link rel="prefetch" href="/assets/js/12.f88bec36.js"><link rel="prefetch" href="/assets/js/120.935f9aea.js"><link rel="prefetch" href="/assets/js/121.c09de772.js"><link rel="prefetch" href="/assets/js/122.32443376.js"><link rel="prefetch" href="/assets/js/123.d0f8ea63.js"><link rel="prefetch" href="/assets/js/124.fdbcd92d.js"><link rel="prefetch" href="/assets/js/125.0de5eb94.js"><link rel="prefetch" href="/assets/js/126.fb5e629b.js"><link rel="prefetch" href="/assets/js/127.866d8d58.js"><link rel="prefetch" href="/assets/js/128.1aad073e.js"><link rel="prefetch" href="/assets/js/129.328f52fd.js"><link rel="prefetch" href="/assets/js/13.963ad03b.js"><link rel="prefetch" href="/assets/js/130.ac9676d9.js"><link rel="prefetch" href="/assets/js/131.9852c015.js"><link rel="prefetch" href="/assets/js/132.806bcfe3.js"><link rel="prefetch" href="/assets/js/133.073ecd1e.js"><link rel="prefetch" href="/assets/js/134.e2683d73.js"><link rel="prefetch" href="/assets/js/135.d16cdb0b.js"><link rel="prefetch" href="/assets/js/136.c3b47da6.js"><link rel="prefetch" href="/assets/js/137.f7fec328.js"><link rel="prefetch" href="/assets/js/138.ec6ab500.js"><link rel="prefetch" href="/assets/js/139.18b97522.js"><link rel="prefetch" href="/assets/js/14.512f15b9.js"><link rel="prefetch" href="/assets/js/140.c7df1047.js"><link rel="prefetch" href="/assets/js/141.484c6ca5.js"><link rel="prefetch" href="/assets/js/142.8eff7a66.js"><link rel="prefetch" href="/assets/js/143.60569694.js"><link rel="prefetch" href="/assets/js/144.01883b7c.js"><link rel="prefetch" href="/assets/js/145.a9241012.js"><link rel="prefetch" href="/assets/js/146.4b6f364c.js"><link rel="prefetch" href="/assets/js/147.9ed57153.js"><link rel="prefetch" href="/assets/js/148.e18d806a.js"><link rel="prefetch" href="/assets/js/149.e24c9de5.js"><link rel="prefetch" href="/assets/js/15.a674496c.js"><link rel="prefetch" href="/assets/js/16.ed7e507f.js"><link rel="prefetch" href="/assets/js/17.de667ca5.js"><link rel="prefetch" href="/assets/js/18.b44e84af.js"><link rel="prefetch" href="/assets/js/19.5b5ad6a1.js"><link rel="prefetch" href="/assets/js/20.6800493a.js"><link rel="prefetch" href="/assets/js/21.6589052c.js"><link rel="prefetch" href="/assets/js/22.f648d829.js"><link rel="prefetch" href="/assets/js/23.f1afbc9c.js"><link rel="prefetch" href="/assets/js/24.7f3fc444.js"><link rel="prefetch" href="/assets/js/25.5a945cd4.js"><link rel="prefetch" href="/assets/js/26.7ef56339.js"><link rel="prefetch" href="/assets/js/27.74941107.js"><link rel="prefetch" href="/assets/js/28.20a36928.js"><link rel="prefetch" href="/assets/js/29.7cda6a44.js"><link rel="prefetch" href="/assets/js/3.13e892f5.js"><link rel="prefetch" href="/assets/js/30.97f5cf7e.js"><link rel="prefetch" href="/assets/js/31.eeee5c14.js"><link rel="prefetch" href="/assets/js/32.a2125816.js"><link rel="prefetch" href="/assets/js/33.b3fdf3bc.js"><link rel="prefetch" href="/assets/js/34.908ac5fb.js"><link rel="prefetch" href="/assets/js/35.9459a7c7.js"><link rel="prefetch" href="/assets/js/36.dc8e2582.js"><link rel="prefetch" href="/assets/js/38.10b82911.js"><link rel="prefetch" href="/assets/js/39.fdc5aecb.js"><link rel="prefetch" href="/assets/js/4.5bdb9365.js"><link rel="prefetch" href="/assets/js/40.901c96dc.js"><link rel="prefetch" href="/assets/js/41.4cbb9c4b.js"><link rel="prefetch" href="/assets/js/42.da47ce58.js"><link rel="prefetch" href="/assets/js/43.a7669073.js"><link rel="prefetch" href="/assets/js/44.08cc8605.js"><link rel="prefetch" href="/assets/js/45.5461c987.js"><link rel="prefetch" href="/assets/js/46.4c5ed7f9.js"><link rel="prefetch" href="/assets/js/47.450abe13.js"><link rel="prefetch" href="/assets/js/48.d0a778f3.js"><link rel="prefetch" href="/assets/js/49.611d9085.js"><link rel="prefetch" href="/assets/js/5.7c68fdb5.js"><link rel="prefetch" href="/assets/js/50.2563fd92.js"><link rel="prefetch" href="/assets/js/51.ff64258c.js"><link rel="prefetch" href="/assets/js/52.d47acb9b.js"><link rel="prefetch" href="/assets/js/53.09fd35d1.js"><link rel="prefetch" href="/assets/js/54.5e523072.js"><link rel="prefetch" href="/assets/js/55.8278650d.js"><link rel="prefetch" href="/assets/js/56.425f7e44.js"><link rel="prefetch" href="/assets/js/57.44699db6.js"><link rel="prefetch" href="/assets/js/58.25067fcf.js"><link rel="prefetch" href="/assets/js/59.3814ee9e.js"><link rel="prefetch" href="/assets/js/6.c8da7ca7.js"><link rel="prefetch" href="/assets/js/60.82621500.js"><link rel="prefetch" href="/assets/js/61.9880375b.js"><link rel="prefetch" href="/assets/js/62.3924c2b9.js"><link rel="prefetch" href="/assets/js/63.ff3650b8.js"><link rel="prefetch" href="/assets/js/64.0d46b236.js"><link rel="prefetch" href="/assets/js/65.f255f222.js"><link rel="prefetch" href="/assets/js/66.d797120d.js"><link rel="prefetch" href="/assets/js/67.aa46c62c.js"><link rel="prefetch" href="/assets/js/68.0dbf39cf.js"><link rel="prefetch" href="/assets/js/69.116b53df.js"><link rel="prefetch" href="/assets/js/7.e4c88d0e.js"><link rel="prefetch" href="/assets/js/70.a05986f2.js"><link rel="prefetch" href="/assets/js/71.562a4365.js"><link rel="prefetch" href="/assets/js/72.c10c6194.js"><link rel="prefetch" href="/assets/js/73.d85c71e5.js"><link rel="prefetch" href="/assets/js/74.73f72e00.js"><link rel="prefetch" href="/assets/js/75.62c76a28.js"><link rel="prefetch" href="/assets/js/76.8d0d9036.js"><link rel="prefetch" href="/assets/js/77.4ede6642.js"><link rel="prefetch" href="/assets/js/78.7d4d4152.js"><link rel="prefetch" href="/assets/js/79.720e767d.js"><link rel="prefetch" href="/assets/js/80.e9d86233.js"><link rel="prefetch" href="/assets/js/81.40ea5e9f.js"><link rel="prefetch" href="/assets/js/82.78074ee1.js"><link rel="prefetch" href="/assets/js/83.72133cbf.js"><link rel="prefetch" href="/assets/js/84.52c5ea65.js"><link rel="prefetch" href="/assets/js/85.afce36a7.js"><link rel="prefetch" href="/assets/js/86.bdc638dd.js"><link rel="prefetch" href="/assets/js/87.11e34480.js"><link rel="prefetch" href="/assets/js/88.5fd9f0ef.js"><link rel="prefetch" href="/assets/js/89.718ec134.js"><link rel="prefetch" href="/assets/js/90.11f956de.js"><link rel="prefetch" href="/assets/js/91.985d80f2.js"><link rel="prefetch" href="/assets/js/92.9c876df3.js"><link rel="prefetch" href="/assets/js/93.da92c068.js"><link rel="prefetch" href="/assets/js/94.cf4ee959.js"><link rel="prefetch" href="/assets/js/95.665f55e6.js"><link rel="prefetch" href="/assets/js/96.2e80356d.js"><link rel="prefetch" href="/assets/js/97.d7d8ba2d.js"><link rel="prefetch" href="/assets/js/98.70eab878.js"><link rel="prefetch" href="/assets/js/99.60ddb42d.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.5143d2e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b4a844ec.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">duangdong的react</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link router-link-active">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/events/" class="nav-link">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link router-link-active">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/advanced/" aria-current="page" class="sidebar-link">进阶</a></li><li><a href="/advanced/Render如何强制它.html" class="sidebar-link">什么是 React 中的 Render 以及如何强制它？</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>hoc</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>keys</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/advanced/react-svelte入门.html" class="sidebar-link">写给 React 开发者看的 Svelte入门</a></li><li><a href="/advanced/react16常见api以及原理剖析.html" class="sidebar-link">react16常见api以及原理剖析</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>setstate</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/advanced/五分钟带你掌握优先队列.html" class="active sidebar-link">五分钟带你掌握优先队列</a></li><li><a href="/advanced/前端架构之React领域驱动设计.html" class="sidebar-link">前端架构之 React 领域驱动设计</a></li><li><a href="/advanced/学好这些React设计模式.html" class="sidebar-link">学好这些React设计模式-能让你的 React 项目飞起来</a></li><li><a href="/advanced/浅谈React中的XSS攻击.html" class="sidebar-link">浅谈 React 中的 XSS 攻击</a></li><li><a href="/advanced/错误边界.html" class="sidebar-link">错误边界（Error Boundaries）</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="五分钟带你掌握优先队列"><a href="#五分钟带你掌握优先队列" class="header-anchor">#</a> 五分钟带你掌握优先队列</h1> <blockquote><p><a href="https://www.zoo.team/article/react-and-priority-queue" target="_blank" rel="noopener noreferrer">https://www.zoo.team/article/react-and-priority-queue<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h2 id="什么是优先队列"><a href="#什么是优先队列" class="header-anchor">#</a> 什么是优先队列</h2> <p>优先队列是数据结构中的基础概念，与队列先进先出（FIFO）的出队顺序不同的是 ，它的出队顺序与元素的优先级相关。</p> <p>例如 React 的时间分片（React Fiber），它将渲染任务分了优先级，出队的顺序与任务的“重要程度”存在关系，那么满足这种情况的数据结构就是 <code>优先队列</code> 。</p> <h2 id="优先队列的操作"><a href="#优先队列的操作" class="header-anchor">#</a> 优先队列的操作</h2> <ul><li>插入：在优先队列中插入元素，并使队列“有序”</li> <li>删除最大/最小值：删除并返回最大/最小的元素，并使队列“有序”</li> <li>查找最大/最小关键字：查找最大/最小的值</li></ul> <h2 id="优先队列的实现比较"><a href="#优先队列的实现比较" class="header-anchor">#</a> 优先队列的实现比较</h2> <table><thead><tr><th style="text-align:center;">实现</th> <th style="text-align:center;">插入</th> <th style="text-align:center;">删除</th> <th style="text-align:center;">查找最大/最小关键字</th></tr></thead> <tbody><tr><td style="text-align:center;">数组</td> <td style="text-align:center;">1</td> <td style="text-align:center;">n</td> <td style="text-align:center;">n</td></tr> <tr><td style="text-align:center;">链表</td> <td style="text-align:center;">1</td> <td style="text-align:center;">n</td> <td style="text-align:center;">1</td></tr> <tr><td style="text-align:center;">有序数组</td> <td style="text-align:center;">n 或 logn</td> <td style="text-align:center;">n</td> <td style="text-align:center;">1</td></tr> <tr><td style="text-align:center;">有序链表</td> <td style="text-align:center;">n</td> <td style="text-align:center;">1</td> <td style="text-align:center;">1</td></tr> <tr><td style="text-align:center;">二叉搜索树</td> <td style="text-align:center;">logn</td> <td style="text-align:center;">logn</td> <td style="text-align:center;">logn</td></tr> <tr><td style="text-align:center;">二叉堆</td> <td style="text-align:center;">logn</td> <td style="text-align:center;">logn</td> <td style="text-align:center;">1</td></tr></tbody></table> <p>优先队列可以由以上多种方式实现，而优先队列的主要操作是插入和删除，其中二叉搜索树和二叉堆这两项操作的时间复杂度均为 <code>logn</code> ,但二叉树在多次删除之后容易导致树的倾斜，同时查找成本也高于二叉堆，所以最终二叉堆是比较符合实现优先队列的数据结构。</p> <h2 id="二叉堆"><a href="#二叉堆" class="header-anchor">#</a> 二叉堆</h2> <p>在二叉堆中数组中，要保证每个元素都小于（大于）或等于另外两个特定位置的元素。例如下图的树中，父节点总是小于或等于子节点。</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6ISwIQtcNAaO4ehict92hADt8gwCY99dLxXGduNE3JD47a2MDGtV7mmVnNfrIfNOrjcsZnBO4iaILQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>对于二叉堆有如下性质：</p> <ul><li>节点 k 的父节点下标为 k / 2（向下取整）</li> <li>已某节点为根节点的子树，该节点是这颗树的极值</li></ul> <h2 id="二叉堆的操作"><a href="#二叉堆的操作" class="header-anchor">#</a> 二叉堆的操作</h2> <h3 id="插入"><a href="#插入" class="header-anchor">#</a> 插入</h3> <p>二叉堆的插入非常简单，只需要在二叉堆的最后添加要插入的内容，并将其“上浮”到正确位置。</p> <p>尝试在上面的二叉堆中插入新元素 9，过程如下：</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6ISwIQtcNAaO4ehict92hADGuo1iajRG7CJUXibq8n7jEZTwqDhc1QwMMpic9YrcnCpCpkW40KW2dA1w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>在尾部插入元素 9，与父节点进行对比，有序性被破坏，与父元素替换位置。</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6ISwIQtcNAaO4ehict92hADg6ibcYTM6JclsJZlpEia6nxIndcEota2kCyOqrbyicjGp6ENAWGMmkGnA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>替换成功后，继续上一轮操作，与父节点进行对比，仍然无法满足有序性，继续调换位置。</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6ISwIQtcNAaO4ehict92hADE5RyR6ia2YicnamYO0tmJrM7cDAsLQARqicAoWv6JVPfAcMVmtEc0VSibg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>再次替换后符合。</p> <h4 id="程序框架"><a href="#程序框架" class="header-anchor">#</a> 程序框架</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> push <span class="token punctuation">{</span>
+  <span class="token operator">*</span> 在堆尾部添加元素
+  <span class="token operator">*</span> 执行上浮循环
+    <span class="token operator">*</span> 与父元素对比大小，将较大的放在父节点位置
+
+  <span class="token keyword">return</span> minItem
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="实现"><a href="#实现" class="header-anchor">#</a> 实现</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">heap</span><span class="token operator">:</span> Heap<span class="token punctuation">,</span> <span class="token literal-property property">node</span><span class="token operator">:</span> Node</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> index <span class="token operator">=</span> heap<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 在堆尾部添加元素</span>
+  <span class="token function">siftUp</span><span class="token punctuation">(</span>heap<span class="token punctuation">,</span> node<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 进行上浮操作</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">siftUp</span><span class="token punctuation">(</span><span class="token parameter">heap<span class="token punctuation">,</span> node<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> index <span class="token operator">=</span> i<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> parentIndex <span class="token operator">=</span> <span class="token punctuation">(</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 父节点位置： parentIndex = childIndex / 2</span>
+    <span class="token keyword">const</span> parent <span class="token operator">=</span> heap<span class="token punctuation">[</span>parentIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>parent <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">&amp;&amp;</span> <span class="token function">compare</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> node<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// The parent is larger. Swap positions.</span>
+      heap<span class="token punctuation">[</span>parentIndex<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+      heap<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> parent<span class="token punctuation">;</span>
+      index <span class="token operator">=</span> parentIndex<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// The parent is smaller. Exit.</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="删除"><a href="#删除" class="header-anchor">#</a> 删除</h3> <p>取出根节点的值对比插入稍微复杂一点，归纳起来可以分为三步：</p> <ol><li>取出根节点的值</li> <li>将最后一个元素与根节点进行替换，并删除最后一个元素</li> <li>下沉</li></ol> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6ISwIQtcNAaO4ehict92hADV9dBtdEE7ARI563eY5ygXibLBS92KYhpG0hDFK7p2O4XXe5fILUZsOA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>取出根节点。</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6ISwIQtcNAaO4ehict92hADXutTeL7nvuVSAsz0LiclMYSSUk3LBuCLo4PTjG9q5sRMW5oOKic6ClWQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>将最后一个元素与根节点调换，并删除。对比发现有序性被破坏，进行对调。</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6ISwIQtcNAaO4ehict92hADxhCiap5r6uOJBicBWX6apva4WycYnbHUCDNCJiajrCkPJE2Jvc10LjofA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>完成删除。</p> <h4 id="程序框架-2"><a href="#程序框架-2" class="header-anchor">#</a> 程序框架</h4> <div class="language- extra-class"><pre class="language-text"><code>function pop {
+  * 设定 minItem 保存根节点
+  * 取出最后一个节点与根节点替换，并删除最后一个节点
+  * 执行下沉循环
+    * 将根元素与左右子节点对比,挑选较小的与父节点替换位置
+
+  return minItem
+}
+</code></pre></div><h4 id="实现-2"><a href="#实现-2" class="header-anchor">#</a> 实现</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">heap</span><span class="token operator">:</span> Heap</span><span class="token punctuation">)</span><span class="token operator">:</span> Node <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> first <span class="token operator">=</span> heap<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 取出根节点</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>first <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> last <span class="token operator">=</span> heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 取出最后一位元素，并删除</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>last <span class="token operator">!==</span> first<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      heap<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> last<span class="token punctuation">;</span> <span class="token comment">// 与根节点对调</span>
+      <span class="token function">siftDown</span><span class="token punctuation">(</span>heap<span class="token punctuation">,</span> last<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 下沉</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> first<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">siftDown</span><span class="token punctuation">(</span><span class="token parameter">heap<span class="token punctuation">,</span> node<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> index <span class="token operator">=</span> i<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> length <span class="token operator">=</span> heap<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>index <span class="token operator">&lt;</span> length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> leftIndex <span class="token operator">=</span> <span class="token punctuation">(</span>index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> left <span class="token operator">=</span> heap<span class="token punctuation">[</span>leftIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> rightIndex <span class="token operator">=</span> leftIndex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> right <span class="token operator">=</span> heap<span class="token punctuation">[</span>rightIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// If the left or right node is smaller, swap with the smaller of those.</span>
+    <span class="token comment">// 寻找左右儿子较小的那一个替换</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>left <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">&amp;&amp;</span> <span class="token function">compare</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> node<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//左子节点小于根节点</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>right <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">&amp;&amp;</span> <span class="token function">compare</span><span class="token punctuation">(</span>right<span class="token punctuation">,</span> left<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        heap<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> right<span class="token punctuation">;</span>
+        heap<span class="token punctuation">[</span>rightIndex<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+        index <span class="token operator">=</span> rightIndex<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        heap<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> left<span class="token punctuation">;</span>
+        heap<span class="token punctuation">[</span>leftIndex<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+        index <span class="token operator">=</span> leftIndex<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>right <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">&amp;&amp;</span> <span class="token function">compare</span><span class="token punctuation">(</span>right<span class="token punctuation">,</span> node<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 左子节点大于根节点，右子节点小于根节点</span>
+      heap<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> right<span class="token punctuation">;</span>
+      heap<span class="token punctuation">[</span>rightIndex<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+      index <span class="token operator">=</span> rightIndex<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Neither child is smaller. Exit.</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>以下是 react 源码中 <code>scheduler/src/SchedulerMinHeap.js</code> 关于最小堆的完整实现：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @flow strict
+ */</span>
+
+<span class="token comment">// 定义最小堆极其元素，其中 sortIndex 为最小堆对比的 key，若 sortIndex 相同，则对比 id</span>
+type Heap <span class="token operator">=</span> Array<span class="token operator">&lt;</span>Node<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+type Node <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">|</span>
+  <span class="token literal-property property">id</span><span class="token operator">:</span> number<span class="token punctuation">,</span>
+  <span class="token literal-property property">sortIndex</span><span class="token operator">:</span> number<span class="token punctuation">,</span>
+<span class="token operator">|</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 入队操作，在入队完成之后进行“上浮”</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">heap</span><span class="token operator">:</span> Heap<span class="token punctuation">,</span> <span class="token literal-property property">node</span><span class="token operator">:</span> Node</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> index <span class="token operator">=</span> heap<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">siftUp</span><span class="token punctuation">(</span>heap<span class="token punctuation">,</span> node<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 查找最大值</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">peek</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">heap</span><span class="token operator">:</span> Heap</span><span class="token punctuation">)</span><span class="token operator">:</span> Node <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> first <span class="token operator">=</span> heap<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> first <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> first<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 删除并返回最大值</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">heap</span><span class="token operator">:</span> Heap</span><span class="token punctuation">)</span><span class="token operator">:</span> Node <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> first <span class="token operator">=</span> heap<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 取出根节点（哨兵）</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>first <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> last <span class="token operator">=</span> heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 取出最后一位元素，并删除</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>last <span class="token operator">!==</span> first<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 头尾并没有对撞</span>
+      heap<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> last<span class="token punctuation">;</span> <span class="token comment">// 与根节点对调</span>
+      <span class="token function">siftDown</span><span class="token punctuation">(</span>heap<span class="token punctuation">,</span> last<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 下沉</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> first<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 上浮，调整树结构</span>
+<span class="token keyword">function</span> <span class="token function">siftUp</span><span class="token punctuation">(</span><span class="token parameter">heap<span class="token punctuation">,</span> node<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> index <span class="token operator">=</span> i<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> parentIndex <span class="token operator">=</span> <span class="token punctuation">(</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 父节点位置： parentIndex = childIndex / 2，此处使用位操作，右移一位</span>
+    <span class="token keyword">const</span> parent <span class="token operator">=</span> heap<span class="token punctuation">[</span>parentIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>parent <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">&amp;&amp;</span> <span class="token function">compare</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> node<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 对比父节点和子元素的大小</span>
+      <span class="token comment">// The parent is larger. Swap positions.</span>
+      heap<span class="token punctuation">[</span>parentIndex<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">;</span> <span class="token comment">// 若父节点较大，则更换位置</span>
+      heap<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> parent<span class="token punctuation">;</span>
+      index <span class="token operator">=</span> parentIndex<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// The parent is smaller. Exit.</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 下沉，调整树结构</span>
+<span class="token keyword">function</span> <span class="token function">siftDown</span><span class="token punctuation">(</span><span class="token parameter">heap<span class="token punctuation">,</span> node<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> index <span class="token operator">=</span> i<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> length <span class="token operator">=</span> heap<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>index <span class="token operator">&lt;</span> length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> leftIndex <span class="token operator">=</span> <span class="token punctuation">(</span>index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> left <span class="token operator">=</span> heap<span class="token punctuation">[</span>leftIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> rightIndex <span class="token operator">=</span> leftIndex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> right <span class="token operator">=</span> heap<span class="token punctuation">[</span>rightIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// If the left or right node is smaller, swap with the smaller of those.</span>
+    <span class="token comment">// 寻找左右儿子较小的那一个替换</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>left <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">&amp;&amp;</span> <span class="token function">compare</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> node<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>right <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">&amp;&amp;</span> <span class="token function">compare</span><span class="token punctuation">(</span>right<span class="token punctuation">,</span> left<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 左子节点小于根节点</span>
+        heap<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> right<span class="token punctuation">;</span>
+        heap<span class="token punctuation">[</span>rightIndex<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+        index <span class="token operator">=</span> rightIndex<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        heap<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> left<span class="token punctuation">;</span>
+        heap<span class="token punctuation">[</span>leftIndex<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+        index <span class="token operator">=</span> leftIndex<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>right <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">&amp;&amp;</span> <span class="token function">compare</span><span class="token punctuation">(</span>right<span class="token punctuation">,</span> node<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 左子节点大于根节点，右子节点小于根节点</span>
+      heap<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> right<span class="token punctuation">;</span>
+      heap<span class="token punctuation">[</span>rightIndex<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+      index <span class="token operator">=</span> rightIndex<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Neither child is smaller. Exit.</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">compare</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Compare sort index first, then task id.</span>
+  <span class="token keyword">const</span> diff <span class="token operator">=</span> a<span class="token punctuation">.</span>sortIndex <span class="token operator">-</span> b<span class="token punctuation">.</span>sortIndex<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> diff <span class="token operator">!==</span> <span class="token number">0</span> <span class="token operator">?</span> diff <span class="token operator">:</span> a<span class="token punctuation">.</span>id <span class="token operator">-</span> b<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="堆排序"><a href="#堆排序" class="header-anchor">#</a> 堆排序</h3> <p>利用最大/最小堆的特性，我们很容易就能实现对数组的排序，重复执行 pop 就能进行升序排列，如果要降序，使用最大堆即可，该操作时间复杂度为 <code>nlogn</code> 。</p> <h2 id="多叉堆"><a href="#多叉堆" class="header-anchor">#</a> 多叉堆</h2> <p>为了追求更优的时间复杂度，我们可以将二叉堆改为多叉堆实现，下图为一个三叉堆：</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6ISwIQtcNAaO4ehict92hADoBJxhCW26yTsGztZtymFye03VMdslQNCUAPvicob4GNAiaIzQZw0a6ibA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>与二叉堆不同的是对于含有 N 个元素的 d 叉堆（通常情况下 d &gt;= 2），随着 d 的增加，树高 K = logdN 的斜率会下降，然而 d 越大，删除操作的成本会更高。所以子元素不是越多越好，通常情况下三叉堆和四叉堆的应用会比较常见。</p> <p>在libev中有这么一段注释 https://github.com/enki/libev/blob/master/ev.c#L2227，他提及了四叉树相比二叉堆来说缓存更加友好。 根据benchmark，在 50000+ 个 watchers 的场景下，四叉树会有 5% 的性能优势。</p> <div class="language- extra-class"><pre class="language-text"><code>/*
+ * at the moment we allow libev the luxury of two heaps,
+ * a small-code-size 2-heap one and a ~1.5kb larger 4-heap
+ * which is more cache-efficient.
+ * the difference is about 5% with 50000+ watchers.
+ */
+</code></pre></div><p>同样 Go 语言中的定时器的 timersBucket 的数据结构也采用了最小四叉堆。<img src="https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6ISwIQtcNAaO4ehict92hADoBJxhCW26yTsGztZtymFye03VMdslQNCUAPvicob4GNAiaIzQZw0a6ibA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6ISwIQtcNAaO4ehict92hADlcAlnd9YGickicAcRNl8CicCFPksdjTvAOf2Lgof81Iw3dxWxOlOe5icWw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <h2 id="结语"><a href="#结语" class="header-anchor">#</a> 结语</h2> <p>多叉堆，例如四叉堆更加适合数据量大，对缓存要求友好对场景。二叉堆适用数据量比较小且频繁插入和删除的场景。通常情况下二叉堆可以满足大部分情况下的需求，如果编写底层代码，并且对性能有更高的要求，那么可以考虑多叉堆实现优先队列。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">5/8/2024, 3:01:19 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/advanced/setstate/setState执行机制.html" class="prev">
+        setState 执行机制
+      </a></span> <span class="next"><a href="/advanced/前端架构之React领域驱动设计.html">
+        前端架构之 React 领域驱动设计
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.27287fd6.js" defer></script><script src="/assets/js/2.57da4f88.js" defer></script><script src="/assets/js/1.a76cc220.js" defer></script><script src="/assets/js/37.27c69606.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>一文读懂 React 组件渲染核心原理 | duangdong的react</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?0088ce24040b03f2947322ab31d23414";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+    <script>
+  var _hmt = _hmt || [];
+  _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
+    shouldTrackUrlChange: function (newPath, oldPath) {
+      newPath = newPath.split('#')[0];
+      oldPath = oldPath.split('#')[0];
+      return newPath != oldPath;
+    }}
+  ]);
+  </script>
+    <meta name="description" content="react相关知识归纳总结">
+    <meta name="keywords" content="react,react进阶,react性能优化,react-hooks,react源码">
+    
+    <link rel="preload" href="/assets/css/0.styles.b4a844ec.css" as="style"><link rel="preload" href="/assets/js/app.27287fd6.js" as="script"><link rel="preload" href="/assets/js/2.57da4f88.js" as="script"><link rel="preload" href="/assets/js/1.a76cc220.js" as="script"><link rel="preload" href="/assets/js/68.0dbf39cf.js" as="script"><link rel="prefetch" href="/assets/js/10.50f73657.js"><link rel="prefetch" href="/assets/js/100.27126660.js"><link rel="prefetch" href="/assets/js/101.09cf74ec.js"><link rel="prefetch" href="/assets/js/102.8cd6b4eb.js"><link rel="prefetch" href="/assets/js/103.c4f25168.js"><link rel="prefetch" href="/assets/js/104.4f1b4569.js"><link rel="prefetch" href="/assets/js/105.bc4fc023.js"><link rel="prefetch" href="/assets/js/106.b9d5be0c.js"><link rel="prefetch" href="/assets/js/107.f9a44dd7.js"><link rel="prefetch" href="/assets/js/108.0424a7b7.js"><link rel="prefetch" href="/assets/js/109.086a89ae.js"><link rel="prefetch" href="/assets/js/11.0390ceee.js"><link rel="prefetch" href="/assets/js/110.1e4c2c77.js"><link rel="prefetch" href="/assets/js/111.16e80560.js"><link rel="prefetch" href="/assets/js/112.441e61a6.js"><link rel="prefetch" href="/assets/js/113.41a44465.js"><link rel="prefetch" href="/assets/js/114.9efb5469.js"><link rel="prefetch" href="/assets/js/115.d095bf75.js"><link rel="prefetch" href="/assets/js/116.b368a7c1.js"><link rel="prefetch" href="/assets/js/117.3a319a71.js"><link rel="prefetch" href="/assets/js/118.7ea17677.js"><link rel="prefetch" href="/assets/js/119.df1f998f.js"><link rel="prefetch" href="/assets/js/12.f88bec36.js"><link rel="prefetch" href="/assets/js/120.935f9aea.js"><link rel="prefetch" href="/assets/js/121.c09de772.js"><link rel="prefetch" href="/assets/js/122.32443376.js"><link rel="prefetch" href="/assets/js/123.d0f8ea63.js"><link rel="prefetch" href="/assets/js/124.fdbcd92d.js"><link rel="prefetch" href="/assets/js/125.0de5eb94.js"><link rel="prefetch" href="/assets/js/126.fb5e629b.js"><link rel="prefetch" href="/assets/js/127.866d8d58.js"><link rel="prefetch" href="/assets/js/128.1aad073e.js"><link rel="prefetch" href="/assets/js/129.328f52fd.js"><link rel="prefetch" href="/assets/js/13.963ad03b.js"><link rel="prefetch" href="/assets/js/130.ac9676d9.js"><link rel="prefetch" href="/assets/js/131.9852c015.js"><link rel="prefetch" href="/assets/js/132.806bcfe3.js"><link rel="prefetch" href="/assets/js/133.073ecd1e.js"><link rel="prefetch" href="/assets/js/134.e2683d73.js"><link rel="prefetch" href="/assets/js/135.d16cdb0b.js"><link rel="prefetch" href="/assets/js/136.c3b47da6.js"><link rel="prefetch" href="/assets/js/137.f7fec328.js"><link rel="prefetch" href="/assets/js/138.ec6ab500.js"><link rel="prefetch" href="/assets/js/139.18b97522.js"><link rel="prefetch" href="/assets/js/14.512f15b9.js"><link rel="prefetch" href="/assets/js/140.c7df1047.js"><link rel="prefetch" href="/assets/js/141.484c6ca5.js"><link rel="prefetch" href="/assets/js/142.8eff7a66.js"><link rel="prefetch" href="/assets/js/143.60569694.js"><link rel="prefetch" href="/assets/js/144.01883b7c.js"><link rel="prefetch" href="/assets/js/145.a9241012.js"><link rel="prefetch" href="/assets/js/146.4b6f364c.js"><link rel="prefetch" href="/assets/js/147.9ed57153.js"><link rel="prefetch" href="/assets/js/148.e18d806a.js"><link rel="prefetch" href="/assets/js/149.e24c9de5.js"><link rel="prefetch" href="/assets/js/15.a674496c.js"><link rel="prefetch" href="/assets/js/16.ed7e507f.js"><link rel="prefetch" href="/assets/js/17.de667ca5.js"><link rel="prefetch" href="/assets/js/18.b44e84af.js"><link rel="prefetch" href="/assets/js/19.5b5ad6a1.js"><link rel="prefetch" href="/assets/js/20.6800493a.js"><link rel="prefetch" href="/assets/js/21.6589052c.js"><link rel="prefetch" href="/assets/js/22.f648d829.js"><link rel="prefetch" href="/assets/js/23.f1afbc9c.js"><link rel="prefetch" href="/assets/js/24.7f3fc444.js"><link rel="prefetch" href="/assets/js/25.5a945cd4.js"><link rel="prefetch" href="/assets/js/26.7ef56339.js"><link rel="prefetch" href="/assets/js/27.74941107.js"><link rel="prefetch" href="/assets/js/28.20a36928.js"><link rel="prefetch" href="/assets/js/29.7cda6a44.js"><link rel="prefetch" href="/assets/js/3.13e892f5.js"><link rel="prefetch" href="/assets/js/30.97f5cf7e.js"><link rel="prefetch" href="/assets/js/31.eeee5c14.js"><link rel="prefetch" href="/assets/js/32.a2125816.js"><link rel="prefetch" href="/assets/js/33.b3fdf3bc.js"><link rel="prefetch" href="/assets/js/34.908ac5fb.js"><link rel="prefetch" href="/assets/js/35.9459a7c7.js"><link rel="prefetch" href="/assets/js/36.dc8e2582.js"><link rel="prefetch" href="/assets/js/37.27c69606.js"><link rel="prefetch" href="/assets/js/38.10b82911.js"><link rel="prefetch" href="/assets/js/39.fdc5aecb.js"><link rel="prefetch" href="/assets/js/4.5bdb9365.js"><link rel="prefetch" href="/assets/js/40.901c96dc.js"><link rel="prefetch" href="/assets/js/41.4cbb9c4b.js"><link rel="prefetch" href="/assets/js/42.da47ce58.js"><link rel="prefetch" href="/assets/js/43.a7669073.js"><link rel="prefetch" href="/assets/js/44.08cc8605.js"><link rel="prefetch" href="/assets/js/45.5461c987.js"><link rel="prefetch" href="/assets/js/46.4c5ed7f9.js"><link rel="prefetch" href="/assets/js/47.450abe13.js"><link rel="prefetch" href="/assets/js/48.d0a778f3.js"><link rel="prefetch" href="/assets/js/49.611d9085.js"><link rel="prefetch" href="/assets/js/5.7c68fdb5.js"><link rel="prefetch" href="/assets/js/50.2563fd92.js"><link rel="prefetch" href="/assets/js/51.ff64258c.js"><link rel="prefetch" href="/assets/js/52.d47acb9b.js"><link rel="prefetch" href="/assets/js/53.09fd35d1.js"><link rel="prefetch" href="/assets/js/54.5e523072.js"><link rel="prefetch" href="/assets/js/55.8278650d.js"><link rel="prefetch" href="/assets/js/56.425f7e44.js"><link rel="prefetch" href="/assets/js/57.44699db6.js"><link rel="prefetch" href="/assets/js/58.25067fcf.js"><link rel="prefetch" href="/assets/js/59.3814ee9e.js"><link rel="prefetch" href="/assets/js/6.c8da7ca7.js"><link rel="prefetch" href="/assets/js/60.82621500.js"><link rel="prefetch" href="/assets/js/61.9880375b.js"><link rel="prefetch" href="/assets/js/62.3924c2b9.js"><link rel="prefetch" href="/assets/js/63.ff3650b8.js"><link rel="prefetch" href="/assets/js/64.0d46b236.js"><link rel="prefetch" href="/assets/js/65.f255f222.js"><link rel="prefetch" href="/assets/js/66.d797120d.js"><link rel="prefetch" href="/assets/js/67.aa46c62c.js"><link rel="prefetch" href="/assets/js/69.116b53df.js"><link rel="prefetch" href="/assets/js/7.e4c88d0e.js"><link rel="prefetch" href="/assets/js/70.a05986f2.js"><link rel="prefetch" href="/assets/js/71.562a4365.js"><link rel="prefetch" href="/assets/js/72.c10c6194.js"><link rel="prefetch" href="/assets/js/73.d85c71e5.js"><link rel="prefetch" href="/assets/js/74.73f72e00.js"><link rel="prefetch" href="/assets/js/75.62c76a28.js"><link rel="prefetch" href="/assets/js/76.8d0d9036.js"><link rel="prefetch" href="/assets/js/77.4ede6642.js"><link rel="prefetch" href="/assets/js/78.7d4d4152.js"><link rel="prefetch" href="/assets/js/79.720e767d.js"><link rel="prefetch" href="/assets/js/80.e9d86233.js"><link rel="prefetch" href="/assets/js/81.40ea5e9f.js"><link rel="prefetch" href="/assets/js/82.78074ee1.js"><link rel="prefetch" href="/assets/js/83.72133cbf.js"><link rel="prefetch" href="/assets/js/84.52c5ea65.js"><link rel="prefetch" href="/assets/js/85.afce36a7.js"><link rel="prefetch" href="/assets/js/86.bdc638dd.js"><link rel="prefetch" href="/assets/js/87.11e34480.js"><link rel="prefetch" href="/assets/js/88.5fd9f0ef.js"><link rel="prefetch" href="/assets/js/89.718ec134.js"><link rel="prefetch" href="/assets/js/90.11f956de.js"><link rel="prefetch" href="/assets/js/91.985d80f2.js"><link rel="prefetch" href="/assets/js/92.9c876df3.js"><link rel="prefetch" href="/assets/js/93.da92c068.js"><link rel="prefetch" href="/assets/js/94.cf4ee959.js"><link rel="prefetch" href="/assets/js/95.665f55e6.js"><link rel="prefetch" href="/assets/js/96.2e80356d.js"><link rel="prefetch" href="/assets/js/97.d7d8ba2d.js"><link rel="prefetch" href="/assets/js/98.70eab878.js"><link rel="prefetch" href="/assets/js/99.60ddb42d.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.5143d2e0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b4a844ec.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">duangdong的react</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/events/" class="nav-link router-link-active">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/events/" class="nav-link router-link-active">
+  事件机制
+</a></div><div class="nav-item"><a href="/fiber/" class="nav-link">
+  Fiber
+</a></div><div class="nav-item"><a href="/advanced/" class="nav-link">
+  进阶
+</a></div><div class="nav-item"><a href="/hooks/" class="nav-link">
+  Hooks
+</a></div><div class="nav-item"><a href="/source-code/" class="nav-link">
+  源码解读
+</a></div><div class="nav-item"><a href="/performance/" class="nav-link">
+  性能优化
+</a></div><div class="nav-item"><a href="/base/" class="nav-link">
+  基础
+</a></div><div class="nav-item"><a href="/jest/" class="nav-link">
+  单元测试
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/events/" aria-current="page" class="sidebar-link">进阶</a></li><li><a href="/events/React事件机制.html" class="sidebar-link">React 事件机制</a></li><li><a href="/events/Render如何强制它.html" class="sidebar-link">什么是 React 中的 Render 以及如何强制它？</a></li><li><a href="/events/react-事件机制.html" class="sidebar-link">React事件机制的理解？</a></li><li><a href="/events/react事件系统原理.html" class="sidebar-link">React 事件系统原理</a></li><li><a href="/events/一文吃透react事件原理.html" class="sidebar-link">一文吃透react事件原理</a></li><li><a href="/events/一文读懂React组件渲染核心原理.html" class="active sidebar-link">一文读懂 React 组件渲染核心原理</a></li><li><a href="/events/从源码深入探究React 运行时优化方案的演进.html" class="sidebar-link">从源码深入探究React 运行时优化方案的演进</a></li><li><a href="/events/搞懂React调度器原理.html" class="sidebar-link">不用一行代码，搞懂React调度器原理</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="一文读懂-react-组件渲染核心原理"><a href="#一文读懂-react-组件渲染核心原理" class="header-anchor">#</a> 一文读懂 React 组件渲染核心原理</h1> <blockquote><p><a href="https://mp.weixin.qq.com/s/dhf15XeDQ4AzFXrUdvDkew" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/dhf15XeDQ4AzFXrUdvDkew<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h1 id="引言"><a href="#引言" class="header-anchor">#</a> 引言</h1> <p>相信大家对 React 都已经非常熟悉了，像 React，Vue 这样的现代前端框架已经是我们日常开发离不开的工具了，这篇文章主要是从源码的角度剖析 React 的核心渲染原理。我们将从用户编写的组件代码开始，一步一步分析 React 是如何将它们变成真实 DOM ，这个过程主要可以分成两个阶段：render 阶段和 commit 阶段。文章的核心内容也正是对这两个阶段的分析。</p> <h1 id="一、前置知识"><a href="#一、前置知识" class="header-anchor">#</a> 一、前置知识</h1> <h2 id="声明式渲染"><a href="#声明式渲染" class="header-anchor">#</a> 声明式渲染</h2> <ul><li>『声明式渲染』，顾名思义，就是让使用者只需要**「声明或描述」**我需要渲染的东西是什么，然后就把具体的渲染工作交给机器去做，与之相对的是『命令式渲染』。</li> <li>『命令式渲染』则是由用户去一步一步地命令机器下一步该怎么做。</li></ul> <p>举个简单的例子：</p> <p>如果我们需要在网页上渲染一个有三个节点的列表，命令式的做法是手动操作 dom，首先创建一个容器节点，再利用循环每次先创建一个新节点，填充内容，然后将新节点新增到容器节点下，最后再将容器节点新增到 body 标签下：</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token keyword">const</span> list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> container <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> list<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> newDom <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    newDom<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> list<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    container<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>newDom<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>而声明式的做法应该是：</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token keyword">const</span> list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> container <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">Demo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+<span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token punctuation">{</span>list<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>item<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token plain-text">
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">)</span>
+
+ReactDom<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Demo</span></span> <span class="token punctuation">/&gt;</span></span><span class="token punctuation">,</span> container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>可以看到在这个例子中，声明式写法以 HTML 语法直接告诉机器，我需要的视图应该是长这个样子，然后具体的 DOM 操作全部交由机器去完成。开发者只需要专注于业务逻辑的实现。</p> <p>这便是声明式渲染。</p> <p>声明式渲染是现代前端框架的比较普遍的设计思路。</p> <h2 id="jsx-和-reactelement"><a href="#jsx-和-reactelement" class="header-anchor">#</a> JSX 和 ReactElement</h2> <p>相信大家最初学 React 的时候都有这样的疑问，为什么我们能够以类似 HTML 的语法编写组件，这个东西又是怎么转换成 JavaScript 语法的？答案就是 Babel。根据官网介绍，这种语法被称为 JSX，是一个 JavaScript 的语法扩展。能够被 Babel 编译成 React.createElement 方法。举个例子：</p> <p><img src="https://mmbiz.qpic.cn/mmbiz_png/3xDuJ3eicibllKUUac48T5fQialaBGiamQTZobD84bIIGyNwibuIYPNICQ7t7SSroWmrjveQySFMb40fyoJ2vWib0Ntg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>通过查阅源码我们可以看到 <strong>「React.createElement」</strong> 方法</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> config<span class="token punctuation">,</span> children</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> propName<span class="token punctuation">;</span>
+
+  <span class="token comment">// Reserved names are extracted</span>
+  <span class="token keyword">const</span> props <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> key <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> ref <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> self <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> source <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+  <span class="token keyword">return</span> <span class="token function">ReactElement</span><span class="token punctuation">(</span>
+    type<span class="token punctuation">,</span>
+    key<span class="token punctuation">,</span>
+    ref<span class="token punctuation">,</span>
+    self<span class="token punctuation">,</span>
+    source<span class="token punctuation">,</span>
+    ReactCurrentOwner<span class="token punctuation">.</span>current<span class="token punctuation">,</span>
+    props<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">ReactElement</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> key<span class="token punctuation">,</span> ref<span class="token punctuation">,</span> self<span class="token punctuation">,</span> source<span class="token punctuation">,</span> owner<span class="token punctuation">,</span> props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> element <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">// This tag allows us to uniquely identify this as a React Element</span>
+    $<span class="token keyword">typeof</span><span class="token operator">:</span> <span class="token constant">REACT_ELEMENT_TYPE</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// Built-in properties that belong on the element</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> type<span class="token punctuation">,</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> key<span class="token punctuation">,</span>
+    <span class="token literal-property property">ref</span><span class="token operator">:</span> ref<span class="token punctuation">,</span>
+    <span class="token literal-property property">props</span><span class="token operator">:</span> props<span class="token punctuation">,</span>
+
+    <span class="token comment">// Record the component responsible for creating this element.</span>
+    <span class="token literal-property property">_owner</span><span class="token operator">:</span> owner<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+  <span class="token keyword">return</span> element<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>可以看到 React 是使用了 element 这种结构来代表一个节点，里面就只有简单的 6 个字段。我们可以看个实际的例子，下面 Count 组件对应的 element 数据结构：</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token keyword">function</span> <span class="token function">Count</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>count<span class="token punctuation">,</span> onCountClick<span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token function">onCountClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+  count: </span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">}</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Count</span></span> <span class="token punctuation">/&gt;</span></span>
+</code></pre></div><p><img src="https://mmbiz.qpic.cn/mmbiz_png/3xDuJ3eicibllKUUac48T5fQialaBGiamQTZD57FLxyTfPERjotWhsrvgb5s2ADXcV9nT7UohEkKdbZluK043wE8Lg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p> <p>可以看到，element 结构只能反映出 jsx 节点的层级结构，而组件里的各种状态或者返回 jsx 等都是不会记录在 element 中。</p> <p>目前我们知道，我们编写的 jsx 会首先被处理成 element 结构。</p> <p>jsx -&gt; element</p> <p>那 React 又是如何处理 element 的，如刚刚说的，element 里包含的信息太少，只靠 element 显然是不足以映射到所有真实 DOM 的，因此我们还需要更精细的结构。</p> <h2 id="fiber-树结构"><a href="#fiber-树结构" class="header-anchor">#</a> Fiber 树结构</h2> <p>Fiber 这个单词相信大家多多少少都有听过，它是在 React 16 被引入，关于 Fiber 如何实现任务调度在这篇文章不会涉及，但是 Fiber 的引入不仅仅带来了任务调度方面的能力，整个 React 实现架构也因此重构了一遍，而我们之前经常提到的虚拟 DOM 树在新的 React 架构下被称为 Fiber 树，上面提到的每个 element 都有一个所属的 Fiber。</p> <p>首先我们先看看源码中 Fiber 的构造函数：</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token keyword">function</span> <span class="token function">FiberNode</span><span class="token punctuation">(</span>
+  <span class="token parameter"><span class="token literal-property property">tag</span><span class="token operator">:</span> WorkTag<span class="token punctuation">,</span>
+  <span class="token literal-property property">pendingProps</span><span class="token operator">:</span> mixed<span class="token punctuation">,</span>
+  <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token keyword">null</span> <span class="token operator">|</span> string<span class="token punctuation">,</span>
+  <span class="token literal-property property">mode</span><span class="token operator">:</span> TypeOfMode<span class="token punctuation">,</span></span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Instance</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>tag <span class="token operator">=</span> tag<span class="token punctuation">;</span>            <span class="token comment">// 标识节点类型，例如函数组件、类组件、普通标签等</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>key <span class="token operator">=</span> key<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>elementType <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>  <span class="token comment">// 标识具体 jsx 标签名</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>type <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>        <span class="token comment">// 类似 elementType</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>stateNode <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>  <span class="token comment">// 对应的真实 DOM 节点</span>
+
+  <span class="token comment">// Fiber</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>return <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>    <span class="token comment">// 父节点</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>child <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>     <span class="token comment">// 第一个子节点</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>sibling <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>   <span class="token comment">// 第一个兄弟节点</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span>ref <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span>pendingProps <span class="token operator">=</span> pendingProps<span class="token punctuation">;</span>  <span class="token comment">// 传入的 props</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>memoizedProps <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>    
+  <span class="token keyword">this</span><span class="token punctuation">.</span>updateQueue <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>   <span class="token comment">// 状态更新相关</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>memoizedState <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>dependencies <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span>mode <span class="token operator">=</span> mode<span class="token punctuation">;</span>
+
+  <span class="token comment">// Effects</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>flags <span class="token operator">=</span> NoFlags<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>subtreeFlags <span class="token operator">=</span> NoFlags<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>deletions <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span>lanes <span class="token operator">=</span> NoLanes<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>childLanes <span class="token operator">=</span> NoLanes<span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span>alternate <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>可以看到 Fiber 节点中的属性很多，其中不仅仅包含了 element 相关的实例信息，还包含了组成 Fiber 树所需的一些“指针”，组件内部的状态（memorizedState），用于操作真实 DOM 的副作用（effects）等等。</p> <p>我们以上面的 Count 组件为例看一下它对应的 Fiber 结构：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>这里我们先主要介绍一下与形成 Fiber 树相关的三个属性：child, sibling 和 return。他们分别指向 Fiber 的第一个子 Fiber，下一个兄弟 Fiber 和父 Fiber。</p> <p>以下面的 jsx 代码为例：</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;App /&gt;
+     
+// App.jsx    
+    &lt;div&gt;
+      &lt;header&gt;
+        &lt;img /&gt;
+        &lt;p&gt;
+          text
+        &lt;/p&gt;
+        &lt;Count count={count} onCountClick={handleCLick} /&gt;
+      &lt;/header&gt;
+    &lt;/div&gt;
+    
+// Count.jsx
+&lt;div&gt;
+&lt;/div&gt;
+</code></pre></div><p>最终形成的 Fiber 树结构为：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>总结一下，我们编写的 jsx 首先会形成 element ，然后在 render 过程中每个 element 都会生成对应的 Fiber，最终形成 Fiber 树。</p> <p>jsx -&gt; element -&gt; Fiber</p> <p>下面我们正式介绍一下 render 的过程，看看 Fiber 是如何生成并形成 Fiber 树的。</p> <h1 id="二、渲染-render-过程"><a href="#二、渲染-render-过程" class="header-anchor">#</a> 二、渲染（render）过程</h1> <h2 id="核心流程"><a href="#核心流程" class="header-anchor">#</a> 核心流程</h2> <p>通常 React 运行时会有两个 Fiber 树，一个是根据当前最新组件状态构建出来的，另一个则是上一次构建出来的 Fiber 树，当然如果是首次渲染就没有上一次的 Fiber 树，这时就只有一个了。简单来说，render 过程就是 React <strong>「对比旧 Fiber 树和新的 element」</strong> 然后**「为新的 element 生成新 Fiber 树」**的一个过程。</p> <p>从源码中看，React 的整个核心流程开始于 <strong>「performSyncWorkOnRoot」</strong> 函数，在这个函数里会先后调用 <strong>「renderRootSync」</strong> 函数和 <strong>「commitRoot」</strong> 函数，它们两个就是分别就是我们上面提到的 render 和 commit 过程。来看 renderRootSync 函数，在 <strong>「renderRootSync」</strong> 函数里会先调用 <strong>「prepareFreshStack」</strong> ，从函数名字我们不难猜出它主要就是为接下来的工作做前置准备，初始化一些变量例如 workInProgress（当前正在处理的 Fiber 节点） 等，接着会调用 <strong>「workLoopSync」</strong> 函数。（这里仅讨论传统模式，concurrent 模式留给 Fiber 任务调度分享），而在 <strong>「workLoopSync」</strong> 完成之后，<strong>「renderRootSync」</strong> 也基本上完成了，接下来就会调用 commitRoot 进入 commit 阶段。</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>因此整个 render 过程的重点在 <strong>「workLoopSync」</strong> 中，从 <strong>「workLoopSync」</strong> 简单的函数定义里我们可以看到，这里用了一个循环来不断调用 <strong>「performUnitOfWork」</strong> 方法，直到 workInProgress 为 null。</p> <div class="language- extra-class"><pre class="language-text"><code>function workLoopSync() {
+  // Already timed out, so perform work without checking if we need to yield.
+  while (workInProgress !== null) {
+    performUnitOfWork(workInProgress);
+  }
+}
+</code></pre></div><p>而 <strong>「performUnitOfWork」</strong> 函数做的事情也很简单，简单来说就是为传进来的 workInProgress 生成下一个 Fiber 节点然后赋值给 workInProgress。通过不断的循环调用 <strong>「performUnitOfWork」</strong>，直到把所有的 Fiber 都生成出来并连接成 Fiber 树为止。</p> <p>现在我们来看 <strong>「performUnitOfWork」</strong> 具体是如何生成 Fiber 节点的。</p> <p>前面介绍 Fiber 结构的时候说过，Fiber 是 React 16 引入用于任务调度提升用户体验的，而在此之前，render 过程是递归实现的，显然递归是没有办法中断的，因此 React 需要使用循环来模拟递归过程。</p> <p><strong>「performUnitOfWork」</strong> 正是使用了 <strong>「beginWork」</strong> 和 <strong>「completeUnitOfWork」</strong> 来分别模拟这个“递”和“归”的过程。</p> <p>render 过程是深度优先的遍历，<strong>「beginWork」</strong> 函数则会为遍历到的每个 Fiber 节点生成他的所有子 Fiber 并返回第一个子 Fiber ，这个子 Fiber 将赋值给 workInProgress，在下一轮循环继续处理，直到遍历到叶子节点，这时候就需要“归”了。</p> <p><strong>「completeUnitOfWork」</strong> 就会为叶子节点做一些处理，然后把叶子节点的兄弟节点赋值给 workInProgress 继续“递”操作，如果连兄弟节点也没有的话，就会往上处理父节点。</p> <p>同样以上面的 Fiber 树例子来看，其中的 Fiber 节点处理顺序应该如下：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <h2 id="beginwork"><a href="#beginwork" class="header-anchor">#</a> beginWork</h2> <p>在介绍概览的时候说过，React 通常会同时存在两个 Fiber 树，一个是当前视图对应的，一个则是根据最新状态正在构建中的。这两棵树的节点一一对应，我们用 current 来代表前者，我们不难发现，当首次渲染的时候，current 必然指向 null。实际上在代码中也确实都是通过这个来判断当前是首次渲染还是更新。</p> <p><strong>「beginWork」</strong> 的目的很简单：</p> <ul><li>更新当前节点（workInProgress），获取新的 children。</li> <li>为新的 children 生成他们对应的 Fiber，并**「最终返回第一个子节点（child）」**。</li></ul> <p>在 <strong>「beginWork」</strong> 执行中，首先会判断当前是否是首次渲染。</p> <ul><li><p>如果是首次渲染：</p></li> <li><ul><li>则下来会根据当前正在构建的节点的组件类型做不同的处理，源码中这块逻辑使用了大量的 switch case。</li></ul></li></ul> <div class="language- extra-class"><pre class="language-text"><code>switch (workInProgress.tag) {
+    case FunctionComponent: {
+      ...
+    }
+    case ClassComponent: {
+      ...
+    }
+    case HostRoot: {
+      ...
+    }
+    case HostComponent: {
+      ...
+    }
+    ...
+  }
+</code></pre></div><ul><li><p>如果非首次渲染：</p></li> <li><ul><li>React 会使用一些优化手段，而符合优化的条件则是**「当前节点对应组件的 props 和 context 没有发生变化」<strong>并且</strong>当前节点的更新优先级不够，**如果这两个条件均满足的话可以直接复制 current 的子节点并返回。如果不满足则同首次渲染走一样的逻辑。</li></ul></li></ul> <div class="language- extra-class"><pre class="language-text"><code>if (current !== null) {
+    // 这里处理一些依赖
+    if (
+      enableLazyContextPropagation &amp;&amp;
+      !includesSomeLane(renderLanes, updateLanes)
+    ) {
+      const dependencies = current.dependencies;
+      if (dependencies !== null &amp;&amp; checkIfContextChanged(dependencies)) {
+        updateLanes = mergeLanes(updateLanes, renderLanes);
+      }
+    }
+
+    const oldProps = current.memoizedProps;
+    const newProps = workInProgress.pendingProps;
+
+    if (
+      oldProps !== newProps ||
+      hasLegacyContextChanged() ||
+      // Force a re-render if the implementation changed due to hot reload:
+      (__DEV__ ? workInProgress.type !== current.type : false)
+    ) {
+      // 如果 props 或者 context 变了
+      didReceiveUpdate = true;
+    } else if (!includesSomeLane(renderLanes, updateLanes)) {
+      didReceiveUpdate = false;
+      // 走到这里则说明符合优化条件
+      switch (workInProgress.tag) {
+        case HostRoot:
+          ...
+          break;
+        case HostComponent:
+          ...
+          break;
+        case ClassComponent: {
+          ...
+          break;
+        }
+        case HostPortal:
+          ...
+          break;
+        case ContextProvider: {
+          ...
+          break;
+        }
+        ...
+        
+      }
+      return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes);
+    } else {
+      ...
+      didReceiveUpdate = false;
+    }
+  } else {
+    didReceiveUpdate = false;
+  }
+</code></pre></div><h3 id="更新优化策略应用"><a href="#更新优化策略应用" class="header-anchor">#</a> 更新优化策略应用</h3> <p>开发过程中我们常常希望利用 React 非首次渲染的优化策略来提升性能，如下代码，B 组件是个纯展示组件且内部没有依赖任何 Demo 组件的数据，因此有些同学可能会想当然认为当 Demo 重新渲染时这个 B 组件是符合 React 优化条件的。但结果是，每次 Demo 重新渲染都会导致 B 组件重新渲染。每次渲染时 B 组件的 props 看似没发生变化，但由于 Demo 重新执行后会生成全新的 B 组件（下面会介绍），所以新旧 B 组件的 props 肯定也是不同的。</p> <div class="language- extra-class"><pre class="language-text"><code>function App() {
+    return &lt;Demo /&gt;
+}
+
+function Demo() {
+    const [v, setV] = useState();
+    return (
+        &lt;div&gt;
+            &lt;A value={v} /&gt;
+            &lt;B /&gt;
+        &lt;/div&gt;  
+    );
+}
+</code></pre></div><p>那有什么办法可以保持住 B 组件不变吗，答案是肯定的，我们可以把 B 组件放到 Demo 组件外层，这样一来，B 组件是在 App 组件中生成并作为 props 传入 Demo 的，因为不管 Demo 组件状态怎么变化都不会影响到 App 组件，因此 App 和 B 组件就只会在首次渲染时会执行一遍，也就是说 Demo 获取到的 props.children 的引用一直都是指向同一个对象，这样一来 B 组件的 props 也就不会变化了。</p> <div class="language- extra-class"><pre class="language-text"><code>function App() {
+    return &lt;Demo&gt;
+        &lt;B /&gt;
+    &lt;/Demo&gt;
+}
+
+function Demo(props) {
+    const [v, setV] = useState();
+    return (
+        &lt;div&gt;
+            &lt;A value={v} /&gt;
+           {props.children}
+        &lt;/div&gt;  
+    );
+}
+</code></pre></div><h3 id="更新当前节点"><a href="#更新当前节点" class="header-anchor">#</a> 更新当前节点</h3> <p>通过上面的解析我们知道，当不走优化逻辑时 <strong>「beginWork」</strong> 使用大量的 switch...case 来分别处理不同类型的组件，下来我们以我们熟悉的 Function Component 为例。</p> <p><strong>「核心就是通过调用函数组件，得到组件的返回的 element。」</strong></p> <p>类似地，对于类组件，则是调用组件实例的 render 方法得到 element。</p> <p>而对于我们普通的组件，例如 </p><div></div> ，则是直接取 props.children 即可。<p></p> <div class="language- extra-class"><pre class="language-text"><code>function updateFunctionComponent(
+  current,
+  workInProgress,
+  Component,
+  nextProps: any,
+  renderLanes,
+) {
+  let context;
+  if (!disableLegacyContext) {
+    const unmaskedContext = getUnmaskedContext(workInProgress, Component, true);
+    context = getMaskedContext(workInProgress, unmaskedContext);
+  }
+  let nextChildren;
+  prepareToReadContext(workInProgress, renderLanes);
+  // 执行组件函数获取返回的 element
+  nextChildren = renderWithHooks(
+    current,
+    workInProgress,
+    Component,
+    nextProps,
+    context,
+    renderLanes,
+  );
+  
+  // React DevTools reads this flag.
+  workInProgress.flags |= PerformedWork;
+  reconcileChildren(current, workInProgress, nextChildren, renderLanes);
+  return workInProgress.child;
+}
+</code></pre></div><p>得到组件返回的 element(s) 之后，下一步就是为他们生成 Fiber，我们查看源码可以看到，不论是函数组件或是类组件或是普通组件，最后返回的 element(s) 都会作为参数传入到 <strong>「reconcileChildren」</strong> 中。</p> <p>介绍 <strong>「reconcileChildren」</strong> 之前我们先用一张图总结一下 <strong>「beginWork」</strong> 的大致流程：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <h3 id="生成子节点"><a href="#生成子节点" class="header-anchor">#</a> 生成子节点</h3> <p>经过上一步得到 workInProgress 的 children 之后，接下来需要为这些 children element 生成 Fiber ，这就是 <strong>「reconcileChildFibers」</strong> 函数做的事情，这也是我们经常提到的 diff 的过程。</p> <p>这个函数里主要分两种情况处理，如果是 newChild(即 children element)是 object 类型，则进入单节点 diff 过程（<strong>「reconcileSingleElement」</strong>），如果是数组类型，则进入多节点 diff 过程（<strong>「reconcileChildrenArray」</strong>）</p> <div class="language- extra-class"><pre class="language-text"><code>function reconcileChildFibers(
+    returnFiber: Fiber,
+    currentFirstChild: Fiber | null,
+    newChild: any,
+    lanes: Lanes,
+  ): Fiber | null {
+    if (typeof newChild === 'object' &amp;&amp; newChild !== null) {
+      switch (newChild.$typeof) {
+        case REACT_ELEMENT_TYPE:
+          return placeSingleChild(
+            reconcileSingleElement(
+              returnFiber,
+              currentFirstChild,
+              newChild,
+              lanes,
+            ),
+          );
+        ...
+      }
+      if (isArray(newChild)) {
+        return reconcileChildrenArray(
+          returnFiber,
+          currentFirstChild,
+          newChild,
+          lanes,
+        );
+      }
+      throwOnInvalidObjectType(returnFiber, newChild);
+    }
+    
+}   
+</code></pre></div><h4 id="单节点diff"><a href="#单节点diff" class="header-anchor">#</a> 单节点diff</h4> <div class="language- extra-class"><pre class="language-text"><code>function reconcileSingleElement(
+    returnFiber: Fiber,
+    currentFirstChild: Fiber | null,
+    element: ReactElement,
+    lanes: Lanes,
+  ): Fiber {
+    const key = element.key;
+    let child = currentFirstChild;
+    while (child !== null) {
+    
+      // 首先比较 key 是否相同
+      if (child.key === key) {
+        const elementType = element.type;
+        ...
+           // 然后比较 elementType 是否相同
+          if (child.elementType === elementType) {
+            deleteRemainingChildren(returnFiber, child.sibling);
+            const existing = useFiber(child, element.props);
+            existing.ref = coerceRef(returnFiber, child, element);
+            existing.return = returnFiber;
+            return existing;
+          }
+        
+        // Didn't match.
+        deleteRemainingChildren(returnFiber, child);
+        break;
+      } else {
+        deleteChild(returnFiber, child);
+      }
+      // 遍历兄弟节点，看能不能找到 key 相同的节点
+      child = child.sibling;
+    }
+
+    if (element.type === REACT_FRAGMENT_TYPE) {
+      const created = createFiberFromFragment(
+        element.props.children,
+        returnFiber.mode,
+        lanes,
+        element.key,
+      );
+      created.return = returnFiber;
+      return created;
+    } else {
+      const created = createFiberFromElement(element, returnFiber.mode, lanes);
+      created.ref = coerceRef(returnFiber, currentFirstChild, element);
+      created.return = returnFiber;
+      return created;
+    }
+  }
+  
+</code></pre></div><p>本着尽可能复用旧节点的原则，在单节点 diff 在这里，我们会遍历旧节点，对每个遍历到的节点会做一下两个判断：</p> <ul><li>key 是否相同</li> <li>key 相同的情况下，elementType 是否相同</li></ul> <p>延伸下来有三种情况：</p> <ul><li>如果 key 不相同，则直接调用 <strong>「deleteChild」</strong> 将这个 child 标记为删除，但是我们不用灰心，可能只是我们还没有找到那个对的节点，所以要继续执行<code>child = child.sibling;</code>遍历兄弟节点，直到找到那个对的节点。</li> <li>如果 key 相同，elementType 相同，那就是最理想的情况，找到了可以复用的节点，直接调用 <strong>「deleteRemainingChildren」</strong> 把剩余的兄弟节点标记删除，然后直接复用 child 返回。</li> <li>如果 key 相同，但 elementType 不同，这是最悲情的情况，我们找到了那个节点，可惜的是这个节点的 elementType 已经变了，那我们也不需要再找了，把 child 及其所有兄弟节点标记删除，跳出循环。直接创建一个新的节点。</li></ul> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <h4 id="多节点diff"><a href="#多节点diff" class="header-anchor">#</a> 多节点diff</h4> <div class="language- extra-class"><pre class="language-text"><code>function reconcileChildrenArray(
+    returnFiber: Fiber,
+    currentFirstChild: Fiber | null,
+    newChildren: Array&lt;*&gt;,
+    lanes: Lanes,
+) {
+    let resultingFirstChild: Fiber | null = null;
+    let previousNewFiber: Fiber | null = null;
+
+    let oldFiber = currentFirstChild;
+    let lastPlacedIndex = 0;
+    let newIdx = 0;
+    let nextOldFiber = null;
+    for (; oldFiber !== null &amp;&amp; newIdx &lt; newChildren.length; newIdx++) {
+        const newFiber = updateSlot(
+        returnFiber,
+        oldFiber,
+        newChildren[newIdx],
+        lanes,
+        );
+        if (newFiber === null) {
+          break;
+        }
+          lastPlacedIndex = placeChild(newFiber, lastPlacedIndex, newIdx);
+          if (previousNewFiber === null) {
+            resultingFirstChild = newFiber;
+          } else {
+            previousNewFiber.sibling = newFiber;
+          }
+          previousNewFiber = newFiber;
+          oldFiber = nextOldFiber;
+    }
+    if (newIdx === newChildren.length) {
+        ...
+    }
+    if (oldFiber === null) {
+        ...
+    }
+    for (; newIdx &lt; newChildren.length; newIdx++) {
+        ...
+    }
+    return resultingFirstChild;
+}
+
+
+function updateSlot(
+    returnFiber: Fiber,
+    oldFiber: Fiber | null,
+    newChild: any,
+    lanes: Lanes,
+  ): Fiber | null {
+    const key = oldFiber !== null ? oldFiber.key : null;
+    ...
+    if (newChild.key === key) {
+      return updateElement(returnFiber, oldFiber, newChild, lanes);
+    } else {
+      return null;
+    }
+}
+</code></pre></div><p>从源码我们可以看到，在 <strong>「reconcileChildrenArray」</strong> 中，出现了两个循环。</p> <p>第一轮循环中逻辑如下：</p> <ol><li><p>同时遍历 oldFiber 链和 newChildren，判断 oldFiber 和 newChild 的 key 是否相同。</p></li> <li><p>如果 key 相同。</p></li> <li><ol><li>判断双方 elementType 是否相同。</li> <li>如果相同则复用 oldFiber 返回。</li> <li>如果不同则新建 Fiber 返回。</li></ol></li> <li><p>如果 key 不同则直接跳出循环。</p></li></ol> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>可以看到第一轮循环只要碰到新旧的 key 不一样时就会跳出循环，换句话说，第一轮循环里做的事情都是基于 key 相同，主要就是「更新」的工作。</p> <p>跳出循环后，要先执行两个判断</p> <ul><li>newChildren 已经遍历完了：这种情况说明新的 children 全都已经处理完了，只要把 oldFiber 和他所有剩余的兄弟节点删除然后返回头部的 Fiber 即可。</li> <li>已经没有 oldFiber ：这种情况说明 children 有新增的节点，给这些新增的节点逐一构建 Fiber 并链接上，然后返回头部的 Fiber 即可。</li></ul> <p>如果以上两种情况都不是，则进入第二轮循环。</p> <p>在执行第二轮循环之前，先把剩下的旧节点和他们对应的 key 或者 index 做成映射，方便查找。</p> <p>第二轮循环沿用了第一轮循环的 newIdx 变量，说明第二轮循环是在第一轮循环结束的地方开始再次遍历剩下的 newChildren。</p> <div class="language- extra-class"><pre class="language-text"><code>    const existingChildren = mapRemainingChildren(returnFiber, oldFiber);
+    for (; newIdx &lt; newChildren.length; newIdx++) {
+      const newFiber = updateFromMap(
+        existingChildren,
+        returnFiber,
+        newIdx,
+        newChildren[newIdx],
+        lanes,
+      );
+      if (newFiber !== null) {
+        if (shouldTrackSideEffects) {
+          if (newFiber.alternate !== null) {
+            existingChildren.delete(
+              newFiber.key === null ? newIdx : newFiber.key,
+            );
+          }
+        }
+        lastPlacedIndex = placeChild(newFiber, lastPlacedIndex, newIdx);
+        if (previousNewFiber === null) {
+          resultingFirstChild = newFiber;
+        } else {
+          previousNewFiber.sibling = newFiber;
+        }
+        previousNewFiber = newFiber;
+      }
+    }
+    
+    
+    function placeChild(
+    newFiber: Fiber,
+    lastPlacedIndex: number,
+    newIndex: number,
+  ): number {
+    newFiber.index = newIndex;
+    if (!shouldTrackSideEffects) {
+      // Noop.
+      return lastPlacedIndex;
+    }
+    const current = newFiber.alternate;
+    if (current !== null) {
+      const oldIndex = current.index;
+      if (oldIndex &lt; lastPlacedIndex) {
+        // This is a move.
+        newFiber.flags |= Placement;
+        return lastPlacedIndex;
+      } else {
+        // This item can stay in place.
+        return oldIndex;
+      }
+    } else {
+      // This is an insertion.
+      newFiber.flags |= Placement;
+      return lastPlacedIndex;
+    }
+  }
+</code></pre></div><p>第二轮循环主要调用了 <strong>「updateFromMap」</strong> 来处理节点，在这里需要用 newChild 的 key 去 existingChildren 中找对应的 Fiber。</p> <ul><li>能找到 key 相同的，则说明这个节点只是位置变了，是可以复用的。</li> <li>找不到 key 相同的，则说明这个节点应该是新增的。</li></ul> <p>不管是复用还是新增，<strong>「updateFromMap」</strong> 都会返回一个 newFiber，然后我们需要为这个 newFiber 更新一下它的位置（index），但是仅仅更新这个 Fiber 的 index 还不够，因为这个 Fiber 有可能是复用的，如果是复用的就意味着它已经有对应的真实 DOM 节点了，我们还需要复用它的真实 DOM，因此需要对应更新这个 Fiber 的 flag，但是真的需要对每个 Fiber 都去设置 flag 吗，我们举个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>// 旧
+[&lt;div key='a' /&gt;, &lt;div key='b' /&gt;, &lt;div key='c' /&gt;]
+
+// 新
+[&lt;div key='c' /&gt;, &lt;div key='a' /&gt;, &lt;div key='b' /&gt;]
+</code></pre></div><p>如果按照我们刚刚说的做法，这里的 a, b, c 都会被打上 flag，这样一来，在 commit 阶段，这三个 DOM 都会被移动，可是我们知道，这里显然只需要移动一个节点即可，退一万步说我们移动两个节点也比移动所有节点要来的聪明。</p> <p>其实在这个问题上主要就是我们得区分一下到底哪个节点才是移动了的，这就需要一个参照点，我们要保证在参照点左边都是已经排好顺序了的。而这个参照点就是 lastPlacedIndex。有了它，我们在遍历 newChildren 的时候可能会出现下面两种情况：</p> <ul><li>生成（或复用）的 Fiber 对应的老 index &lt; lastPlacedIndex，这就说明这个 Fiber 的位置不对，因为 lastPlacedIndex 左边的应该全是已经遍历过的 newChild 生成的 Fiber。因此这个 Fiber 是需要被移动的，打上 flag。</li> <li>如果 Fiber 对应的老 index &gt;= lastPlacedIndex，那就说明这个 Fiber 的相对位置是 ok 的，可以不用移动，但是我们需要更新一下参照点，把参照点更新成这个 Fiber 对应的老 index。</li></ul> <p>我们举一个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>// 旧
+[&lt;div key='a' /&gt;, &lt;div key='b' /&gt;, &lt;div key='c' /&gt;, &lt;div key='d' /&gt;]
+
+// 新
+[&lt;div key='c' /&gt;, &lt;div key='a' /&gt;, &lt;div key='b' /&gt;, &lt;div key='d' /&gt;, &lt;div key='e' /&gt;]
+</code></pre></div><p>lastPlacedIndex 初始值为 0，</p> <p>首先处理第一个节点 c，给节点 c 的 index 赋值为最新值 0，c.index = 0。</p> <p>可以看到 c 的 oldIndex 为 2，此时 oldIndex &gt; lastPlacedIndex，无需对 c 做移动，将 lastPlacedIndex 赋值为 2。</p> <p>此时 lastPlacedIndex = 2。</p> <p>然后处理节点 a，a.index = 1。</p> <p>a 的 oldIndex 为 0，此时 oldIndex &lt; lastPlacedIndex，因此需要对 a 打上 Placement 标记，lastPlacedIndex 维持不变。</p> <p>此时 lastPlacedIndex 仍然等于 2。</p> <p>然后处理节点 b，b.index = 2。</p> <p>b 的 oldIndex 为 1，此时 oldIndex &lt; lastPlacedIndex，需要对 b 打上 Placement 标记，将 lastPlacedIndex 维持不变。</p> <p>此时 lastPlacedIndex 仍然等于 2。</p> <p>然后处理节点 d，b.index = 3。</p> <p>d 的 oldIndex 为 3，此时 oldIndex &gt; lastPlacedIndex，无需对 d 做移动，将 lastPlacedIndex 赋值为 3。</p> <p>此时 lastPlacedIndex = 3。</p> <p>然后处理节点 e，e.index = 4。</p> <p>由于 e 是新建节点，所以 e 的 oldIndex 为 0，此时 oldIndex &lt; lastPlacedIndex，因此需要对 e 打上 Placement 标记，lastPlacedIndex 维持不变。</p> <p>因此最终需要变动位置的节点是 a b e。</p> <p>这里可以看到其实最高效的改动是移动 c 和 e，但是 React 的 diff 逻辑选择了固定住 c，移动 a b，因此我们平时写代码的时候尽量避免把节点从后面提到前面的操作。</p> <p>为 newChildren 里的所有 element 都生成了 Fiber 并连接好之后，返回第一个 child ，至此生成子节点的步骤就完成了。</p> <h2 id="completeunitofwork"><a href="#completeunitofwork" class="header-anchor">#</a> completeUnitOfWork</h2> <p>在核心流程里我们说到，当 beginWork 处理到叶子节点，返回 null 的时候就会调用 <strong>「completeUnitOfWork」</strong> 函数。</p> <p><strong>「completeUnitOfWork」</strong> 主要做的事情有两件：</p> <ul><li>处理当前节点</li> <li>“归”操作</li></ul> <h3 id="处理当前节点"><a href="#处理当前节点" class="header-anchor">#</a> 处理当前节点</h3> <p><strong>「completeUnitOfWork」</strong> 里主要调用了 <strong>「completeWork」</strong> 来处理当前节点，而在 completeWork 中则是使用了 switch...case... 来处理不同类型的节点，这里我们主要以最常见的 HostComponent 为例。分成首次渲染和非首次渲染两种情况讨论。</p> <h4 id="mount"><a href="#mount" class="header-anchor">#</a> mount</h4> <p>当是首次渲染时，这里要做的事情主要是：</p> <ol><li>创建真实 DOM。</li> <li>如果有子节点的话将子节点的真实 DOM 插入到刚刚创建的 DOM 中。</li> <li>处理真实 DOM 的 props 等。</li></ol> <div class="language- extra-class"><pre class="language-text"><code>const currentHostContext = getHostContext();
+// 为fiber创建对应DOM节点
+const instance = createInstance(
+    type,
+    newProps,
+    rootContainerInstance,
+    currentHostContext,
+    workInProgress,
+  );
+// 将子孙DOM节点插入刚生成的DOM节点中
+appendAllChildren(instance, workInProgress, false, false);
+// DOM节点赋值给fiber.stateNode
+workInProgress.stateNode = instance;
+
+// 处理props
+if (
+  finalizeInitialChildren(
+    instance,
+    type,
+    newProps,
+    rootContainerInstance,
+    currentHostContext,
+  )
+) {
+  markUpdate(workInProgress);
+}
+</code></pre></div><h4 id="update"><a href="#update" class="header-anchor">#</a> update</h4> <p>当 update 时，Fiber 节点已经存在对应 DOM 节点，所以不需要生成 DOM 节点。需要做的主要是处理DOM 节点的 props，这里主要就是一些真实 DOM 的 onClick、onChange等回调函数的注册，style 等，这些处理完之后的 props 也会记录到 workInProgress.updateQueue 中，并在 commit 阶段更新到 DOM 节点上。</p> <div class="language- extra-class"><pre class="language-text"><code>if (current !== null &amp;&amp; workInProgress.stateNode != null) {
+  // update的情况
+  updateHostComponent(
+    current,
+    workInProgress,
+    type,
+    newProps,
+    rootContainerInstance,
+  );
+}
+</code></pre></div><h3 id="归"><a href="#归" class="header-anchor">#</a> “归”</h3> <p>刚刚说到，当 <strong>「beginWork」</strong> 返回值为 null 的时候会进入 **「completeUnitOfWork」**中，可是我们知道 beginWork 是深度优先的更新，也就意味着进入 <strong>「completeUnitOfWork」</strong> 之后必然还需要回到 beginWork 中继续处理其他的节点。</p> <div class="language- extra-class"><pre class="language-text"><code>    ...
+    const siblingFiber = completedWork.sibling;
+    if (siblingFiber !== null) {
+      // If there is more work to do in this returnFiber, do that next.
+      workInProgress = siblingFiber;
+      return;
+    }
+    // Otherwise, return to the parent
+    completedWork = returnFiber;
+    // Update the next thing we're working on in case something throws.
+    workInProgress = completedWork;
+</code></pre></div><p>可以看到，当处理完当前节点之后，React 会判断当前节点是否具有兄弟节点，如果有的话则将兄弟节点设置为当前的 workInProgress 回到主流程继续 <strong>「beginWork。」</strong></p> <p>而如果没有兄弟节点的话，就意味着同父节点下的所有子节点都已经处理完毕，则接下来就会处理他们的父节点。</p> <p>大致流程就是：<strong>「beginWork」</strong> 执行到当前节点没有 child 的时候，进入 <strong>「completeUnitOfWork」</strong> 处理当前节点，处理完后如果当前节点有兄弟节点则回到 <strong>「beginWork」</strong> 继续处理兄弟节点，如果没有兄弟节点则继续在 <strong>「completeUnitOfWork」</strong> 处理当前节点的父节点，直到“归”到根结点上。</p> <h1 id="三、挂载过程-commitroot"><a href="#三、挂载过程-commitroot" class="header-anchor">#</a> 三、挂载过程（commitRoot）</h1> <h2 id="effect-list"><a href="#effect-list" class="header-anchor">#</a> effect list</h2> <p><code>render阶段</code>的一个主要工作是收集需要执行的 DOM 操作，然后交给 <code>commit阶段</code> 来处理，而这些 DOM 操作的具体类型都会保存在 Fiber 节点的 <code>effectTag</code> 属性上。</p> <p>部分 DOM 操作的类型：</p> <div class="language- extra-class"><pre class="language-text"><code>// 插入 DOM
+export const Placement = /*                */ 0b00000000000010;
+// 更新 DOM
+export const Update = /*                   */ 0b00000000000100;
+// 插入并更新 DOM
+export const PlacementAndUpdate = /*       */ 0b00000000000110;
+// 删除 DOM 节点
+export const Deletion = /*                 */ 0b00000000001000;
+</code></pre></div><p>使用二进制来表示可以方便地用位运算给 <code>effectTag</code> 带上多个副作用(effect)，也可以方便地判断是否存在某个副作用。例如有个 fiber 节点 <code>effectTag</code> 是 <code>PlacementAndUpdate</code> (<code>0b00000000000110</code>)，可以通过按位与运算来判断是否存在<code>Placement</code>：</p> <div class="language- extra-class"><pre class="language-text"><code>const effectTag = PlacementAndUpdate;
+console.log(effectTag &amp; Placement !== 0); // =&gt; true
+</code></pre></div><p>在 <code>commit阶段</code> 可以像 <code>render阶段</code> 那样遍历所有 fiber 节点找出其中的 <code>effectTag</code>，但这样效率比较低，所以在 <code>render阶段</code> 的 <code>completeUnitOfWork</code> 中会把具有 <code>effectTag</code> 的 fiber 节点连接起来，形成 <code>effectList</code> 链表。例如我们有这样的代码：</p> <div class="language- extra-class"><pre class="language-text"><code>function App() {
+  const [count, setCount] = useState(0);
+  return (
+    &lt;div onClick={() =&gt; setCount(count + 1)}&gt;
+      &lt;p&gt;{count}&lt;/p&gt;
+      &lt;span&gt;{count}&lt;/span&gt;
+    &lt;/div&gt;
+  );
+};
+</code></pre></div><p>我们在 <code>performSyncWorkOnRoot</code> 方法的末尾的 <code>finishedWork</code> 打个断点，然后点击 div 触发一次 <code>setCount</code> 更新：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>当 react 执行到断点这个地方时，我们在控制台打印一下 <code>finishedWork</code>：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>所以此时对应的 <code>effectList</code>是：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>这里 <code>span</code> 和 <code>p</code> 节点有 <code>effectTag</code> 是因为 <code>{count}</code>，<code>div</code> 节点有 <code>effectTag</code>是因为重新生成的 <code>onClick</code> 函数。</p> <h2 id="commit-阶段"><a href="#commit-阶段" class="header-anchor">#</a> commit 阶段</h2> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p><code>render阶段</code>结束后，会在<code>performSyncWorkOnRoot()</code>或<code>finishConcurrentRender()</code>中把 <code>fiberRootNode</code> 传给 <code>commitRoot</code> 方法，开启 <code>commit阶段</code>。</p> <p>以<code>performSyncWorkOnRoot</code>为例：</p> <div class="language- extra-class"><pre class="language-text"><code>function performSyncWorkOnRoot(root) {
+    // render阶段的入口函数
+    renderRootSync(root, lanes);
+    // ...
+    // commitRoot函数调用
+    const finishedWork = root.current.alternate;
+    root.finishedWork = finishedWork;
+    root.finishedLanes = lanes;
+    commitRoot(root);
+    // ...省略代码
+}
+</code></pre></div><p><code>commit阶段</code>的一个主要工作就是遍历 <code>effectList</code> 并执行对应的 DOM 操作。<code>commit阶段</code>又分为三个子阶段：</p> <ul><li><code>before mutation阶段</code></li> <li><code>mutation阶段</code></li> <li><code>layout阶段</code></li></ul> <p>下面来看看 <code>commit阶段</code> 具体发生了什么。</p> <p>进入 <code>commitRootImpl</code> 方法时，会先判断 <code>rootWithPendingPassiveEffects</code> 是否为 <code>null</code>，如果不为 <code>null</code> 就会执行 <code>flushPassiveEffects</code>。</p> <div class="language- extra-class"><pre class="language-text"><code>function commitRootImpl(root, renderPriorityLevel) {
+  do {
+    flushPassiveEffects();
+  } while (rootWithPendingPassiveEffects !== null);
+
+  // ...
+}
+</code></pre></div><p><code>rootWithPendingPassiveEffects</code> 中的<code>PassiveEffect</code> 是什么意思呢？我们知道如果一个 fiber 节点的 dom 节点需要被插入到页面中，那 <code>fiber.effectTag</code> 就会带上 <code>Placement</code> effect，类似的，如果一个 FunctionComponent 有 <code>useEffect</code> 需要被执行，那它就会带上 <code>Passive</code> effect。</p> <p>所以这里的意思是进入 <code>commitRoot</code> 时先判断当前是否还有未执行的 <code>useEffect</code>，如果有，就执行它，也就是说在开启新一轮的 commit 阶段时会先等待上一轮的 useEffect 执行完。这其实在官方文档里也有一些说明：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>接着会重置 <code>render阶段</code>使用到的一些全局变量：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitRootImpl(root, renderPriorityLevel) {
+  do {
+    flushPassiveEffects();
+  } while (rootWithPendingPassiveEffects !== null);
+
+  // ...
+
+  if (root === workInProgressRoot) {
+    workInProgressRoot = null;
+    workInProgress = null;
+    workInProgressRootRenderLanes = NoLanes;
+  }
+  
+  // ...
+}
+</code></pre></div><p>处理 <code>effect list</code>：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitRootImpl(root, renderPriorityLevel) {
+  // ...
+
+  let firstEffect;
+  if (finishedWork.effectTag &gt; PerformedWork) {
+    if (finishedWork.lastEffect !== null) {
+      finishedWork.lastEffect.nextEffect = finishedWork;
+      firstEffect = finishedWork.firstEffect;
+    } else {
+      firstEffect = finishedWork;
+    }
+  } else {
+    firstEffect = finishedWork.firstEffect;
+  }
+  
+  // ...
+}
+</code></pre></div><p>上面说过 <code>render阶段</code>已经把带有 <code>effectTag</code> 的 fiber 节点连接形成一条链表了，这里再次处理 <code>effect list</code> 是因为这条链表目前只有子节点，并没有挂载根节点。如果根节点也存在 <code>effectTag</code>，那么就需要把根节点拼接到链表的末尾，形成一条完整的 <code>effect list</code>：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>同时上面的代码也会取出 <code>firstEffect</code>，也就是第一个需要被处理的 fiber 节点。接着判断如果存在 <code>firstEffect</code>，会将 <code>firstEffect 赋值给 nextEffect</code>，开始三个子阶段的工作。</p> <div class="language- extra-class"><pre class="language-text"><code>function commitRootImpl(root, renderPriorityLevel) {
+  // ...
+
+  if (firstEffect !== null) {
+    nextEffect = firstEffect;
+    
+    // beforeMutation 阶段：
+    // 执行 commitBeforeMutationEffects
+    
+    // mutation 阶段：
+    // 执行 commitMutationEffects
+    
+    // layout 阶段：
+    // 执行 commitLayoutEffects
+  }
+  
+  // ...
+}
+</code></pre></div><h3 id="beforemutation阶段"><a href="#beforemutation阶段" class="header-anchor">#</a> beforeMutation阶段</h3> <p><code>beforeMutation阶段</code>会执行 <code>commitBeforeMutationEffects</code> 方法</p> <div class="language- extra-class"><pre class="language-text"><code>function commitBeforeMutationEffects() {
+  while (nextEffect !== null) {
+    // ...
+    
+    const effectTag = nextEffect.effectTag;
+    if ((effectTag &amp; Snapshot) !== NoEffect) {
+      // ...
+      commitBeforeMutationEffectOnFiber(current, nextEffect);
+    }
+
+    // ...
+    nextEffect = nextEffect.nextEffect;
+  }
+}
+</code></pre></div><h4 id="执行-getsnapshotbeforeupdate"><a href="#执行-getsnapshotbeforeupdate" class="header-anchor">#</a> 执行 <code>getSnapshotBeforeUpdate</code></h4> <p>在<code>commitBeforeMutationEffects</code>这个方法中会遍历带有 effectTag 的 fiber 节点，如果判断有 <code>Snapshot</code> effectTag 就会调用 ClassComponent 的 <code>getSnapshotBeforeUpdate</code> 生命周期方法：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitBeforeMutationLifeCycles(
+  current: Fiber | null,
+  finishedWork: Fiber,
+): void {
+  switch (finishedWork.tag) {
+    case FunctionComponent:
+    case ForwardRef:
+    case SimpleMemoComponent:
+    case Block: {
+      return;
+    }
+    case ClassComponent: {
+      if (finishedWork.effectTag &amp; Snapshot) {
+        if (current !== null) {
+          // ...
+          const snapshot = instance.getSnapshotBeforeUpdate(/** ... */);
+          // ...
+        }
+      }
+      return;
+    }
+    case HostRoot: {
+      // ...
+      return;
+    }
+    case HostComponent:
+    case HostText:
+    case HostPortal:
+    case IncompleteClassComponent:
+      // Nothing to do for these component types
+      return;
+  }
+}
+</code></pre></div><h4 id="调度-useeffect"><a href="#调度-useeffect" class="header-anchor">#</a> 调度 <code>useEffect</code></h4> <p>再看下 <code>commitBeforeMutationEffects</code> 的剩余部分：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitBeforeMutationEffects() {
+  while (nextEffect !== null) {
+    // ...
+    
+    if ((effectTag &amp; Passive) !== NoEffect) {
+      if (!rootDoesHavePassiveEffects) {
+        rootDoesHavePassiveEffects = true;
+        scheduleCallback(NormalSchedulerPriority, () =&gt; {
+          flushPassiveEffects();
+          return null;
+        });
+      }
+    }
+    nextEffect = nextEffect.nextEffect;
+  }
+}
+</code></pre></div><p>上面提到 <code>flushPassiveEffects</code> 用于执行 <code>useEffect</code> 的回调函数，而这里并不会立即执行它，而是把它放在 <code>scheduleCallback</code> 的回调当中，<code>scheduleCallback</code>方法会以一个优先级异步执行它的回调函数。</p> <p>所以这段代码的意思是，如果存在 <code>Passive</code> effect，则把 <code>rootDoesHavePassiveEffects</code> 置为 true，并且调度 <code>flushPassiveEffects</code>，而整个 <code>commit阶段</code> 是**「同步执行」<strong>的，所以 <code>useEffect</code> 的回调函数其实会在 <code>commit阶段</code></strong>「完成后」**再异步执行。</p> <p>这也跟官方文档说的对应上了：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <h4 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h4> <p>在 <code>beforeMutation阶段</code> 会：</p> <ul><li>执行<code>getSnapshotBeforeUpdate</code>生命周期方法</li> <li><strong>「调度」</strong><code>useEffect</code></li></ul> <h3 id="mutation阶段"><a href="#mutation阶段" class="header-anchor">#</a> mutation阶段</h3> <p><code>mutation阶段</code>会执行 <code>commitMutationEffects</code> 方法：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitMutationEffects(root: FiberRoot, renderPriorityLevel) {
+  while (nextEffect !== null) {
+    const effectTag = nextEffect.effectTag;
+    
+    // 如果有 ContentReset，会重置文本节点
+    if (effectTag &amp; ContentReset) {
+      commitResetTextContent(nextEffect);
+    }
+    
+    // 如果有 Ref，会执行 ref 相关的更新
+    if (effectTag &amp; Ref) {
+      // ...
+    }
+
+    const primaryEffectTag =
+      effectTag &amp; (Placement | Update | Deletion | Hydrating);
+    switch (primaryEffectTag) {
+      // 如果需要插入节点，会执行 commitPlacement
+      case Placement: {
+        commitPlacement(nextEffect);
+        nextEffect.effectTag &amp;= ~Placement;
+        break;
+      }
+      // 如果需要更新节点，会执行 commitWork
+      case Update: {
+        const current = nextEffect.alternate;
+        commitWork(current, nextEffect);
+        break;
+      }
+      // 如果需要删除节点，会执行 commitDeletion
+      case Deletion: {
+        commitDeletion(root, nextEffect, renderPriorityLevel);
+        break;
+      }
+      // ...
+    }
+    
+    // 取出下一个 fiber 节点，进入下一次循环
+    nextEffect = nextEffect.nextEffect;
+  }
+}
+</code></pre></div><p>在这个方法中会遍历带有 effectTag 的 fiber 节点，</p> <ul><li><p>如果有 <code>ContentReset</code>，会重置文本节点</p></li> <li><p>如果有 <code>Ref</code>，会执行 ref 相关的操作</p></li> <li><p>增删改</p></li> <li><ul><li>如果需要插入节点，会执行 <code>commitPlacement</code></li> <li>如果需要更新节点，会执行 <code>commitWork</code></li> <li>如果需要删除节点，会执行 <code>commitDeletion</code></li> <li>...</li></ul></li></ul> <h4 id="commitplacement"><a href="#commitplacement" class="header-anchor">#</a> commitPlacement</h4> <p>在 <code>commitPlacement</code> 方法中，会先找到距离最近的 host 类型父节点和距离最近的 host 类型兄弟节点，然后根据 host 父 fiber 节点的类型取出对应的 DOM 节点，接着根据是否 <code>container</code> 来执行 <code>insertOrAppendPlacementNodeIntoContainer</code> 或 <code>insertOrAppendPlacementNode</code>。</p> <div class="language- extra-class"><pre class="language-text"><code>function commitPlacement(finishedWork: Fiber): void {
+  // 找到 host 父 fiber 节点
+  const parentFiber = getHostParentFiber(finishedWork);
+
+  let parent;
+  let isContainer;
+  const parentStateNode = parentFiber.stateNode;
+  
+  // 根据 host 父 fiber 节点的类型，取出对应的 DOM 节点
+  switch (parentFiber.tag) {
+    case HostComponent:
+      parent = parentStateNode;
+      isContainer = false;
+      break;
+    case HostRoot:
+      parent = parentStateNode.containerInfo;
+      isContainer = true;
+      break;
+    case HostPortal:
+      parent = parentStateNode.containerInfo;
+      isContainer = true;
+      break;
+    // ...
+  }
+  // ...
+  // 获取 host 兄弟节点
+  const before = getHostSibling(finishedWork);
+  
+  // 根据是否 container 来决定执行哪个方法
+  if (isContainer) {
+    insertOrAppendPlacementNodeIntoContainer(finishedWork, before, parent);
+  } else {
+    insertOrAppendPlacementNode(finishedWork, before, parent);
+  }
+}
+</code></pre></div><p>为什么需要先找到 host 父 fiber 节点和 host 兄弟 fiber 节点？</p> <p>我们知道在DOM中插入一个节点有两种方式：</p> <ul><li><code>parentNode.appendChild(newNode)</code></li> <li><code>parentNode.insertBefore(newNode, referenceNode)</code></li></ul> <p>无论哪种方式都需要找到它的父 DOM 节点，而如果需要 <code>insertBefore</code> 则还需要找到它的兄弟 DOM 节点。</p> <p>另外，为什么需要找 host 类型的父节点和兄弟节点呢？这是因为最近的父 <strong>「fiber」</strong> 节点不一定就是最近的父 <strong>「DOM」</strong> 节点，同理，最近的兄弟 <strong>「fiber」</strong> 节点不一样是最近的兄弟 <strong>「DOM」</strong> 节点。例如，我们的代码长这样：</p> <div class="language- extra-class"><pre class="language-text"><code>function Item() {
+  return &lt;p&gt;&lt;/p&gt;
+}
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;Item /&gt;
+      &lt;span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div><p>它对应的 fiber 树和 dom 树分别是：</p> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>可以看到， fiber 树和 don 树并不是一一对应的：</p> <ul><li>p 的 fiber 节点的父节点是 Item，而 p 的 dom 节点的父节点是 div</li> <li>p 的 fiber 节点没有兄弟节点，而 p 的 dom 节点有个兄弟节点是 span</li></ul> <p>上面的<code>insertOrAppendPlacementNodeIntoContainer</code> 和 <code>insertOrAppendPlacementNode</code>做的事情差不多，都会判断是否有 <code>before</code>，如果有，则执行 <code>insertBefore</code>，没有则执行 <code>appendChild</code>：</p> <div class="language- extra-class"><pre class="language-text"><code>function insertOrAppendPlacementNode(
+  node: Fiber,
+  before: ?Instance,
+  parent: Instance,
+): void {
+  // ...
+  if (before) {
+    insertBefore(parent, stateNode, before);
+  } else {
+    appendChild(parent, stateNode);
+  }
+  // ...
+}
+</code></pre></div><p><code>appendChild</code> 和 <code>insertBefore</code> 都来自于 <code>ReactFiberHostConfig</code>。</p> <p>这里的 <code>ReactFiberHostConfig</code> 在源码里其实只是一个空壳，最终需要被特定环境的 renderer 来填充，例如在我们平常使用 ReactDOM 时，<code>ReactFiberHostConfig</code> 会被 ReactDOM 的 <code>ReactDOMHostConfig</code> 来填充：</p> <div class="language- extra-class"><pre class="language-text"><code>export function appendChild(
+  parentInstance: Instance,
+  child: Instance | TextInstance,
+): void {
+  parentInstance.appendChild(child);
+}
+
+export function insertBefore(
+  parentInstance: Instance,
+  child: Instance | TextInstance,
+  beforeChild: Instance | TextInstance | SuspenseInstance,
+): void {
+  parentInstance.insertBefore(child, beforeChild);
+}
+</code></pre></div><p>可以看到，其实最终就是执行 dom 节点的 <code>appendChild</code> 或 <code>insertBefore</code> 方法。</p> <blockquote><p>❝</p> <p>React 仓库其他 renderer 的 <code>hostConfig</code>：</p> <p>❞</p></blockquote> <p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p> <p>BTW，umijs/hox(https://github.com/umijs/hox) 是一个基于 hooks 的全局状态管理工具，它跟其他基于 hooks 的状态管理工具很大的一个不同点是， hox 不需要我们手动挂载 <code>&lt;Provider /&gt;</code> 就能直接使用 model：</p> <div class="language- extra-class"><pre class="language-text"><code>// counterModel.js
+import { useState } from &quot;react&quot;;
+import { createModel } from &quot;hox&quot;;
+function useCounter() {
+  const [count, setCount] = useState(0);
+  const decrement = () =&gt; setCount(count - 1);
+  const increment = () =&gt; setCount(count + 1);
+  return {
+    count,
+    decrement,
+    increment
+  };
+}
+export default createModel(useCounter);
+
+// index.jsx
+import useCounterModel from &quot;./counterModel&quot;;
+function App(props) {
+  const counter = useCounterModel();
+  return (
+    &lt;div&gt;
+      &lt;p&gt;{counter.count}&lt;/p&gt;
+      &lt;button onClick={counter.increment}&gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div><p>其实它是在调用 <code>createModel</code> 时把 hooks 的执行挂在了它自定义的一个 renderer 里，对应的 hostConfig 都是空函数，因为它并不需要执行真正的渲染，只是用来执行 hooks 而已：</p> <div class="language- extra-class"><pre class="language-text"><code>import ReactReconciler from &quot;react-reconciler&quot;;
+import { ReactElement } from &quot;react&quot;;
+
+const hostConfig = {
+  now: Date.now,
+  getRootHostContext: () =&gt; ({}),
+  prepareForCommit: () =&gt; {},
+  resetAfterCommit: () =&gt; {},
+  getChildHostContext: () =&gt; ({}),
+  shouldSetTextContent: () =&gt; true,
+  createInstance: () =&gt; {},
+  createTextInstance: () =&gt; {},
+  appendInitialChild: () =&gt; {},
+  appendChild: () =&gt; {},
+  finalizeInitialChildren: () =&gt; {},
+  supportsMutation: true,
+  appendChildToContainer: () =&gt; {},
+  prepareUpdate: () =&gt; true,
+  commitUpdate: () =&gt; {},
+  commitTextUpdate: () =&gt; {},
+  removeChild: () =&gt; {}
+};
+
+const reconciler = ReactReconciler(hostConfig as any);
+
+export function render(reactElement: ReactElement) {
+  const container = reconciler.createContainer(null, false, false);
+  return reconciler.updateContainer(reactElement, container, null, null);
+}
+</code></pre></div><h4 id="commitwork"><a href="#commitwork" class="header-anchor">#</a> commitWork</h4> <p><code>commitWork</code> 用于更新节点。在这个方法中会根据 fiber 节点的类型进行不同的操作：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitWork(current: Fiber | null, finishedWork: Fiber): void {
+  switch (finishedWork.tag) {
+    case FunctionComponent:
+    case ForwardRef:
+    case MemoComponent:
+    case SimpleMemoComponent:
+    case Block: {
+      // ...
+      return;
+    }
+    case ClassComponent: {
+      return;
+    }
+    case HostComponent: {
+      // ...
+      return;
+    }
+    case HostText: {
+      // ...
+      return;
+    }
+    // case...
+  }
+}
+</code></pre></div><p>对于 FunctionComponent，更新时会执行 <code>commitHookEffectListUnmount(``HookLayout</code> <code>| HookHasEffect, finishedWork)</code>：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitHookEffectListUnmount(tag: number, finishedWork: Fiber) {
+  const updateQueue = finishedWork.updateQueue;
+  const lastEffect = updateQueue !== null ? updateQueue.lastEffect : null;
+  if (lastEffect !== null) {
+    const firstEffect = lastEffect.next;
+    let effect = firstEffect;
+    do {
+      if ((effect.tag &amp; tag) === tag) {
+        const destroy = effect.destroy;
+        effect.destroy = undefined;
+        if (destroy !== undefined) {
+          destroy();
+        }
+      }
+      effect = effect.next;
+    } while (effect !== firstEffect);
+  }
+}
+</code></pre></div><p>里面会遍历 effect list，判断 <code>effect.tag</code> 是否存在参数传入的 <code>tag</code> 类型，在这个场景里被传入 tag 参数是 <code>HookLayout</code>，也就是 <code>useLayoutEffect</code> 对应的 effect tag。所以这里的意思是遍历 effect list，如果存在 <code>useLayoutEffect</code> 的 effect tag，则执行它的销毁函数（即 <code>useLayoutEffect</code> 的回调函数的返回值）。</p> <p>如果 fiber 节点的类型是 <code>HostComponent</code>，也就是 dom 节点对应的 fiber 节点，更新时会执行 <code>commitUpdate</code> 方法：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitWork(current: Fiber | null, finishedWork: Fiber): void {
+  switch (finishedWork.tag) {
+    // ...
+    case HostComponent: {
+      const instance: Instance = finishedWork.stateNode;
+      if (instance != null) {
+        // ...
+        const updatePayload: null | UpdatePayload = (finishedWork.updateQueue: any);
+        // ...
+        if (updatePayload !== null) {
+          commitUpdate(
+            instance,
+            updatePayload,
+            type,
+            oldProps,
+            newProps,
+            finishedWork,
+          );
+        }
+        if (enableDeprecatedFlareAPI) {
+          const prevListeners = oldProps.DEPRECATED_flareListeners;
+          const nextListeners = newProps.DEPRECATED_flareListeners;
+          if (prevListeners !== nextListeners) {
+            updateDeprecatedEventListeners(nextListeners, finishedWork, null);
+          }
+        }
+      }
+      return;
+    }
+    // ...
+  }
+}
+</code></pre></div><p><code>commitUpdate</code> 方法接收的参数中有个 <code>updatePayload</code>，它来自于 <code>fiber.updateQueue</code> 属性，对于类型为 HostComponent 的 fiber 节点来说，它的 <code>updateQueue</code> 属性是一个数组，表示这个 dom 节点的属性变更，例如一个 dom 节点在某次更新中它的 <code>a</code>属性需要从 <code>react</code> 更新为 <code>vue</code>，<code>b</code> 属性需要从 <code>byte</code> 更新为 <code>dance</code>，那这个 dom 节点的 fiber 节点的 <code>updateQueue</code> 就长这样 <code>['a', 'vue', 'b', 'dance']</code>，也就是说第 i 项是属性 key，第 i + 1 项是属性 value。</p> <p><code>commitUpdate</code> 方法同样来自 <code>ReactFiberHostConfig</code>：</p> <div class="language- extra-class"><pre class="language-text"><code>export function commitUpdate(
+  domElement: Instance,
+  updatePayload: Array&lt;mixed&gt;,
+  type: string,
+  oldProps: Props,
+  newProps: Props,
+  internalInstanceHandle: Object,
+): void {
+  // ...
+  updateProperties(domElement, updatePayload, type, oldProps, newProps);
+}
+</code></pre></div><p>它最终会调用 <code>updateDOMProperties</code> 来更新 dom 属性：</p> <div class="language- extra-class"><pre class="language-text"><code>function updateDOMProperties(
+  domElement: Element,
+  updatePayload: Array&lt;any&gt;,
+  wasCustomComponentTag: boolean,
+  isCustomComponentTag: boolean,
+): void {
+  for (let i = 0; i &lt; updatePayload.length; i += 2) {
+    const propKey = updatePayload[i];
+    const propValue = updatePayload[i + 1];
+    if (propKey === STYLE) {
+      setValueForStyles(domElement, propValue);
+    } else if (propKey === DANGEROUSLY_SET_INNER_HTML) {
+      setInnerHTML(domElement, propValue);
+    } else if (propKey === CHILDREN) {
+      setTextContent(domElement, propValue);
+    } else {
+      setValueForProperty(domElement, propKey, propValue, isCustomComponentTag);
+    }
+  }
+}
+</code></pre></div><p>这里的 <code>i</code> 和 <code>i + 1</code> 就对应着上面提到的 <code>updateQueue</code> 的数据结构，第 i 项是属性 key，第 i + 1 项是属性 value。</p> <h4 id="commitdeletion"><a href="#commitdeletion" class="header-anchor">#</a> commitDeletion</h4> <p><code>commitDeletion</code> 用于执行删除操作：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitDeletion(
+  finishedRoot: FiberRoot,
+  current: Fiber,
+  renderPriorityLevel: ReactPriorityLevel,
+): void {
+  // ...
+  unmountHostComponents(finishedRoot, current, renderPriorityLevel);
+  // ...
+}
+</code></pre></div><p>在 <code>unmountHostComponents</code> 中核心是遍历节点调用 <code>commitUnmount</code> 方法。在这个方法中会根据 fiber 节点的类型做不同的处理。</p> <p>对于 FunctionComponent，会注册它的 <code>useEffect</code> 销毁函数，其实就是把这个 effect 推进 <code>pendingPassiveHookEffectsUnmount</code> 这个数组中，便于**「后续」**取出来执行销毁函数。</p> <div class="language- extra-class"><pre class="language-text"><code>function commitUnmount(
+  finishedRoot: FiberRoot,
+  current: Fiber,
+  renderPriorityLevel: ReactPriorityLevel,
+): void {
+  switch (current.tag) {
+    case FunctionComponent: {
+      // ...
+      enqueuePendingPassiveHookEffectUnmount(current, effect);
+      // ...
+      return;
+    }
+  }
+}
+</code></pre></div><p>对于 ClassComponent，会执行它的 <code>componentWillUnmount</code> 方法：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitUnmount(
+  finishedRoot: FiberRoot,
+  current: Fiber,
+  renderPriorityLevel: ReactPriorityLevel,
+): void {
+  switch (current.tag) {
+    case ClassComponent: {
+      const instance = current.stateNode;
+      if (typeof instance.componentWillUnmount === 'function') {
+        safelyCallComponentWillUnmount(current, instance);
+      }
+      return;
+    }
+  }
+}
+</code></pre></div><h3 id="layout阶段"><a href="#layout阶段" class="header-anchor">#</a> layout阶段</h3> <p><code>layout阶段</code> 会执行 <code>commitLayoutEffects</code> 方法，里面核心是执行<code>commitLifeCycles</code>方法。在这个方法中会根据 fiber 节点的类型执行不同的处理。</p> <div class="language- extra-class"><pre class="language-text"><code>function commitLifeCycles(
+  finishedRoot: FiberRoot,
+  current: Fiber | null,
+  finishedWork: Fiber,
+  committedLanes: Lanes,
+): void {
+  switch (finishedWork.tag) {
+    case FunctionComponent: {
+      commitHookEffectListMount(HookLayout | HookHasEffect, finishedWork);
+      schedulePassiveEffects(finishedWork);
+      return;
+    }
+  }
+}
+</code></pre></div><p>对于 FunctionComponent，会把 HookLayout 这个 tag 类型传给 <code>commitHookEffectListMount</code> 方法，也就是说这里会执行 <code>useLayoutEffect</code> 的回调函数。</p> <p>接着会执行 <code>schedulePassiveEffects</code> 方法：</p> <div class="language- extra-class"><pre class="language-text"><code>function schedulePassiveEffects(finishedWork: Fiber) {
+  const updateQueue: FunctionComponentUpdateQueue | null = (finishedWork.updateQueue: any);
+  const lastEffect = updateQueue !== null ? updateQueue.lastEffect : null;
+  if (lastEffect !== null) {
+    const firstEffect = lastEffect.next;
+    let effect = firstEffect;
+    do {
+      const {next, tag} = effect;
+      if (
+        (tag &amp; HookPassive) !== NoHookEffect &amp;&amp;
+        (tag &amp; HookHasEffect) !== NoHookEffect
+      ) {
+        enqueuePendingPassiveHookEffectUnmount(finishedWork, effect);
+        enqueuePendingPassiveHookEffectMount(finishedWork, effect);
+      }
+      effect = next;
+    } while (effect !== firstEffect);
+  }
+}
+</code></pre></div><p>在这里会分别注册 <code>useEffect</code> 销毁函数和回调函数，其实也就是把 effect 分别推进 <code>pendingPassiveHookEffectsUnmount</code> 和 <code>pendingPassiveHookEffectsMount</code>这两个数组中，用于**「后续」**取出来执行。</p> <p>对于 ClassComponent，如果 <code>current</code> 为空，也就是这个节点是首次 render，则会执行它的 <code>componentDidMount</code> 生命周期方法，否则会执行 <code>componentDidUpdate</code> 方法：</p> <div class="language- extra-class"><pre class="language-text"><code>function commitLifeCycles(
+  finishedRoot: FiberRoot,
+  current: Fiber | null,
+  finishedWork: Fiber,
+  committedLanes: Lanes,
+): void {
+  switch (finishedWork.tag) {
+    case ClassComponent: {
+      const instance = finishedWork.stateNode;
+      if (finishedWork.effectTag &amp; Update) {
+        if (current === null) {
+          instance.componentDidMount();
+        } else {
+          instance.componentDidUpdate(
+            prevProps,
+            prevState,
+            instance.__reactInternalSnapshotBeforeUpdate,
+          );
+        }
+      }
+      return;
+    }
+  }
+}
+</code></pre></div><h2 id="commit-阶段总结"><a href="#commit-阶段总结" class="header-anchor">#</a> commit 阶段总结</h2> <ul><li><p>等待执行完上一轮渲染的 useEffect</p></li> <li><p>重置一些全局变量（如：workInProgressRoot）</p></li> <li><p>更新副作用列表 effect list。根节点的副作用列表是不包括自身的，如果根节点有副作用, 则需要把根节点添加到副作用列表的末尾</p></li> <li><p>渲染</p></li> <li><ul><li>执行 <code>componentDidMount</code>、<code>componentDidUpdate</code></li> <li>执行 <code>useLayoutEffect</code> 的回调函数</li> <li>注册 <code>useEffect</code> 的回调函数和销毁函数，等 commit 阶段结束后再异步执行</li></ul></li> <li><ul><li>执行 DOM 增删改</li> <li>执行 <code>useLayoutEffect</code> 的销毁函数</li></ul></li> <li><ul><li>执行 <code>getSnapshotBeforeUpdate</code></li> <li>调度 <code>useEffect</code></li></ul></li> <li><ul><li>beforeMutation</li> <li>mutation</li> <li>切换当前 fiber 树（<code>root.current = finishedWork</code>），使得 <code>fiberRoot</code>的 <code>current</code> 指向的是当前页面展示的 fiber 树。</li> <li>layout</li></ul></li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">5/8/2024, 3:01:19 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/events/一文吃透react事件原理.html" class="prev">
+        一文吃透react事件原理
+      </a></span> <span class="next"><a href="/events/从源码深入探究React 运行时优化方案的演进.html">
+        从源码深入探究React 运行时优化方案的演进
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.27287fd6.js" defer></script><script src="/assets/js/2.57da4f88.js" defer></script><script src="/assets/js/1.a76cc220.js" defer></script><script src="/assets/js/68.0dbf39cf.js" defer></script>
+  </body>
+</html>
